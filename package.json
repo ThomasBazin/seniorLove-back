@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "prestart": "node replace-vars.js",
     "start": "node index.js",
     "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql"
   },
