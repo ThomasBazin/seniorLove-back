@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './sequelize_client.js';
 
-export class Admin extends Model {}
+export class Hobby extends Model {}
 
-Admin.init(
+Hobby.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,15 +11,6 @@ Admin.init(
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      unique: true,
-    },
-    password: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
@@ -34,7 +25,7 @@ Admin.init(
   },
   {
     sequelize,
-    modelName: 'Admin',
-    tableName: 'administrators',
+    modelName: 'Hobby',
+    tableName: 'hobbies',
   }
 );

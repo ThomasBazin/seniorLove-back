@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './sequelize_client.js';
 
-export class Admin extends Model {}
+export class Event extends Model {}
 
-Admin.init(
+Event.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,17 +11,35 @@ Admin.init(
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
-    email: {
+    location: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      unique: true,
     },
-    password: {
+    description: {
       type: DataTypes.STRING(255),
       allowNull: false,
+    },
+    picture: {
+      type: DataTypes.STRING(255),
+    },
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    time: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    admin_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'administrators',
+        key: 'id',
+      },
+      onDelete: 'SET NULL',
     },
     created_at: {
       type: DataTypes.DATE,
@@ -34,7 +52,7 @@ Admin.init(
   },
   {
     sequelize,
-    modelName: 'Admin',
-    tableName: 'administrators',
+    modelName: 'Event',
+    tableName: 'events',
   }
 );
