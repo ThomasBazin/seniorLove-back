@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS "users", "administrators", "events", "hobbies", "users_mess
 
 -- Table: users
 CREATE TABLE users (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(50) NOT NULL,
     "birth_date" DATE NOT NULL,
     "description" TEXT,
@@ -21,7 +21,7 @@ CREATE TABLE users (
 
 -- Table: administrators
 CREATE TABLE administrators (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(50) NOT NULL,
     "email" VARCHAR(100) UNIQUE NOT NULL,
     "password" VARCHAR(255) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE administrators (
 
 -- Table: events
 CREATE TABLE events (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(100) NOT NULL,
     "location" VARCHAR(255) NOT NULL,
     "description" TEXT NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE events (
 
 -- Table: hobbies
 CREATE TABLE hobbies (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
@@ -53,7 +53,7 @@ CREATE TABLE hobbies (
 
 -- Table: users_messages
 CREATE TABLE users_messages (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "message" TEXT NOT NULL,
     "sender_id" INT REFERENCES "users"("id") ON DELETE SET NULL,
     "receiver_id" INT REFERENCES "users"("id") ON DELETE SET NULL,
@@ -63,7 +63,7 @@ CREATE TABLE users_messages (
 
 -- Table: users_events
 CREATE TABLE users_events (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "user_id" INT NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
     "event_id" INT NOT NULL REFERENCES "events"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -72,7 +72,7 @@ CREATE TABLE users_events (
 
 -- Table: users_hobbies
 CREATE TABLE users_hobbies (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "user_id" INT NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
     "hobby_id" INT NOT NULL REFERENCES "hobbies"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -81,7 +81,7 @@ CREATE TABLE users_hobbies (
 
 -- Table: events_hobbies
 CREATE TABLE events_hobbies (
-    "id" SERIAL PRIMARY KEY,
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "event_id" INT NOT NULL REFERENCES "events"("id") ON DELETE CASCADE,
     "hobby_id" INT NOT NULL REFERENCES "hobbies"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
