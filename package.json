@@ -7,10 +7,11 @@
   "scripts": {
     "prestart": "node replace-vars.js",
     "start": "node index.js",
-    "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql"
+    "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql",
+    "db:test": "node ./src/migrations/create_tables.js && node ./src/migrations/populate_tables.js"
   },
   "keywords": [],
-  "author": "Coada EMILIAN, Thomas BAZIN, Widi MARTIAL, Oliva DRUYER, Kevin LEVEQUE",
+  "author": "Emilian COADA, Thomas BAZIN, Widi MARTIAL, Oliva DRUYER, Kevin LEVEQUE",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
