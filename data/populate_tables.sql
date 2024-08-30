@@ -89,17 +89,28 @@ INSERT INTO users_messages (message, sender_id, receiver_id, created_at, updated
 ('Je pense que rester actif est essentiel. Vous aimez découvrir de nouvelles activités ?', 4, 5, '2024-08-25 10:00:00+00'),
 ('Oui, j’aime essayer de nouvelles choses. Vous avez des objectifs pour l’année prochaine ?', 5, 4, '2024-08-25 10:05:00+00');
 
-
-
-
--- TODO !!!!!!!!
 -- Insert sample data into users_events
 INSERT INTO users_events (user_id, event_id, created_at, updated_at) VALUES
 (1, 1, NOW(), NOW()),
-(2, 2, NOW(), NOW()),
-(3, 3, NOW(), NOW()),
+(2, 1, NOW(), NOW()),
+(2, 3, NOW(), NOW()),
+(3, 5, NOW(), NOW()),
+(3, 6, NOW(), NOW());
+(3, 4, NOW(), NOW()),
+(3, 10, NOW(), NOW()),
 (4, 4, NOW(), NOW()),
-(5, 5, NOW(), NOW());
+(5, 10, NOW(), NOW()),
+(6, 13, NOW(), NOW()),
+(7, 1, NOW(), NOW()),
+(7, 4, NOW(), NOW()),
+(7, 9, NOW(), NOW()),
+(8, 2, NOW(), NOW()),
+(8, 11, NOW(), NOW()),
+(9, 1, NOW(), NOW()),
+(9, 4, NOW(), NOW()),
+(10, 5, NOW(), NOW()),
+(10, 11, NOW(), NOW()),
+(11, 11, NOW(), NOW());
 
 -- Insert sample data into users_hobbies
 INSERT INTO users_hobbies (user_id, hobbie_id, created_at, updated_at) VALUES
