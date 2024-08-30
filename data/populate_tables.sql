@@ -35,14 +35,62 @@ INSERT INTO hobbies (name, created_at, updated_at) VALUES
 ('Animaux et nature', NOW(), NOW()),
 ('Histoire et patrimoine', NOW(), NOW());
 
--- TODO !!!!!!!!
+
 -- Insert sample data into users_messages
 INSERT INTO users_messages (message, sender_id, receiver_id, created_at, updated_at) VALUES
-('Hey Alice, are you coming to the tech conference?', 2, 1, NOW(), NOW()),
-('Hi Bob, just wanted to say thank you for the book recommendation!', 1, 2, NOW(), NOW()),
-('Charlie, did you get the files I sent?', 3, 1, NOW(), NOW()),
-('Diana, can you help me with the workout plan?', 4, 1, NOW(), NOW()),
-('Edward, how was the music festival?', 5, 1, NOW(), NOW());
+('Bonjour Michel, quel est votre passe-temps préféré ?', 1, 2, '2024-08-01 09:00:00+00'),
+('Bonjour Jacqueline, j’adore le jardinage. Et vous ?', 2, 1, '2024-08-01 09:05:00+00'),
+('Je suis passionnée par la lecture. Quel genre de livres aimez-vous ?', 1, 3, '2024-08-02 10:15:00+00'),
+('Je lis surtout des romans historiques. Quel est votre livre préféré ?', 3, 1, '2024-08-02 10:20:00+00'),
+('J’aime beaucoup « Les Misérables » de Victor Hugo. Avez-vous déjà visité un endroit spécial ?', 1, 4, '2024-08-03 11:00:00+00'),
+('Oui, j’ai eu la chance de visiter l’Italie. C’est magnifique ! Et vous, avez-vous voyagé ?', 4, 1, '2024-08-03 11:05:00+00'),
+('J’ai voyagé en France et en Espagne. Vous aimez explorer de nouveaux endroits ?', 2, 5, '2024-08-04 12:30:00+00'),
+('Oui, j’adore découvrir de nouvelles cultures. Quel est votre plat préféré ?', 5, 2, '2024-08-04 12:35:00+00'),
+('J’aime beaucoup la cuisine italienne. Vous avez une recette que vous aimez préparer ?', 6, 7, '2024-08-05 14:00:00+00'),
+('Je fais un excellent risotto aux champignons. Quels sont vos loisirs ?', 7, 6, '2024-08-05 14:05:00+00'),
+('J’aime la photographie. Avez-vous des hobbies créatifs ?', 8, 9, '2024-08-06 15:00:00+00'),
+('Je peins des aquarelles depuis des années. Quelle est votre saison préférée ?', 9, 8, '2024-08-06 15:05:00+00'),
+('J’aime l’automne pour ses couleurs magnifiques. Vous faites du sport ou de l’exercice ?', 10, 11, '2024-08-07 16:00:00+00'),
+('Je fais du yoga tous les matins. Quel est votre endroit préféré pour vous détendre ?', 11, 10, '2024-08-07 16:10:00+00'),
+('J’aime me détendre dans mon jardin. Avez-vous des animaux de compagnie ?', 2, 3, '2024-08-08 17:00:00+00'),
+('Oui, j’ai un chat qui me tient compagnie. Vous avez des enfants ou des petits-enfants ?', 3, 2, '2024-08-08 17:05:00+00'),
+('J’ai deux petits-enfants qui me rendent visite souvent. Vous aimez les jeux de société ?', 4, 5, '2024-08-09 18:00:00+00'),
+('Oui, j’adore jouer aux échecs. Quel est le dernier film que vous avez vu ?', 5, 4, '2024-08-09 18:05:00+00'),
+('J’ai vu un film romantique récemment. Vous avez des hobbies que vous pratiquez régulièrement ?', 6, 7, '2024-08-10 19:00:00+00'),
+('Je fais du jardinage dès que je le peux. Vous aimez cuisiner ?', 7, 6, '2024-08-10 19:05:00+00'),
+('Oui, la cuisine est une grande passion pour moi. Quels sont vos plats préférés à préparer ?', 8, 9, '2024-08-11 20:00:00+00'),
+('J’aime préparer des plats traditionnels. Vous avez déjà essayé de nouvelles recettes récemment ?', 9, 8, '2024-08-11 20:05:00+00'),
+('J’ai essayé une nouvelle recette de soupe. Vous aimez lire des magazines ou des journaux ?', 10, 11, '2024-08-12 21:00:00+00'),
+('Oui, je lis beaucoup de magazines de jardinage. Quel est votre auteur préféré ?', 11, 10, '2024-08-12 21:05:00+00'),
+('J’aime beaucoup les romans de Jane Austen. Vous aimez les films ou les séries télé ?', 1, 2, '2024-08-13 22:00:00+00'),
+('J’apprécie les séries historiques. Vous aimez les spectacles en direct ?', 2, 1, '2024-08-13 22:05:00+00'),
+('J’ai assisté à une pièce de théâtre récemment. Vous aimez écouter de la musique ?', 3, 4, '2024-08-14 23:00:00+00'),
+('Oui, j’écoute beaucoup de jazz. Avez-vous une musique préférée ?', 4, 3, '2024-08-14 23:05:00+00'),
+('J’aime le classique. Vous avez des souvenirs de vacances préférés ?', 5, 6, '2024-08-15 00:00:00+00'),
+('Oui, mes vacances en Bretagne étaient mémorables. Avez-vous des projets pour le futur ?', 6, 5, '2024-08-15 00:05:00+00'),
+('Je prévois de commencer un nouveau hobby. Vous avez des activités que vous aimeriez essayer ?', 7, 8, '2024-08-16 01:00:00+00'),
+('J’aimerais apprendre à jouer d’un instrument de musique. Vous avez une expérience musicale ?', 8, 7, '2024-08-16 01:05:00+00'),
+('Je joue du piano depuis des années. Vous avez des conseils pour rester en forme ?', 9, 10, '2024-08-17 02:00:00+00'),
+('Faire des promenades quotidiennes me garde en forme. Vous avez des astuces de bien-être ?', 10, 9, '2024-08-17 02:05:00+00'),
+('Je fais du yoga régulièrement. Vous aimez partager vos passions ?', 11, 12, '2024-08-18 03:00:00+00'),
+('Oui, j’aime parler de mes voyages. Vous avez une activité préférée pour vous détendre ?', 12, 11, '2024-08-18 03:05:00+00'),
+('Je trouve la méditation très relaxante. Vous aimez cuisiner pour des occasions spéciales ?', 1, 5, '2024-08-19 04:00:00+00'),
+('Oui, j’adore préparer des repas pour les fêtes. Vous avez des plats traditionnels ?', 5, 1, '2024-08-19 04:05:00+00'),
+('Ma famille adore le gâteau au chocolat. Vous aimez faire des projets créatifs ?', 6, 7, '2024-08-20 05:00:00+00'),
+('Je fais souvent du bricolage à la maison. Vous avez un endroit préféré pour passer du temps ?', 7, 6, '2024-08-20 05:05:00+00'),
+('J’aime lire dans mon coin préféré du jardin. Vous faites souvent du bénévolat ?', 8, 9, '2024-08-21 06:00:00+00'),
+('Oui, je fais du bénévolat dans une association locale. Vous aimez vous engager dans des activités communautaires ?', 9, 8, '2024-08-21 06:05:00+00'),
+('Je suis impliqué dans un groupe de lecture. Vous aimez partager vos livres préférés ?', 10, 11, '2024-08-22 07:00:00+00'),
+('Oui, j’aime organiser des échanges de livres. Quel est le dernier livre que vous avez lu ?', 11, 10, '2024-08-22 07:05:00+00'),
+('J’ai lu un très bon roman récemment. Vous avez des activités estivales préférées ?', 12, 1, '2024-08-23 08:00:00+00'),
+('J’aime me promener au bord de la mer. Vous avez des souvenirs de vacances que vous aimez partager ?', 1, 12, '2024-08-23 08:05:00+00'),
+('Oui, mes vacances en Provence sont inoubliables. Vous aimez participer à des clubs ou des groupes ?', 2, 3, '2024-08-24 09:00:00+00'),
+('Je fais partie d’un club de lecture. Vous avez des conseils pour rester actif ?', 3, 2, '2024-08-24 09:05:00+00'),
+('Je pense que rester actif est essentiel. Vous aimez découvrir de nouvelles activités ?', 4, 5, '2024-08-25 10:00:00+00'),
+('Oui, j’aime essayer de nouvelles choses. Vous avez des objectifs pour l’année prochaine ?', 5, 4, '2024-08-25 10:05:00+00');
+
+
+
 
 -- TODO !!!!!!!!
 -- Insert sample data into users_events
