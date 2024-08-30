@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from './sequelize_client.js';
+import { sequelize } from '../sequelize_client.js';
 
 export class Event extends Model {}
 

@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from './sequelize_client.js';
+import { DataTypes, Model } from 'sequelize';
+import { sequelize } from '../sequelize_client.js';
 
 export class User_message extends Model {}
 
