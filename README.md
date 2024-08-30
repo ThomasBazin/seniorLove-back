@@ -24,13 +24,8 @@ To run this project locally, follow these steps:
 
 4. **Setup the .env** 
    - Create `.env` file
-   - Add the PG_URL variable with your database credentials.
+   - Fill it with your credentials, you can find .env variables inside `.env.example`
 
 5. **Set up the PostgreSQL database**:
-    - Create a new PostgreSQL database with data/create_db.sql
-
-6. **Start the server**:
-
-    ```sh
-    npm run dev
-    ```
+    - Run `pnpm prestart` to create the creation table script inside `package.json`
+    - Run `pnpm db:create` to create tables
