@@ -74,7 +74,7 @@ CREATE TABLE users_events (
 CREATE TABLE users_hobbies (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
-    "hobbie_id" INT NOT NULL REFERENCES "hobbies"("id") ON DELETE CASCADE,
+    "hobby_id" INT NOT NULL REFERENCES "hobbies"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
@@ -83,7 +83,7 @@ CREATE TABLE users_hobbies (
 CREATE TABLE events_hobbies (
     "id" SERIAL PRIMARY KEY,
     "event_id" INT NOT NULL REFERENCES "events"("id") ON DELETE CASCADE,
-    "hobbie_id" INT NOT NULL REFERENCES "hobbies"("id") ON DELETE CASCADE,
+    "hobby_id" INT NOT NULL REFERENCES "hobbies"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
