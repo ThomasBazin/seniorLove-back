@@ -17,6 +17,8 @@ INSERT INTO events (name, location, description, picture, date, time, admin_id, 
 ('Cours de chorale', 'Avignon', $$"Rejoignez-nous pour une journée musicale inoubliable lors de notre cours de chorale à Avignon ! Que vous soyez un chanteur débutant ou expérimenté, cet événement est l’occasion idéale de découvrir les plaisirs du chant choral dans un cadre inspirant. Sous la direction d’un chef de chœur passionné, vous apprendrez à interpréter des morceaux variés, allant des classiques intemporels aux chansons modernes. Le matin, vous participerez à des échauffements vocaux et des techniques de respiration, avant de plonger dans la pratique en groupe. Après une pause déjeuner conviviale, continuez à perfectionner votre voix et votre harmonie avec des exercices dynamiques. En fin de journée, partagez le fruit de votre travail avec une performance en petit groupe, mettant en valeur les progrès réalisés. Venez vivre une expérience enrichissante et harmonieuse au cœur d’Avignon, où musique et convivialité se rencontrent !"$$, '2024-12-23', '16:00:00', 1, NOW(), NOW()),
 ('Soirée méditation', 'Rennes', $$"Offrez-vous une soirée de sérénité et de bien-être lors de notre soirée méditation à Rennes ! Dans un cadre apaisant et élégant, plongez dans l’univers de la pleine conscience et du calme intérieur. La soirée commence par une introduction douce aux principes de la méditation, suivie de séances guidées adaptées à tous les niveaux. Nos instructeurs expérimentés vous guideront à travers des pratiques de méditation variées, allant de la relaxation profonde à la pleine conscience, pour vous aider à libérer le stress et retrouver votre équilibre. Après une pause revitalisante avec des infusions et des en-cas sains, poursuivez avec une méditation en groupe, favorisant un sentiment de connexion et de paix intérieure. Que vous soyez novice ou méditant régulier, cette soirée vous offrira une pause bien méritée dans la routine quotidienne. Réservez dès maintenant pour une expérience de méditation apaisante et revitalisante au cœur de Rennes !"$$, '2024-12-19', '21:00:00', 1, NOW(), NOW()),
 ('Balade en montgolfière', 'Saumur', $$"Vivez une aventure inoubliable avec notre balade en montgolfière au-dessus de Saumur ! Offrez-vous une vue panoramique spectaculaire sur les paysages enchâssés de la vallée de la Loire et les châteaux majestueux qui ornent la région. À l'aube, vous serez accueilli avec un petit-déjeuner léger avant de participer à la préparation de la montgolfière, où vous découvrirez le processus fascinant de gonflage. Une fois dans les airs, laissez-vous emporter par la douce montée et admirez les panoramas époustouflants qui se dévoilent sous vos yeux. Votre pilote expérimenté partagera des anecdotes locales et vous guidera tout au long de cette expérience magique. À la fin du vol, célébrez votre aventure avec un toast traditionnel et un certificat souvenir. Réservez dès maintenant pour un voyage aérien mémorable qui allie sérénité et émerveillement au cœur de Saumur !"$$, '2024-12-07', '10:30:00', 1, NOW(), NOW()),
+('Prise en main du smartphone', 'Paris', $$"Découvrez la magie de la technologie avec notre événement spécial pour les personnes âgées : Tech & Convivialité : Atelier Découverte des Nouveaux Outils Numériques ! Ce rendez-vous convivial est conçu pour familiariser les seniors avec les dernières innovations technologiques dans un cadre détendu et encourageant.L'événement commence par une introduction chaleureuse sur les bases des appareils numériques modernes, comme les smartphones et les tablettes. Ensuite, nos experts vous guideront à travers des ateliers pratiques où vous apprendrez à utiliser des applications courantes telles que les réseaux sociaux, les messageries instantanées, et les services de vidéo-conférence pour rester connecté avec vos proches.Après une pause-café, explorez les outils de sécurité en ligne pour protéger vos données et découvrez les applications de santé qui peuvent améliorer votre quotidien. Les sessions sont interactives et adaptées à votre rythme, permettant un apprentissage personnalisé et une assistance individuelle. En fin de journée, partagez vos nouvelles compétences autour d’un goûter et posez toutes vos questions à nos experts. Réservez dès maintenant pour un après-midi enrichissant où la technologie devient accessible et amusante, tout en favorisant l’échange et la convivialité !"$$, '2024-12-08', '10:30:00', 1, NOW(), NOW()),
+
 
 -- Insert sample data into hobbies
 INSERT INTO hobbies (name, created_at, updated_at) VALUES
@@ -33,6 +35,7 @@ INSERT INTO hobbies (name, created_at, updated_at) VALUES
 ('Animaux et nature', NOW(), NOW()),
 ('Histoire et patrimoine', NOW(), NOW());
 
+-- TODO !!!!!!!!
 -- Insert sample data into users_messages
 INSERT INTO users_messages (message, sender_id, receiver_id, created_at, updated_at) VALUES
 ('Hey Alice, are you coming to the tech conference?', 2, 1, NOW(), NOW()),
@@ -41,6 +44,7 @@ INSERT INTO users_messages (message, sender_id, receiver_id, created_at, updated
 ('Diana, can you help me with the workout plan?', 4, 1, NOW(), NOW()),
 ('Edward, how was the music festival?', 5, 1, NOW(), NOW());
 
+-- TODO !!!!!!!!
 -- Insert sample data into users_events
 INSERT INTO users_events (user_id, event_id, created_at, updated_at) VALUES
 (1, 1, NOW(), NOW()),
@@ -88,8 +92,27 @@ INSERT INTO users_hobbies (user_id, hobbie_id, created_at, updated_at) VALUES
 
 -- Insert sample data into events_hobbies
 INSERT INTO events_hobbies (event_id, hobbie_id, created_at, updated_at) VALUES
-(1, 1, NOW(), NOW()),
+(1, 4, NOW(), NOW()),
+(1, 12, NOW(), NOW()),
 (2, 2, NOW(), NOW()),
-(3, 5, NOW(), NOW()),
-(4, 3, NOW(), NOW()),
-(5, 4, NOW(), NOW());
+(2, 10, NOW(), NOW()),
+(3, 4, NOW(), NOW()),
+(4, 2, NOW(), NOW()),
+(4, 4, NOW(), NOW()),
+(5, 7, NOW(), NOW()),
+(6, 10, NOW(), NOW()),
+(6, 11, NOW(), NOW()),
+(7, 1, NOW(), NOW()),
+(7, 2, NOW(), NOW()),
+(8, 2, NOW(), NOW()),
+(8, 5, NOW(), NOW()),
+(9, 7, NOW(), NOW()),
+(9, 9, NOW(), NOW()),
+(10, 5, NOW(), NOW()),
+(10, 9, NOW(), NOW()),
+(11, 3, NOW(), NOW()),
+(11, 9, NOW(), NOW()),
+(12, 1, NOW(), NOW()),
+(12, 12, NOW(), NOW()),
+(13, 8, NOW(), NOW());
+
