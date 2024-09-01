@@ -1,20 +1,6 @@
 BEGIN;
 
--- Insert sample data into users
-
-INSERT INTO "users" ("name", "birth_date", "description", "gender", "picture", "email", "password", "status", "created_at") VALUES
-('Alice Martin', '1945-06-15', 'Avid reader and world traveler.', 'female', 'http://example.com/pictures/alice.jpg', 'alice.martin@example.com', 'password123', 'active', '2024-08-01 09:00:00+00'),
-('Bob Johnson', '1950-09-22', 'Enjoys gardening and cooking.', 'male', 'http://example.com/pictures/bob.jpg', 'bob.johnson@example.com', 'password456', 'active', '2024-08-01 09:15:00+00'),
-('Catherine Davis', '1947-12-05', 'Passionate about painting and history.', 'female', 'http://example.com/pictures/catherine.jpg', 'catherine.davis@example.com', 'password789', 'active', '2024-08-01 09:30:00+00'),
-('David Brown', '1948-03-18', 'Loves music and theater.', 'male', 'http://example.com/pictures/david.jpg', 'david.brown@example.com', 'password012', 'active', '2024-08-01 09:45:00+00'),
-('Emily Wilson', '1952-07-10', 'Enjoys hiking and photography.', 'female', 'http://example.com/pictures/emily.jpg', 'emily.wilson@example.com', 'password345', 'active', '2024-08-01 10:00:00+00'),
-('Frank Smith', '1949-01-25', 'Experienced traveler with a love for cooking.', 'male', 'http://example.com/pictures/frank.jpg', 'frank.smith@example.com', 'password678', 'active', '2024-08-01 10:15:00+00'),
-('Grace White', '1951-10-08', 'Loves literature and classical music.', 'female', 'http://example.com/pictures/grace.jpg', 'grace.white@example.com', 'password901', 'active', '2024-08-01 10:30:00+00'),
-('Henry Clark', '1946-04-12', 'Enjoys woodworking and gardening.', 'male', 'http://example.com/pictures/henry.jpg', 'henry.clark@example.com', 'password234', 'active', '2024-08-01 10:45:00+00'),
-('Irene Lewis', '1953-05-20', 'Fond of knitting and community service.', 'female', 'http://example.com/pictures/irene.jpg', 'irene.lewis@example.com', 'password567', 'active', '2024-08-01 11:00:00+00'),
-('James Scott', '1955-11-11', 'Likes playing chess and hiking.', 'male', 'http://example.com/pictures/james.jpg', 'james.scott@example.com', 'password890', 'active', '2024-08-01 11:15:00+00'),
-('Karen Young', '1954-08-30', 'Avid reader and volunteer.', 'female', 'http://example.com/pictures/karen.jpg', 'karen.young@example.com', 'password1234', 'active', '2024-08-01 11:30:00+00'),
-('Larry King', '1950-02-19', 'Passionate about fishing and sports.', 'male', 'http://example.com/pictures/larry.jpg', 'larry.king@example.com', 'password5678', 'active', '2024-08-01 11:45:00+00');
+-- Insertion of users data is made with node script populate_tables_users.js which has to be executed BEFORE this present SQL script !!
 
 -- Insert sample data into administrators
 
