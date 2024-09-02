@@ -36,10 +36,6 @@ To run this project locally, follow these steps:
      pnpm run db:reset
      ```
 
-   ```
-
-   ```
-
 6. **Start the server**:
 
    ```sh
