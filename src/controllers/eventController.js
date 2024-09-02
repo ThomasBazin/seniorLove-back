@@ -9,20 +9,18 @@ export async function getAllEvents(req, res) {
   res.status(200).json(allEvents);
 }
 
-getAllEvents();
-
 //Récuperer un évenement et ses centres d'intérets
 export async function getOneEvent(req, res) {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.eventId);
   //verif de l'id
   if (id === isNaN) {
-    res.status(400).json({ message: 'this id is not valid' });
+    return res.status(400).json({ message: 'this id is not valid' });
   }
   const oneEvent = await Event.findByPk(id, {
     include: [{ model: Hobby, as: 'hobbies' }],
   });
   if (!oneEvent) {
-    res.status(404).json({ message: 'Event not found' });
+    return res.status(404).json({ message: 'Event not found' });
   }
   res.status(200).json(oneEvent);
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  endOfLine: 'lf',
+  endOfLine: 'clf',
   trailingComma: 'es5',
   semi: true,
   useTabs: false,

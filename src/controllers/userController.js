@@ -1,15 +1,29 @@
 import { User, Hobby, Event, User_message } from '../models/associations.js';
-import { Scrypt } from '../src/auth/Scrypt.js';
+import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 
+//données de test
+const body = {
+  name: 'SeniorLove10',
+  birth_date: '1960-05-15',
+  description: 'je suis une personne douce et attentionnée',
+  gender: 'female',
+  picture:
+    'https://st4.depositphotos.com/22611548/38059/i/1600/depositphotos_380591824-stock-photo-portrait-happy-mature-woman-eyeglasses.jpg',
+  email: 'rdddee5@example.com',
+  password: 'jacqueline1950!',
+  repeat_password: 'jacqueline1950!',
+};
+
+//joi schema configuration
+//TODO 
 const schema = Joi.object({
-  name: Joi.string().alphanum().max(50).required(),
-  birth_date: Joi.date().less('now').greater('now - 60 years').iso().required(),
-  description: Joi.string().alphanum(),
+  name: Joi.string().max(50).required(),
+  birth_date: Joi.date().required(),
+  description: Joi.string(),
   gender: Joi.string().max(10).valid('male', 'female', 'other').required(),
   picture: Joi.string().max(255),
   email: Joi.string()
-    .alphanum()
     .max(255)
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
     .required(),
@@ -18,7 +32,37 @@ const schema = Joi.object({
 });
 
 //Ajouter un utilisateur
-export async function addUser(req, res) {}
+export async function addUser(req, res) {
+  //const body = req.body;
+  if (!body) {
+    res.status(400).json({ message: 'bad request' });
+  }
+
+  const { value } = schema.validate(body);
+  if (!value) {
+    return res.status(400).json({ message: 'bad request' });
+  }
+
+  const { repeat_password } = body;
+  const createUser = await User.create({
+    name: body.name,
+    birth_date: body.birth_date,
+    description: body.description,
+    gender: body.gender,
+    picture: body.picture,
+    email: body.email,
+    password: Scrypt.hash(repeat_password),
+  });
+  //res.status(200);
+
+  const hobbie = [1, 2, 3];
+
+  const userHobies = await Hobby.findAll({
+    where: { id: hobbie },
+  });
+
+  await createUser.addHobbies(userHobies);
+}
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
