@@ -20,6 +20,10 @@ async function replaceVars() {
     // Update the scripts in package.json
     packageJson.scripts['db:create'] =
       `psql -U ${dbUser} -d ${dbName} -f data/create_tables.sql`;
+    packageJson.scripts['db:populate'] =
+      `node data/populate_tables_users.js && psql -U ${dbUser} -d ${dbName} -f data/populate_tables_1.sql && psql -U ${dbUser} -d ${dbName} -f data/populate_tables_2.sql`;
+    packageJson.scripts['db:reset'] =
+      `pnpm run db:create && node data/populate_tables_users.js && psql -U ${dbUser} -d ${dbName} -f data/populate_tables_1.sql && psql -U ${dbUser} -d ${dbName} -f data/populate_tables_2.sql`;
 
     // Write the updated package.json back to file
     await fs.writeFile(
