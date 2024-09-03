@@ -1,6 +1,14 @@
-import { User, Hobby, Event, User_message, User_hobby } from '../models/index.js';
+import {
+  User,
+  Hobby,
+  Event,
+  User_message,
+  User_hobby,
+} from '../models/index.js';
 import Joi from 'joi';
-import jsonwebtoken from 'jsonwebtoken'
+import jsonwebtoken from 'jsonwebtoken';
+import { Op } from 'sequelize';
+import { sequelize } from '../models/index.js';
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -30,60 +38,68 @@ export async function getOneUser(req, res) {
 //Récuperer l'utilisateur connecté
 export async function getConnectedUser(req, res) {
   const myId = parseInt(req.user.userId);
-  console.log(myId)
+  console.log(myId);
 
-  const foundUser = await User.findByPk(myId, {include:[{ model: Hobby, as: 'hobbies' }]})
+  const foundUser = await User.findByPk(myId, {
+    include: [{ model: Hobby, as: 'hobbies' }],
+  });
   if (foundUser.status === 'pending' || foundUser.status === 'banned') {
-    return res.status(401).json({message: "Unauthorized"});
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  const { id, name, birth_date, description, gender, picture, email, hobbies} = foundUser;
- const me = {
-  id,
-  name,
-  birth_date,
-  description,
-  gender,
-  picture,
-  email,
-  hobbies
- }
+  const { id, name, birth_date, description, gender, picture, email, hobbies } =
+    foundUser;
+  const me = {
+    id,
+    name,
+    birth_date,
+    description,
+    gender,
+    picture,
+    email,
+    hobbies,
+  };
 
   res.status(200).json(me);
 }
 
 //Mettre à jour un utilisateur
-export async function updateUser(req, res) {
-
-
-}
+export async function updateUser(req, res) {}
 
 //Supprimer un utilisateur
 export async function deleteUser(req, res) {}
 
 //Récupérer tous les utilisateurs qui ont les mêmes centres d'intérets
 export async function getAllSameInterestUsers(req, res) {
-  const myId = req.user.userId;
-  // console.log(myId)
+  // const myId = parseInt(req.user.userId);
+  const myId = 1;
+  if (myId === isNaN) {
+    return res.status(400).json({ message: 'this id is not valid' });
+  }
 
   // get my hobbies
-  const myHobbies = await User_hobby.findAll({where: {user_id: myId}})
-  // console.log(JSON.stringify(myHobbies, null, 2))
-  let myHobbiesArrayId = []
-  myHobbies.forEach(hobby => {
-    myHobbiesArrayId.push(hobby.hobby_id)
-  })
+  const myHobbies = await User_hobby.findAll({ where: { user_id: myId } });
 
+  // Create an array in which to store my hobbies ids
+  const myHobbiesArrayId = [];
+  myHobbies.forEach((hobby) => {
+    myHobbiesArrayId.push(hobby.hobby_id);
+  });
 
-  // find all users that havec my hobbies, except me
-  const mySuggestions = await User.findAll({include: {
-    association: "hobbies",
-    where: {id: myHobbiesArrayId}
-  },
-where: {
-  id: !myId
-}})
-  console.log(JSON.stringify(mySuggestions, null, 2))
+  // find 6 random users that share at least one of my hobbies, except me
+  const mySuggestions = await User.findAll({
+    attributes: ['id', 'name', 'birth_date', 'picture'],
+    order: sequelize.random(),
+    include: {
+      association: 'hobbies',
+      attributes: [],
+      where: { id: myHobbiesArrayId },
+    },
+    where: {
+      id: { [Op.not]: myId },
+      status: 'active',
+    },
+  });
 
   res.status(200).json(mySuggestions);
 }

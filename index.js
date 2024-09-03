@@ -1,9 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import { publicRouter } from './src/routers/publicRouter.js';
-import { privateRouter} from './src/routers/privateRouter.js'
-import jsonwebtoken from 'jsonwebtoken'
-
+import { privateRouter } from './src/routers/privateRouter.js';
+import jsonwebtoken from 'jsonwebtoken';
 
 const app = express();
 
@@ -25,14 +24,11 @@ app.use((req, res, next) => {
       console.log('Invalid token', err);
     }
   }
-  console.log(req.user);
   next();
 });
 
 app.use(publicRouter);
 app.use(privateRouter);
-
-
 
 const port = process.env.PORT;
 app.listen(port, () => {
