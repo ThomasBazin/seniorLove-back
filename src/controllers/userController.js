@@ -2,7 +2,7 @@ import { User, Hobby, Event, User_message } from '../models/index.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken'
 
-//Récupérer tous les utilisateurs
+//Récupérer tous les utilisateurs TODO FAIRE LA ROUTE
 export async function getAllUsers(req, res) {
   const allUsers = await User.findAll();
   //TODO : gestion du 403 unauthorized (token)
@@ -10,7 +10,7 @@ export async function getAllUsers(req, res) {
   res.status(200).json(allUsers);
 }
 
-//Récupérer un utilisateur
+//Récupérer un utilisateur TODO FAIRE ROUTE
 export async function getOneUser(req, res) {
   //verif de l'id
   const id = req.params.id;
@@ -59,7 +59,15 @@ export async function updateUser(req, res) {
 }
 
 //Supprimer un utilisateur
-export async function deleteUser(req, res) {}
+export async function deleteUser(req, res) {
+    const userIdToDelete = parseInt(req.user.userId)
+  
+    await User.destroy({
+    where: { id: userIdToDelete}
+  });
+
+  res.status(204).end();
+}
 
 //Récupérer tous les utilisateurs qui ont les mêmes centres d'intérets
 export async function getAllSameInterestUsers(req, res) {}

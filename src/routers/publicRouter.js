@@ -1,7 +1,6 @@
 import { Router } from "express";
 
 import * as hobbyController from "../controllers/hobbyController.js";
-import * as userController from "../controllers/userController.js";
 import {serverController as tc} from '../utils/tryCatch.js'
 import * as eventController from "../controllers/eventController.js";
 import * as  authController from '../controllers/authController.js'

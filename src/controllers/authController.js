@@ -100,6 +100,3 @@ export async function loginUser(req, res) {
   
   
   }
-
-  //Déconnecter un utilisateur
-export async function logoutUser(req, res) {}
