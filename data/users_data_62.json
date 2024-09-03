@@ -7,7 +7,7 @@
       "picture": "https://st4.depositphotos.com/22611548/38059/i/1600/depositphotos_380591824-stock-photo-portrait-happy-mature-woman-eyeglasses.jpg",
       "email": "jacqueline@example.com",
       "password": "jacqueline1950!",
-      "status": "active"
+      "status": "pending"
     },
     {
       "name": "Michel",
@@ -17,7 +17,7 @@
       "picture": "https://images.pexels.com/photos/236214/pexels-photo-236214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "email": "michel@example.com",
       "password": "michel1948@",
-      "status": "active"
+      "status": "banned"
     },
     {
       "name": "Renée",

@@ -1,4 +1,7 @@
+-- SQLBook: Code
 -- Active: 1719840209096@@localhost@5432@seniorlove
+
+SET client_encoding = 'UTF8';
 BEGIN;
 
 -- Insertion of users data is made with node script populate_tables_users.js which has to be executed BEFORE this present SQL script !!

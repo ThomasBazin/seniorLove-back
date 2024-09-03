@@ -1,3 +1,6 @@
+-- SQLBook: Code
+
+SET client_encoding = 'UTF8';
 BEGIN;
 
 -- Insert sample data into users_messages
