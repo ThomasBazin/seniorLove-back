@@ -40,26 +40,27 @@ export async function getConnectedUser(req, res) {
   const myId = parseInt(req.user.userId);
   console.log(myId);
 
-  const foundUser = await User.findByPk(myId, {
-    include: [{ model: Hobby, as: 'hobbies' }],
+  const me = await User.findByPk(myId, {
+    attributes: [
+      'id',
+      'name',
+      'birth_date',
+      'description',
+      'gender',
+      'picture',
+      'email',
+    ],
+    include: [
+      {
+        association: 'events',
+        attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
+      },
+      { association: 'hobbies', atttributes: ['id', 'name'] },
+    ],
   });
-  if (foundUser.status === 'pending' || foundUser.status === 'banned') {
+  if (me.status === 'pending' || me.status === 'banned') {
     return res.status(401).json({ message: 'Unauthorized' });
   }
-
-  const { id, name, birth_date, description, gender, picture, email, hobbies } =
-    foundUser;
-  const me = {
-    id,
-    name,
-    birth_date,
-    description,
-    gender,
-    picture,
-    email,
-    hobbies,
-  };
-
   res.status(200).json(me);
 }
 
@@ -95,12 +96,12 @@ export async function getAllSameInterestUsers(req, res) {
       attributes: [],
       where: { id: myHobbiesArrayId },
     },
+
     where: {
       id: { [Op.not]: myId },
       status: 'active',
     },
   });
-
   res.status(200).json(mySuggestions);
 }
 
