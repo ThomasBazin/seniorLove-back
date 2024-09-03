@@ -618,6 +618,86 @@
       "email": "bernadette.gaudin@example.com",
       "password": "bernadette1954!",
       "status": "active"
-    }   
+    },
+    {
+      "name": "Monique",
+      "birth_date": "1951-01-12",
+      "description": "Je suis Monique, une passionnée de couture et de design d'intérieur. J'adore transformer des tissus en vêtements élégants et décorer sa maison avec des créations uniques. Je passe également du temps à organiser des ateliers de couture pour partager son savoir-faire.",
+      "gender": "female",
+      "picture": "https://images.pexels.com/photos/3707680/pexels-photo-3707680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "monique@example.com",
+      "status": "active",
+      "password": "monique1951!"
+  },
+  {
+      "name": "Alain",
+      "birth_date": "1949-03-23",
+      "description": "Je suis Alain, un passionné d'histoire et d'archéologie. J'aime explorer des sites historiques et partager ses découvertes à travers des conférences et des articles. En dehors de mes recherches, j'apprécie la randonnée et les voyages culturels.",
+      "gender": "male",
+      "picture": "https://images.pexels.com/photos/3493598/pexels-photo-3493598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "alain@example.com",
+      "status": "active",
+      "password": "alain1949@"
+  },
+  {
+      "name": "Claudine",
+      "birth_date": "1952-08-16",
+      "description": "Je suis une amatrice de jardinage et de permaculture. Je cultive un jardin durable, partage mes connaissances avec des groupes locaux, et organise des ateliers sur la culture biologique. J''aime également préparer des plats faits maison avec les produits de mon jardin.",
+      "gender": "female",
+      "picture": "https://images.pexels.com/photos/4104070/pexels-photo-4104070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "claudine@example.com",
+      "status": "active",
+      "password": "claudine1952!"
+  },
+  {
+      "name": "Jean-Pierre",
+      "birth_date": "1955-07-06",
+      "description": "Je suis un amateur de vin et de gastronomie. J''aime explorer les régions viticoles, découvrir de nouveaux crus, et organiser des dégustations pour mes amis. Je suis aussi un fervent lecteur de romans policiers.",
+      "gender": "male",
+      "picture": "https://images.pexels.com/photos/4067122/pexels-photo-4067122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "jeanpierre@example.com",
+      "status": "active",
+      "password": "jeanpierre1955!"
+  },
+  {
+      "name": "Catherine",
+      "birth_date": "1948-12-11",
+      "description": "Je suis passionnée de musique folk et de chants traditionnels. Je joue de la guitare et chante dans des groupes locaux. En plus de ma passion musicale, j''adore le bricolage et la décoration artisanale.",
+      "gender": "female",
+      "picture": "https://images.pexels.com/photos/1850850/pexels-photo-1850850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "catherine@example.com",
+      "status": "active",
+      "password": "catherine1948!"
+  },
+  {
+      "name": "Henriette",
+      "birth_date": "1954-09-30",
+      "description": "Je suis une fervente défenseuse des droits des animaux et une bénévole dans plusieurs refuges. J''aime également la photographie animalière et passe beaucoup de temps à capturer la faune dans son environnement naturel.",
+      "gender": "female",
+      "picture": "https://images.pexels.com/photos/4585730/pexels-photo-4585730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "henriette@example.com",
+      "status": "active",
+      "password": "henriette1954!"
+  },
+  {
+      "name": "Maurice",
+      "birth_date": "1950-02-19",
+      "description": "Je suis un passionné de mécanique et de voitures anciennes. Je passe mes weekends à restaurer des véhicules classiques et à participer à des concours de voitures anciennes. J''apprécie aussi le théâtre et assiste régulièrement à des représentations.",
+      "gender": "male",
+      "picture": "https://images.pexels.com/photos/3861945/pexels-photo-3861945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "maurice@example.com",
+      "status": "active",
+      "password": "maurice1950!"
+  },
+  {
+      "name": "Brigitte",
+      "birth_date": "1951-05-04",
+      "description": "Je suis une passionnée de poésie et de littérature. Je participe à des cercles de lecture et organise des soirées poésie où je partage mes poèmes avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains.",
+      "gender": "female",
+      "picture": "https://images.pexels.com/photos/2056710/pexels-photo-2056710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "email": "brigitte@example.com",
+      "status": "active",
+      "password": "brigitte1951!"
+  }   
   ]
   
