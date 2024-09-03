@@ -4,8 +4,6 @@ import {serverController as tc} from '../utils/tryCatch.js'
 
 import { checkLoggedIn } from "../utils/checkLoggedIn.js";
 
-
-
 export const privateRouter = Router();
 
 
