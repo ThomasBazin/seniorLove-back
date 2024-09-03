@@ -3,7 +3,7 @@ import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 
 //données de test
-const body = {
+/*const body = {
   name: 'SeniorLove10',
   birth_date: '1960-05-15',
   description: 'je suis une personne douce et attentionnée',
@@ -13,10 +13,10 @@ const body = {
   email: 'rdddee5@example.com',
   password: 'jacqueline1950!',
   repeat_password: 'jacqueline1950!',
-};
+};*/
 
 //joi schema configuration
-//TODO 
+//TODO : gestion de l'age de l'utilisateur >= 60 ans
 const schema = Joi.object({
   name: Joi.string().max(50).required(),
   birth_date: Joi.date().required(),
@@ -53,9 +53,10 @@ export async function addUser(req, res) {
     email: body.email,
     password: Scrypt.hash(repeat_password),
   });
-  //res.status(200);
-
-  const hobbie = [1, 2, 3];
+  res.status(200);
+  
+  // récupération de l'id des intérêts
+  //const hobbie = [1, 2, 3];
 
   const userHobies = await Hobby.findAll({
     where: { id: hobbie },
