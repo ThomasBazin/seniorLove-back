@@ -1,4 +1,4 @@
-import { User, Hobby, Event, User_message } from '../models/index.js';
+import { User, Hobby, Event, User_message, User_hobby } from '../models/index.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken'
 
@@ -62,7 +62,31 @@ export async function updateUser(req, res) {
 export async function deleteUser(req, res) {}
 
 //Récupérer tous les utilisateurs qui ont les mêmes centres d'intérets
-export async function getAllSameInterestUsers(req, res) {}
+export async function getAllSameInterestUsers(req, res) {
+  const myId = req.user.userId;
+  // console.log(myId)
+
+  // get my hobbies
+  const myHobbies = await User_hobby.findAll({where: {user_id: myId}})
+  // console.log(JSON.stringify(myHobbies, null, 2))
+  let myHobbiesArrayId = []
+  myHobbies.forEach(hobby => {
+    myHobbiesArrayId.push(hobby.hobby_id)
+  })
+
+
+  // find all users that havec my hobbies, except me
+  const mySuggestions = await User.findAll({include: {
+    association: "hobbies",
+    where: {id: myHobbiesArrayId}
+  },
+where: {
+  id: !myId
+}})
+  console.log(JSON.stringify(mySuggestions, null, 2))
+
+  res.status(200).json(mySuggestions);
+}
 
 //Enregistré un utilisateur connecté, à un évenement spécifique
 export async function addUserToEvent(req, res) {}
