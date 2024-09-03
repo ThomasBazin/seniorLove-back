@@ -1,6 +1,10 @@
 import { User, Hobby, Event, User_message } from '../models/associations.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
+import jsonwebtoken from 'jsonwebtoken'
+
+const jwtSecret = 'Sen1@rL0ve';
+// Création du token
 
 //données de test
 /*const body = {
@@ -15,54 +19,61 @@ import Joi from 'joi';
   repeat_password: 'jacqueline1950!',
 };*/
 
-//joi schema configuration
-//TODO : gestion de l'age de l'utilisateur >= 60 ans
-const schema = Joi.object({
-  name: Joi.string().max(50).required(),
-  birth_date: Joi.date().required(),
-  description: Joi.string(),
-  gender: Joi.string().max(10).valid('male', 'female', 'other').required(),
-  picture: Joi.string().max(255),
-  email: Joi.string()
-    .max(255)
-    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
-    .required(),
-  password: Joi.string().min(12).max(255).required(),
-  repeat_password: Joi.ref('password'),
-});
+
 
 //Ajouter un utilisateur
 export async function addUser(req, res) {
-  //const body = req.body;
+  const body = req.body;
   if (!body) {
-    res.status(400).json({ message: 'bad request' });
+    return res.status(400).json({ message: 'body required' });
   }
 
-  const { value } = schema.validate(body);
+    //joi schema configuration
+  //TODO : gestion de l'age de l'utilisateur >= 60 ans
+  const registerSchema = Joi.object({
+    name: Joi.string().max(50).required(),
+    birth_date: Joi.date().required(),
+    description: Joi.string(),
+    gender: Joi.string().max(10).valid('male', 'female', 'other').required(),
+    picture: Joi.string().max(255),
+    email: Joi.string()
+      .max(255)
+      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
+      .required(),
+    password: Joi.string().min(12).max(255).required(),
+    repeat_password: Joi.ref('password'),
+    hobbies: Joi.array().items(Joi.number().integer().min(1))
+  });
+
+  const { error, value } = registerSchema.validate(body);
   if (!value) {
-    return res.status(400).json({ message: 'bad request' });
+    return res.status(400).json({ message: error.message });
   }
 
-  const { repeat_password } = body;
-  const createUser = await User.create({
-    name: body.name,
-    birth_date: body.birth_date,
-    description: body.description,
-    gender: body.gender,
-    picture: body.picture,
-    email: body.email,
-    password: Scrypt.hash(repeat_password),
-  });
-  res.status(200);
+  const { repeat_password } = req.body;
   
-  // récupération de l'id des intérêts
-  //const hobbie = [1, 2, 3];
+    const createUser = await User.create({
+      name: body.name,
+      birth_date: body.birth_date,
+      description: body.description,
+      gender: body.gender,
+      picture: body.picture,
+      email: body.email,
+      password: Scrypt.hash(repeat_password),
+    });
 
-  const userHobies = await Hobby.findAll({
-    where: { id: hobbie },
+    // récupération de l'id des intérêts
+   const hobbies = req.body.hobbies
+    console.log(hobbies)
+  
+    const userHobies = await Hobby.findAll({
+    where: { id: hobbies },
   });
+  
+    await createUser.addHobbies(userHobies);
+ 
+    res.status(201).json({message : "ok"})
 
-  await createUser.addHobbies(userHobies);
 }
 
 //Récupérer tous les utilisateurs
@@ -100,7 +111,44 @@ export async function updateUser(req, res) {}
 export async function deleteUser(req, res) {}
 
 //Connecter un utilisateur
-export async function loginUser(req, res) {}
+export async function loginUser(req, res) {
+  const loginSchema = Joi.object({
+    email: Joi.string()
+    .max(255)
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
+    .required(),
+  password: Joi.required(),
+  })
+  const {email, password} = req.body;
+
+  const { error, value} = loginSchema.validate(req.body)
+ 
+  if(error) {
+    return res.status(403).json({message : error.message })
+  }
+ 
+  const foundUser = await User.findOne({
+  where : { email : email }
+})
+
+if (!foundUser) {
+  return res.status(401).json({message : 'user unauthorized'})
+}
+
+const isGood = Scrypt.compare(password, foundUser.password)
+
+if (!isGood) {
+  return res.status(401).json({message : 'user unauthorized'})
+}
+
+const jwtContent = {userId: foundUser.id};
+
+const token = jsonwebtoken.sign(jwtContent, jwtSecret, { expiresIn: '3h', algorithm: 'HS256' });
+
+res.status(200).json({logged: true, token})
+
+
+}
 
 //Déconnecter un utilisateur
 export async function logoutUser(req, res) {}
