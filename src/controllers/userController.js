@@ -161,11 +161,13 @@ export async function getAllEventsUser(req, res) {}
 
 //Récupere tous les messages d'un utilisateur connecté
 export async function getAllUserMessages(req, res) {
+  // Get my id in params, and check if it's a number
   const myId = parseInt(req.user.userId, 10);
   if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
   }
 
+  // Get in DB all messages that have my id as sender OR receiver
   const myMessages = await User_message.findAll({
     where: { [Op.or]: [{ sender_id: myId }, { receiver_id: myId }] },
     attributes: { exclude: 'updated_at' },
@@ -174,12 +176,13 @@ export async function getAllUserMessages(req, res) {
       { association: 'receiver', attributes: ['id', 'name', 'picture'] },
     ],
   });
-  console.log(myMessages.length);
+
+  // Send data. If none, an empty array will be sent
   res.status(200).json(myMessages);
 }
 
 export async function getAllUserContacts(req, res) {
-  // Get the userId in params, and check if it's a number
+  // Get my id in params, and check if it's a number
   const myId = parseInt(req.user.userId, 10);
   if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
