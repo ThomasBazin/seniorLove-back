@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController.js';
+import * as messageController from '../controllers/messageController.js';
 import { serverController as tc } from '../utils/tryCatch.js';
 
 import { checkLoggedIn } from '../utils/checkLoggedIn.js';
@@ -35,4 +36,10 @@ privateRouter.get(
   '/contacts',
   checkLoggedIn,
   tc(userController.getAllUserContacts)
+);
+
+privateRouter.post(
+  '/messages',
+  checkLoggedIn,
+  tc(messageController.sendMessageToUser)
 );

@@ -105,7 +105,7 @@ export async function getConnectedUser(req, res) {
     ],
   });
   // Check if my profile is not pending or banned
-  if (me.status === 'pending' || me.status === 'banned') {
+  if (!me || me.status === 'pending' || me.status === 'banned') {
     return res.status(401).json({ blocked: true });
   }
   // Send my data
