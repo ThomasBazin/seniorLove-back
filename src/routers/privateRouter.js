@@ -30,3 +30,9 @@ privateRouter.get(
   checkLoggedIn,
   tc(userController.getAllUserMessages)
 );
+
+privateRouter.get(
+  '/contacts',
+  checkLoggedIn,
+  tc(userController.getAllUserConversers)
+);

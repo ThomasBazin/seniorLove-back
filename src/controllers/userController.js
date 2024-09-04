@@ -103,7 +103,7 @@ export async function getConnectedUser(req, res) {
     ],
   });
   if (me.status === 'pending' || me.status === 'banned') {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ blocked: true });
   }
   res.status(200).json(me);
 }
@@ -116,8 +116,9 @@ export async function deleteUser(req, res) {}
 
 //Récupérer tous les utilisateurs qui ont les mêmes centres d'intérets
 export async function getAllSameInterestUsers(req, res) {
-  // const myId = parseInt(req.user.userId);
-  const myId = 1;
+  // Get my id in params, and check if it's a number
+  const myId = parseInt(req.user.userId);
+
   if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
   }
@@ -160,5 +161,76 @@ export async function getAllEventsUser(req, res) {}
 
 //Récupere tous les messages d'un utilisateur connecté
 export async function getAllUserMessages(req, res) {
-  res.send('messages');
+  const myId = parseInt(req.user.userId, 10);
+  if (isNaN(myId)) {
+    return res.status(400).json({ message: 'this id is not valid' });
+  }
+
+  const myMessages = await User_message.findAll({
+    where: { [Op.or]: [{ sender_id: myId }, { receiver_id: myId }] },
+    attributes: { exclude: 'updated_at' },
+    include: [
+      { association: 'sender', attributes: ['id', 'name', 'picture'] },
+      { association: 'receiver', attributes: ['id', 'name', 'picture'] },
+    ],
+  });
+  console.log(myMessages.length);
+  res.status(200).json(myMessages);
+}
+
+export async function getAllUserConversers(req, res) {
+  // Get the userId in params, and check if it's a number
+  const myId = parseInt(req.user.userId, 10);
+  if (isNaN(myId)) {
+    return res.status(400).json({ message: 'this id is not valid' });
+  }
+
+  // Get in DB all users that have received messages sent by me, or that have sent messages received by me
+  const myConversers = await User.findAll({
+    include: [
+      {
+        model: User_message,
+        as: 'received_messages',
+        order: [['created_at', 'DESC']],
+        where: { sender_id: myId },
+        attributes: { exclude: ['updated_at'] },
+        include: {
+          association: 'sender',
+          attributes: ['id', 'name', 'picture'],
+        },
+      },
+      {
+        model: User_message,
+        as: 'sent_messages',
+        order: [['created_at', 'DESC']],
+        where: { receiver_id: myId },
+        attributes: { exclude: ['updated_at'] },
+        include: {
+          association: 'sender',
+          attributes: ['id', 'name', 'picture'],
+        },
+      },
+    ],
+    attributes: ['id', 'name', 'picture'],
+  });
+  if (!myConversers.length) {
+    return res.status(200).json(myConversers);
+  }
+
+  const conversersToSend = [];
+
+  myConversers.forEach((converser) => {
+    const converserObject = {
+      id: converser.id,
+      name: converser.name,
+      picture: converser.picture,
+      messages: [
+        ...converser.received_messages,
+        ...converser.sent_messages,
+      ].sort((a, b) => a.created_at - b.created_at),
+    };
+    conversersToSend.push(converserObject);
+  });
+
+  res.status(200).json(conversersToSend);
 }
