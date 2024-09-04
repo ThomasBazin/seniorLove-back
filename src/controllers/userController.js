@@ -132,7 +132,7 @@ export async function getAllSameInterestUsers(req, res) {
     myHobbiesArrayId.push(hobby.hobby_id);
   });
 
-  // find 6 random users that share at least one of my hobbies, except me
+  // find all users that share at least one of my hobbies, in random order, except me
   const mySuggestions = await User.findAll({
     attributes: ['id', 'name', 'birth_date', 'picture'],
     order: sequelize.random(),
@@ -147,6 +147,7 @@ export async function getAllSameInterestUsers(req, res) {
       status: 'active',
     },
   });
+
   res.status(200).json(mySuggestions);
 }
 
