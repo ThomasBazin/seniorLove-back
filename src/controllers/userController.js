@@ -76,8 +76,10 @@ export async function getOneUser(req, res) {
 
 //Récuperer l'utilisateur connecté
 export async function getConnectedUser(req, res) {
-  const myId = parseInt(req.user.userId);
-  console.log(myId);
+  const myId = parseInt(req.user.userId, 10);
+  if (isNaN(myId)) {
+    return res.status(400).json({ message: 'this id is not valid' });
+  }
 
   const me = await User.findByPk(myId, {
     attributes: [
@@ -157,4 +159,6 @@ export async function deleteUserToEvent(req, res) {}
 export async function getAllEventsUser(req, res) {}
 
 //Récupere tous les messages d'un utilisateur connecté
-export async function getAllUserMessages(req, res) {}
+export async function getAllUserMessages(req, res) {
+  res.send('messages');
+}

@@ -24,3 +24,9 @@ privateRouter.get(
   checkLoggedIn,
   tc(userController.getOneUser)
 );
+
+privateRouter.get(
+  '/messages',
+  checkLoggedIn,
+  tc(userController.getAllUserMessages)
+);
