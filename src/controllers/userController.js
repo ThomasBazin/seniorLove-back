@@ -76,11 +76,13 @@ export async function getOneUser(req, res) {
 
 //Récuperer l'utilisateur connecté
 export async function getConnectedUser(req, res) {
+  // Get my id and check if it's a number
   const myId = parseInt(req.user.userId, 10);
   if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
   }
 
+  // Get my profile in DB, including my events and my hobbies
   const me = await User.findByPk(myId, {
     attributes: [
       'id',
@@ -102,9 +104,11 @@ export async function getConnectedUser(req, res) {
       },
     ],
   });
+  // Check if my profile is not pending or banned
   if (me.status === 'pending' || me.status === 'banned') {
     return res.status(401).json({ blocked: true });
   }
+  // Send my data
   res.status(200).json(me);
 }
 
@@ -116,7 +120,7 @@ export async function deleteUser(req, res) {}
 
 //Récupérer tous les utilisateurs qui ont les mêmes centres d'intérets
 export async function getAllSameInterestUsers(req, res) {
-  // Get my id in params, and check if it's a number
+  // Get my id, and check if it's a number
   const myId = parseInt(req.user.userId);
 
   if (isNaN(myId)) {
@@ -162,7 +166,7 @@ export async function getAllEventsUser(req, res) {}
 
 //Récupere tous les messages d'un utilisateur connecté
 export async function getAllUserMessages(req, res) {
-  // Get my id in params, and check if it's a number
+  // Get my id, and check if it's a number
   const myId = parseInt(req.user.userId, 10);
   if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
@@ -183,7 +187,7 @@ export async function getAllUserMessages(req, res) {
 }
 
 export async function getAllUserContacts(req, res) {
-  // Get my id in params, and check if it's a number
+  // Get my id and check if it's a number
   const myId = parseInt(req.user.userId, 10);
   if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
