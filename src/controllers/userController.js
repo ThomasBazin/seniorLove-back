@@ -83,7 +83,9 @@ export async function addUserToEvent(req, res) {
 
   const me = await User.findByPk(userId);
   if (!me || me.status === 'banned' || me.status === 'pending') {
-    res.status(401).json({ message: 'Unauthorized' });
+    res.status(401).json({ blocked: true });
+    // il faut ensuite que le front déclenche la suppression du token a la
+    //reception de cette valeur 'block : true'
   }
 
   const event = await Event.findByPk(eventId);
@@ -95,14 +97,27 @@ export async function addUserToEvent(req, res) {
   if (!user) {
     return res.status(404).json({ message: 'user not found' });
   }
-
   await user.addEvent(event);
-  await User.findByPk(userId);
   res.status(204).end();
 }
 
 //Supprimer un utilisateur connecté, d'un évenement spécifique
-export async function deleteUserToEvent(req, res) {}
+export async function deleteUserToEvent(req, res) {
+  const eventId = parseInt(req.params.eventId, 10);
+  const userId = parseInt(req.user.userId, 10);
+
+  const event = await Event.findByPk(eventId);
+  if (!event) {
+    return res.status(404).json({ message: 'event not found' });
+  }
+
+  const user = await User.findByPk(userId);
+  if (!user) {
+    return res.status(404).json({ message: 'user not found' });
+  }
+  await user.removeEvent(event);
+  res.status(204).end();
+}
 
 //Récupérer tous les évenements auquels s'est inscrit un utilisateur
 export async function getAllEventsUser(req, res) {}

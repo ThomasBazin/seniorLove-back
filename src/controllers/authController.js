@@ -82,10 +82,10 @@ export async function loginUser(req, res) {
 
   if (
     !foundUser ||
-    foundUser.status == 'banned' ||
+    foundUser.status === 'banned' ||
     foundUser.status === 'pending'
   ) {
-    return res.status(401).json({ message: 'user unauthorized' });
+    return res.status(401).json({ blocked: true });
   }
 
   const isGood = Scrypt.compare(password, foundUser.password);
