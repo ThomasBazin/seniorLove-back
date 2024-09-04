@@ -2,7 +2,7 @@ import { User_message, User } from '../models/index.js';
 import Joi from 'joi';
 import { Op } from 'sequelize';
 
-//Récupere tous les messages d'un utilisateur connecté
+// Récupere tous les messages d'un utilisateur connecté
 export async function getAllUserMessages(req, res) {
   // Get my id, and check if it's a number
   const myId = parseInt(req.user.userId, 10);
@@ -24,13 +24,10 @@ export async function getAllUserMessages(req, res) {
   res.status(200).json(myMessages);
 }
 
-//Récupere tous les utilisateurs avec qui j'ai une conversation et les messages correspondant
+// Récupere tous les utilisateurs avec qui j'ai une conversation et les messages correspondant
 export async function getAllUserContacts(req, res) {
   // Get my id and check if it's a number
   const myId = parseInt(req.user.userId, 10);
-  if (isNaN(myId)) {
-    return res.status(400).json({ message: 'this id is not valid' });
-  }
 
   // Get in DB all users that have received messages sent by me, or that have sent messages received by me
   const myContacts = await User.findAll({

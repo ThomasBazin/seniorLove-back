@@ -28,6 +28,13 @@ export async function getOneUser(req, res) {
     return res.status(400).json({ message: 'this id is not valid' });
   }
 
+  // Get my id and check if i'm active
+  const myId = parseInt(req.user.userId, 10);
+  const me = await User.findByPk(myId);
+  if (!me || me.status === 'pending' || me.status === 'banned') {
+    return res.status(401).json({ blocked: true });
+  }
+
   // Get the user in DB
   const foundUser = await User.findByPk(userId, {
     include: [

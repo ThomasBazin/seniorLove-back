@@ -686,7 +686,7 @@
     "gender": "male",
     "picture": "https://images.pexels.com/photos/3861945/pexels-photo-3861945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "maurice@example.com",
-    "status": "active",
+    "status": "banned",
     "password": "maurice1950!"
   },
   {
@@ -696,7 +696,7 @@
     "gender": "female",
     "picture": "https://images.pexels.com/photos/2056710/pexels-photo-2056710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "brigitte@example.com",
-    "status": "active",
+    "status": "banned",
     "password": "brigitte1951!"
   }
 ]
