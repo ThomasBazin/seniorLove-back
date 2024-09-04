@@ -3,6 +3,8 @@ import express from 'express';
 import { publicRouter } from './src/routers/publicRouter.js';
 import { privateRouter } from './src/routers/privateRouter.js';
 import jsonwebtoken from 'jsonwebtoken';
+import { bodySanitizerMiddleware } from './src/utils/bodySanitizer.js';
+import { checkLoggedIn } from './src/utils/checkLoggedIn.js';
 
 const app = express();
 
@@ -28,9 +30,12 @@ app.use((req, res, next) => {
   next();
 });
 
-//app.use("/api", publicRouter, privateRouter)
-app.use(publicRouter);
-app.use(privateRouter);
+app.use(bodySanitizerMiddleware);
+
+app.use('/api', publicRouter);
+app.use('/api', checkLoggedIn, privateRouter);
+//app.use(publicRouter);
+//app.use(privateRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {
