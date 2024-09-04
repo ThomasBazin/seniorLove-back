@@ -13,7 +13,7 @@ export async function getAllEvents(req, res) {
 export async function getOneEvent(req, res) {
   const id = parseInt(req.params.eventId);
   //verif de l'id
-  if (id === isNaN) {
+  if (isNaN(id)) {
     return res.status(400).json({ message: 'this id is not valid' });
   }
   const oneEvent = await Event.findByPk(id, {

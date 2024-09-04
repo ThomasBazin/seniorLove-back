@@ -7,8 +7,6 @@ import * as eventController from "../controllers/eventController.js";
 import * as  authController from '../controllers/authController.js'
 export const publicRouter = Router();
 
-
-
 publicRouter.get('/home', (req, res) => {
     res.send('Bonjour')
 });

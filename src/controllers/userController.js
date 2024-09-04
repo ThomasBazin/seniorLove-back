@@ -1,6 +1,8 @@
 import { User, Hobby, Event, User_message } from '../models/index.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken'
+import { Scrypt } from '../auth/Scrypt.js';
+import { name } from 'ejs';
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -14,7 +16,7 @@ export async function getAllUsers(req, res) {
 export async function getOneUser(req, res) {
   //verif de l'id
   const id = req.params.id;
-  if (id === isNaN) {
+  if (isNaN(id)) {
     res.status(400).json({ message: 'this id is not valid' });
   }
 
@@ -27,36 +29,155 @@ export async function getOneUser(req, res) {
   res.status(200).json(oneUser);
 }
 
-//Récuperer l'utilisateur connecté
+//Récupérer l'utilisateur connecté
 export async function getConnectedUser(req, res) {
   const myId = parseInt(req.user.userId);
-  console.log(myId)
+  console.log(myId);
 
-  const foundUser = await User.findByPk(myId, {include:[{ model: Hobby, as: 'hobbies' }]})
-  if (foundUser.status === 'pending' || foundUser.status === 'banned') {
-    return res.status(401).json({message: "Unauthorized"});
+  const me = await User.findByPk(myId, {
+    attributes: [
+      'id',
+      'name',
+      'birth_date',
+      'description',
+      'gender',
+      'picture',
+      'email',
+    ],
+    include: [
+      {
+        association: 'events',
+        attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
+      },
+      {
+        association: 'hobbies',
+        attributes: { exclude: ['created_at', 'updated_at'] },
+      },
+    ],
+  });
+  if (me.status === 'pending' || me.status === 'banned') {
+    return res.status(401).json({ message: 'Unauthorized' });
   }
-
-  const { id, name, birth_date, description, gender, picture, email, hobbies} = foundUser;
- const me = {
-  id,
-  name,
-  birth_date,
-  description,
-  gender,
-  picture,
-  email,
-  hobbies
- }
-
   res.status(200).json(me);
 }
 
-//Mettre à jour un utilisateur
-export async function updateUser(req, res) {
+//Mise à jour du profil de l'utilisateur connecté
 
+export async function updateUserProfile(req, res) {
+  const myId = parseInt(req.user.userId, 10);
 
+  const updateUserSchema = Joi.object({
+    name: Joi.string().max(50),
+    birth_date: Joi.date().less(new Date(new Date().setFullYear(new Date().getFullYear() - 60))).optional(),
+    description: Joi.string().optional(),
+    gender: Joi.string().max(10).valid('male', 'female', 'other').optional(),
+    picture: Joi.string().max(255),
+    email: Joi.string()
+      .max(255)
+      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
+      .optional(),
+    password: Joi.string().min(12).max(255).optional(),
+    repeat_password: Joi.string().valid(Joi.ref('password')).optional(),
+    old_password: Joi.string().when('password', { is: Joi.exist(), then: Joi.required() }),
+    hobbies: Joi.array().items(Joi.number().integer().min(1)).optional()
+  });
+
+  // Validate request body using Joi
+  const { error } = updateUserSchema.validate(req.body);
+  if (error) {
+    const errorMessages = error.details.map(detail => detail.message);
+    return res.status(400).json({ messages: errorMessages });
+  }
+
+  const foundUser = await User.findByPk(myId, {
+    include: [{ 
+      model: Hobby, 
+      as: 'hobbies',
+      attributes: ['id', 'name'] 
+    }]
+  });
+
+  if (!foundUser) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  if (foundUser.status === 'pending' || foundUser.status === 'banned') {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const { name, birth_date, description, gender, picture, password, old_password, hobbies, repeat_password } = req.body;
+
+  // Create an object to update the user's profile
+  const newProfile = {
+    name: name || foundUser.name,
+    birth_date: birth_date || foundUser.birth_date,
+    description: description || foundUser.description,
+    gender: gender || foundUser.gender,
+    picture: picture || foundUser.picture,
+    email: req.body.email || foundUser.email
+  };
+
+  // Update if a new password is provided
+  if (password) {
+    if (!old_password) {
+      return res.status(400).json({ message: "Old password is required to change the password." });
+    }
+  //Verify if the old password is correct
+    const isOldPasswordValid = await Scrypt.compare(old_password, foundUser.password);
+    if (!isOldPasswordValid) {
+      return res.status(400).json({ message: "Incorrect old password" });
+    }
+
+    if (password !== repeat_password) {
+      return res.status(400).json({ message: "New passwords do not match" });
+    }
+
+    const hashedNewPassword = await Scrypt.hash(password);
+    newProfile.password = hashedNewPassword;
+  }
+
+  // Update the user's profile information in the database
+  await foundUser.update(newProfile);
+
+  // Update hobbies if provided
+  if (Array.isArray(hobbies)) {
+    const updatedHobbies = await Hobby.findAll({
+      where: { id: hobbies },
+      attributes: ['id', 'name']
+    });
+
+    //Check if any hobbies were found
+    if (!updatedHobbies.length) {
+      return res.status(404).json({ message: "Hobbies not found" });
+    }
+
+    // Update user's hobbies
+    await foundUser.setHobbies(updatedHobbies);
+  }
+
+  // Reload the user to include the updated hobbies
+  const updatedUser = await User.findByPk(myId, {
+    include: [{ 
+      model: Hobby, 
+      as: 'hobbies',
+      attributes: ['id', 'name']
+    }]
+  });
+
+  // Return the updated user profile as a response
+  return res.status(200).json({
+    id: updatedUser.id,
+    name: updatedUser.name,
+    birth_date: updatedUser.birth_date,
+    description: updatedUser.description,
+    gender: updatedUser.gender,
+    picture: updatedUser.picture,
+    email: updatedUser.email,
+    hobbies: updatedUser.hobbies
+  });
 }
+
+
 
 //Supprimer un utilisateur
 export async function deleteUser(req, res) {}

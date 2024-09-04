@@ -8,4 +8,4 @@ export const privateRouter = Router();
 
 
 privateRouter.get('/users/me',checkLoggedIn, tc(userController.getConnectedUser));
-privateRouter.patch('/users/me',checkLoggedIn, tc(userController.updateUser));
+privateRouter.patch('/users/me',checkLoggedIn, tc(userController.updateUserProfile));
