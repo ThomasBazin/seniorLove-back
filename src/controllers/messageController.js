@@ -26,8 +26,12 @@ export async function getAllUserMessages(req, res) {
 
 // Récupere tous les utilisateurs avec qui j'ai une conversation et les messages correspondant
 export async function getAllUserContacts(req, res) {
-  // Get my id and check if it's a number
+  // Get my id and check if i'm active
   const myId = parseInt(req.user.userId, 10);
+  const me = await User.findByPk(myId);
+  if (!me || me.status === 'pending' || me.status === 'banned') {
+    return res.status(401).json({ blocked: true });
+  }
 
   // Get in DB all users that have received messages sent by me, or that have sent messages received by me
   const myContacts = await User.findAll({
@@ -63,7 +67,6 @@ export async function getAllUserContacts(req, res) {
   }
 
   // Else prepare a new array with an object template with necessary data to be sent, and sort messages by created_at
-
   const formattedContacts = [];
 
   myContacts.forEach((converser) => {

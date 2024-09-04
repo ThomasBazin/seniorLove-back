@@ -83,11 +83,8 @@ export async function getOneUser(req, res) {
 
 //Récuperer l'utilisateur connecté
 export async function getConnectedUser(req, res) {
-  // Get my id and check if it's a number
+  // Get my id and make sure it's a number
   const myId = parseInt(req.user.userId, 10);
-  if (isNaN(myId)) {
-    return res.status(400).json({ message: 'this id is not valid' });
-  }
 
   // Get my profile in DB, including my events and my hobbies
   const me = await User.findByPk(myId, {
