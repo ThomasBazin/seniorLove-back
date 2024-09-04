@@ -18,3 +18,9 @@ privateRouter.get(
   checkLoggedIn,
   tc(userController.getAllSameInterestUsers)
 );
+
+privateRouter.get(
+  '/users/:userId',
+  checkLoggedIn,
+  tc(userController.getOneUser)
+);

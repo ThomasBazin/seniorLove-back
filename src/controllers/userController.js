@@ -20,19 +20,58 @@ export async function getAllUsers(req, res) {
 
 //Récupérer un utilisateur
 export async function getOneUser(req, res) {
-  //verif de l'id
-  const id = req.params.id;
-  if (id === isNaN) {
-    res.status(400).json({ message: 'this id is not valid' });
+  // Get the userId in params, and check if it's a number
+  const userId = parseInt(req.params.userId, 10);
+  console.log(userId);
+
+  if (isNaN(userId)) {
+    return res.status(400).json({ message: 'this id is not valid' });
   }
 
-  //TODO : gestion du 403 unauthorized (token)
+  // Get the user in DB
+  const foundUser = await User.findByPk(userId, {
+    include: [
+      { association: 'hobbies', attributes: ['id', 'name'] },
+      {
+        association: 'events',
+        attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
+      },
+    ],
+  });
 
-  const oneUser = await User.findByPk(id);
-  if (!oneUser) {
-    res.status(404).json({ message: 'user not found' });
+  // Make sure user is found and is active
+  if (
+    !foundUser ||
+    foundUser.status === 'banned' ||
+    foundUser.status === 'pending'
+  ) {
+    return res.status(404).json({ message: 'user not found' });
   }
-  res.status(200).json(oneUser);
+
+  // Extract only necessary infos from user to be sent
+  const {
+    id,
+    name,
+    birth_date,
+    description,
+    gender,
+    picture,
+    hobbies,
+    events,
+  } = foundUser;
+
+  // Prepare new object with usefull infos and send it
+  const userProfileToSend = {
+    id,
+    name,
+    birth_date,
+    description,
+    gender,
+    picture,
+    hobbies,
+    events,
+  };
+  res.status(200).json(userProfileToSend);
 }
 
 //Récuperer l'utilisateur connecté
@@ -55,7 +94,10 @@ export async function getConnectedUser(req, res) {
         association: 'events',
         attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
       },
-      { association: 'hobbies', atttributes: ['id', 'name'] },
+      {
+        association: 'hobbies',
+        attributes: { exclude: ['created_at', 'updated_at'] },
+      },
     ],
   });
   if (me.status === 'pending' || me.status === 'banned') {
@@ -74,7 +116,7 @@ export async function deleteUser(req, res) {}
 export async function getAllSameInterestUsers(req, res) {
   // const myId = parseInt(req.user.userId);
   const myId = 1;
-  if (myId === isNaN) {
+  if (isNaN(myId)) {
     return res.status(400).json({ message: 'this id is not valid' });
   }
 
