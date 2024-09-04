@@ -29,13 +29,13 @@ privateRouter.get(
 privateRouter.get(
   '/messages',
   checkLoggedIn,
-  tc(userController.getAllUserMessages)
+  tc(messageController.getAllUserMessages)
 );
 
 privateRouter.get(
   '/contacts',
   checkLoggedIn,
-  tc(userController.getAllUserContacts)
+  tc(messageController.getAllUserContacts)
 );
 
 privateRouter.post(
