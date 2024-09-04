@@ -178,7 +178,7 @@ export async function getAllUserMessages(req, res) {
   res.status(200).json(myMessages);
 }
 
-export async function getAllUserConversers(req, res) {
+export async function getAllUserContacts(req, res) {
   // Get the userId in params, and check if it's a number
   const myId = parseInt(req.user.userId, 10);
   if (isNaN(myId)) {
@@ -186,7 +186,7 @@ export async function getAllUserConversers(req, res) {
   }
 
   // Get in DB all users that have received messages sent by me, or that have sent messages received by me
-  const myConversers = await User.findAll({
+  const myContacts = await User.findAll({
     include: [
       {
         model: User_message,
@@ -213,13 +213,16 @@ export async function getAllUserConversers(req, res) {
     ],
     attributes: ['id', 'name', 'picture'],
   });
-  if (!myConversers.length) {
-    return res.status(200).json(myConversers);
+  // Send the result as is, if it's an empty array (no match)
+  if (!myContacts.length) {
+    return res.status(200).json(myContacts);
   }
 
-  const conversersToSend = [];
+  // Else prepare a new array with an object template with necessary data to be sent, and sort messages by created_at
 
-  myConversers.forEach((converser) => {
+  const formattedContacts = [];
+
+  myContacts.forEach((converser) => {
     const converserObject = {
       id: converser.id,
       name: converser.name,
@@ -229,8 +232,8 @@ export async function getAllUserConversers(req, res) {
         ...converser.sent_messages,
       ].sort((a, b) => a.created_at - b.created_at),
     };
-    conversersToSend.push(converserObject);
+    formattedContacts.push(converserObject);
   });
 
-  res.status(200).json(conversersToSend);
+  res.status(200).json(formattedContacts);
 }

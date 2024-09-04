@@ -34,5 +34,5 @@ privateRouter.get(
 privateRouter.get(
   '/contacts',
   checkLoggedIn,
-  tc(userController.getAllUserConversers)
+  tc(userController.getAllUserContacts)
 );
