@@ -1,6 +1,7 @@
 import { User, Hobby, Event, User_message } from '../models/index.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
+import { isActiveUser } from '../utils/checkUserStatus.js';
 
 //Récupérer tous les utilisateurs TODO FAIRE LA ROUTE
 export async function getAllUsers(req, res) {
@@ -81,12 +82,15 @@ export async function addUserToEvent(req, res) {
   const eventId = parseInt(req.params.eventId, 10);
   const userId = parseInt(req.user.userId, 10);
 
-  const me = await User.findByPk(userId);
+  if (!(await isActiveUser(userId))) {
+    res.status(403).json({ blocked: true });
+  }
+  /*const me = await User.findByPk(userId);
   if (!me || me.status === 'banned' || me.status === 'pending') {
-    res.status(401).json({ blocked: true });
+    res.status(403).json({ blocked: true });
     // il faut ensuite que le front déclenche la suppression du token a la
     //reception de cette valeur 'block : true'
-  }
+  }*/
 
   const event = await Event.findByPk(eventId);
   if (!event) {

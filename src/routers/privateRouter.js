@@ -1,22 +1,22 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController.js';
-import { serverController as tc } from '../utils/tryCatch.js';
+import { controllerWrapper as cw } from '../utils/controllerWrapper.js';
 
 export const privateRouter = Router();
 
-privateRouter.get('/users/me', tc(userController.getConnectedUser));
-privateRouter.patch('/users/me', tc(userController.updateUser));
+privateRouter.get('/users/me', cw(userController.getConnectedUser));
+privateRouter.patch('/users/me', cw(userController.updateUser));
 
-privateRouter.delete('/users/me', tc(userController.deleteUser));
+privateRouter.delete('/users/me', cw(userController.deleteUser));
 
 privateRouter.put(
   '/events/:eventId/register',
-  tc(userController.addUserToEvent)
+  cw(userController.addUserToEvent)
 );
 privateRouter.delete(
   '/events/:eventId/unregister',
 
-  tc(userController.deleteUserToEvent)
+  cw(userController.deleteUserToEvent)
 );
 
 //TODO: a faire coté front >>
