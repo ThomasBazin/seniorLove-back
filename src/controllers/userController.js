@@ -15,30 +15,27 @@ import { Scrypt } from '../auth/Scrypt.js';
 
 //Récupérer tous les utilisateurs TODO FAIRE LA ROUTE
 export async function getAllUsers(req, res) {
- 
-    const excludedUserId = req.user.userId;
-    //const excludedStatuses = ['pending', 'banned'];
-    
-    const allUsers = await User.findAll({
-        where: {
-           status:"active",  
-            id : {[Op.not]:excludedUserId}
-                },
-        attributes: ['id', 'name', 'birth_date', 'picture'],  
-          
-      });
-       
-    // Map over the users and add the computed age
-    const usersWithAge = allUsers.map(user => ({
-        // Convert Sequelize model instance to a plain object
-        ...user.toJSON(),  
-        // Add computed age
-        age: computeAge(user.birth_date)  
-    }));
-  
-    res.status(200).json(usersWithAge);
-}
+  const excludedUserId = req.user.userId;
+  //const excludedStatuses = ['pending', 'banned'];
 
+  const allUsers = await User.findAll({
+    where: {
+      status: 'active',
+      id: { [Op.not]: excludedUserId },
+    },
+    attributes: ['id', 'name', 'birth_date', 'picture'],
+  });
+
+  // Map over the users and add the computed age
+  const usersWithAge = allUsers.map((user) => ({
+    // Convert Sequelize model instance to a plain object
+    ...user.toJSON(),
+    // Add computed age
+    age: computeAge(user.birth_date),
+  }));
+
+  res.status(200).json(usersWithAge);
+}
 
 //Récupérer un utilisateur
 export async function getOneUser(req, res) {
