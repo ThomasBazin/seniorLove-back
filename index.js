@@ -33,7 +33,6 @@ app.use(publicRouter);
 app.use(privateRouter);
 
 
-
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`❤️  SeniorLove server listening at http://localhost:${port} ❤️`);

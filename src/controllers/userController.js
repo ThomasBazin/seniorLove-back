@@ -1,16 +1,36 @@
 import { User, Hobby, Event, User_message } from '../models/index.js';
 import Joi from 'joi';
-import jsonwebtoken from 'jsonwebtoken'
+import jsonwebtoken from 'jsonwebtoken';
 import { Scrypt } from '../auth/Scrypt.js';
-import { name } from 'ejs';
+import {computeAge} from '../utils/computeAge.js';
+import { Op, Sequelize } from 'sequelize';
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
-  const allUsers = await User.findAll();
-  //TODO : gestion du 403 unauthorized (token)
-
-  res.status(200).json(allUsers);
+ 
+    const excludedUserId = req.user.userId;
+    //const excludedStatuses = ['pending', 'banned'];
+    
+    const allUsers = await User.findAll({
+        where: {
+           status:"active",  
+            id : {[Op.not]:excludedUserId}
+                },
+        attributes: ['id', 'name', 'birth_date', 'picture'],  
+          
+      });
+       
+    // Map over the users and add the computed age
+    const usersWithAge = allUsers.map(user => ({
+        // Convert Sequelize model instance to a plain object
+        ...user.toJSON(),  
+        // Add computed age
+        age: computeAge(user.birth_date)  
+    }));
+  
+    res.status(200).json(usersWithAge);
 }
+
 
 //Récupérer un utilisateur
 export async function getOneUser(req, res) {
@@ -65,7 +85,6 @@ export async function getConnectedUser(req, res) {
 
 export async function updateUserProfile(req, res) {
   const myId = parseInt(req.user.userId, 10);
-
   const updateUserSchema = Joi.object({
     name: Joi.string().max(50),
     birth_date: Joi.date().less(new Date(new Date().setFullYear(new Date().getFullYear() - 60))).optional(),
@@ -165,10 +184,11 @@ export async function updateUserProfile(req, res) {
   });
 
   // Return the updated user profile as a response
-  return res.status(200).json({
+  res.status(200).json({
     id: updatedUser.id,
     name: updatedUser.name,
     birth_date: updatedUser.birth_date,
+    age: computeAge(updatedUser.birth_date),
     description: updatedUser.description,
     gender: updatedUser.gender,
     picture: updatedUser.picture,
@@ -176,7 +196,6 @@ export async function updateUserProfile(req, res) {
     hobbies: updatedUser.hobbies
   });
 }
-
 
 
 //Supprimer un utilisateur

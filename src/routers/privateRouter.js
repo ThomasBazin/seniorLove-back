@@ -6,6 +6,6 @@ import { checkLoggedIn } from "../utils/checkLoggedIn.js";
 
 export const privateRouter = Router();
 
-
+privateRouter.get('/users',checkLoggedIn, tc(userController.getAllUsers));
 privateRouter.get('/users/me',checkLoggedIn, tc(userController.getConnectedUser));
 privateRouter.patch('/users/me',checkLoggedIn, tc(userController.updateUserProfile));
