@@ -24,7 +24,6 @@ app.use((req, res, next) => {
       console.log('Invalid token', err);
     }
   }
-  console.log(req.user);
   next();
 });
 

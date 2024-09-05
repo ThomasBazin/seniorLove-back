@@ -1,703 +1,702 @@
 [
-    {
-      "name": "Jacqueline",
-      "birth_date": "1950-05-15",
-      "description": "Je suis Jacqueline, une passionnée de lecture et de voyages. Depuis ma retraite, j'ai enfin le temps de dévorer tous les livres que je n'avais pas le temps de lire. J'adore également découvrir de nouveaux horizons, rencontrer des gens et explorer différentes cultures. Je suis particulièrement attirée par l'Asie, où j'ai passé plusieurs mois à voyager. En dehors de cela, je suis très impliquée dans le bénévolat, aidant les jeunes à réussir leur parcours scolaire. J'aime aussi jardiner, transformer ma cour en un petit paradis fleuri. La cuisine est une autre de mes passions, surtout la pâtisserie, que je partage avec mes amis lors de goûters que j'organise régulièrement.",
-      "gender": "female",
-      "picture": "https://st4.depositphotos.com/22611548/38059/i/1600/depositphotos_380591824-stock-photo-portrait-happy-mature-woman-eyeglasses.jpg",
-      "email": "jacqueline@example.com",
-      "password": "jacqueline1950!",
-      "status": "pending"
-    },
-    {
-      "name": "Michel",
-      "birth_date": "1948-11-02",
-      "description": "Je m'appelle Michel et je suis un passionné de photographie. Depuis mon plus jeune âge, j'ai toujours eu un appareil photo à la main, capturant des moments uniques de la vie. Après une carrière dans l'ingénierie, je me consacre maintenant entièrement à ma passion. J'aime particulièrement photographier la nature et les paysages, cherchant toujours à capturer la beauté du monde qui m'entoure. En dehors de la photographie, je suis un amateur de cyclisme. Je passe beaucoup de temps à parcourir les routes de campagne, profitant de l'air frais et du calme. Je suis également un grand fan de jazz, une musique qui m'accompagne souvent lors de mes escapades photographiques.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/236214/pexels-photo-236214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "michel@example.com",
-      "password": "michel1948@",
-      "status": "banned"
-    },
-    {
-      "name": "Renée",
-      "birth_date": "1949-03-08",
-      "description": "Je suis Renée, une passionnée d'art et d'histoire. Après avoir travaillé comme enseignante pendant de nombreuses années, j'ai désormais plus de temps pour me consacrer à mes passions. J'adore visiter des musées et des expositions, m'imprégnant de la culture et des histoires qui s'y trouvent. Je suis également une amatrice de musique classique, que j'écoute régulièrement lors de mes moments de détente. J'aime aussi la peinture, une activité que je pratique moi-même à mes heures perdues. En plus de cela, je participe à des cours de yoga, une discipline que j'ai découverte récemment et qui m'aide à rester en forme et à me détendre.",
-      "gender": "other",
-      "picture": "https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "renee@example.com",
-      "password": "renee1949#",
-      "status": "active"
-    },
-    {
-      "name": "Henri",
-      "birth_date": "1952-02-14",
-      "description": "Je suis Henri, un mélomane et amateur d'échecs. La musique classique me passionne depuis mon enfance. Je joue du violon dans un orchestre amateur et assiste régulièrement à des concerts. En dehors de la musique, j'aime jouer aux échecs, que ce soit contre des adversaires locaux ou en ligne. Je suis également un grand lecteur, avec une préférence pour les essais philosophiques et les romans historiques. J'aime aussi cuisiner, surtout des plats traditionnels français que je prépare avec soin pour mes amis et ma famille. Lorsqu'il me reste du temps libre, je pars en excursion pour découvrir de nouveaux lieux culturels, toujours à la recherche de nouvelles expériences artistiques.",
-      "gender": "other",
-      "picture": "https://images.pexels.com/photos/3018993/pexels-photo-3018993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "henri@example.com",
-      "password": "henri1952!",
-      "status": "active"
-    },
-    {
-      "name": "Simone",
-      "birth_date": "1953-07-29",
-      "description": "Je suis Simone, ancienne danseuse aujourd'hui reconvertie en sculptrice. La danse a longtemps été ma vie, et même si je ne danse plus, j'ai trouvé une nouvelle forme d'expression artistique dans la sculpture. Je crée des œuvres en argile et en bronze, inspirées par mes années de danse. J'aime également l'art en général, et je visite régulièrement des musées et des galeries. En dehors de mes créations, j'aime me promener en ville et m'imprégner de l'ambiance des quartiers historiques. Je suis une grande amatrice de jazz et de musique classique, et je participe à des ateliers de danse pour seniors où je partage mon expérience.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/1786258/pexels-photo-1786258.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "simone@example.com",
-      "password": "simone#1953",
-      "status": "active"
-    },
-    {
-      "name": "André",
-      "birth_date": "1946-10-05",
-      "description": "Je m'appelle André, ancien professeur de mathématiques avec une passion pour l'apprentissage et la technologie. Depuis ma retraite, je me consacre à la lecture, explorant des sujets aussi variés que la philosophie, l'histoire et les sciences. J'aime également rester à jour avec les dernières innovations technologiques et j'utilise souvent mon ordinateur pour découvrir de nouvelles idées. Je suis aussi un grand amateur de jardinage, passant beaucoup de temps à entretenir mon jardin. En plus de cela, j'aime voyager et écrire, partageant mes réflexions sur un blog que je tiens régulièrement. Je suis très proche de ma famille et je passe souvent du temps avec mes enfants et petits-enfants.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/3831645/pexels-photo-3831645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "andre@example.com",
-      "password": "andre1946@",
-      "status": "active"
-    },
-    {
-      "name": "Lucienne",
-      "birth_date": "1950-04-02",
-      "description": "Je suis Lucienne, une cuisinière passionnée, connue pour mes recettes savoureuses. J'adore expérimenter de nouvelles recettes et perfectionner mes techniques culinaires. En dehors de la cuisine, je suis une grande amatrice d'artisanat, créant des objets de décoration à partir de matériaux recyclés. J'aime recevoir des invités, organisant souvent des dîners pour mes amis et ma famille. Je passe aussi du temps dans mon jardin potager, cultivant des herbes et des légumes frais que j'utilise dans mes plats. Je suis très sociable, participant à des clubs de lecture et à des groupes de marche avec mes amis.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/34540/old-lady-smile-beautiful-woman.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "lucienne@example.com",
-      "password": "lucienne#1950",
-      "status": "active"
-    },
-    {
-      "name": "Gérard",
-      "birth_date": "1947-09-18",
-      "description": "Je m'appelle Gérard, un passionné de sport et de nature. J'ai passé ma vie à enseigner l'éducation physique, et même à la retraite, je reste actif en pratiquant la randonnée et le vélo. J'aime explorer les sentiers de montagne et profiter de la beauté de la nature. En dehors du sport, je suis un amateur de photographie, capturant les paysages que je découvre lors de mes randonnées. J'aime aussi cuisiner des plats simples et sains, souvent avec des ingrédients que je cultive moi-même. Ma famille et mes amis sont très importants pour moi, et je passe beaucoup de temps avec eux, partageant des repas et des moments de convivialité.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/2421934/pexels-photo-2421934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "gerard@example.com",
-      "password": "gerard@1947",
-      "status": "active"
-    },
-    {
-      "name": "Marie",
-      "birth_date": "1949-06-10",
-      "description": "Je suis Marie, une passionnée de jardinage et de lecture. Mon jardin est mon sanctuaire, un endroit où je peux passer des heures à planter, tailler et entretenir mes fleurs. J'aime particulièrement les roses, que je cultive avec soin. Quand je ne suis pas dans mon jardin, je suis probablement en train de lire un roman ou un livre d'histoire. Je fais partie d'un club de lecture où nous partageons nos découvertes littéraires. En plus de cela, j'aime voyager, surtout pour découvrir de nouveaux jardins botaniques et rencontrer d'autres passionnés de plantes. La nature est une source d'inspiration pour moi, et je cherche toujours à apprendre et à partager mes connaissances.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/788567/pexels-photo-788567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "marie@example.com",
-      "password": "marie#1949",
-      "status": "active"
-    },
-    {
-      "name": "Bernard",
-      "birth_date": "1951-12-20",
-      "description": "Je suis Bernard, un passionné d'histoire et de modélisme. Depuis toujours, je suis fasciné par les récits historiques, en particulier ceux qui concernent les guerres mondiales. J'ai passé des années à construire des maquettes de navires et d'avions de cette époque, une activité qui me détend et me passionne. En plus de cela, j'aime lire des biographies et des documentaires historiques. Je suis également un amateur de vin, et j'aime découvrir de nouvelles régions viticoles lors de mes voyages. En dehors de mes passions, je suis très impliqué dans ma communauté, organisant des conférences et des expositions sur l'histoire locale.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/25758/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "bernard@example.com",
-      "password": "bernard1951!",
-      "status": "active"
-    },
-    {
-      "name": "Jacques",
-      "birth_date": "1945-05-14",
-      "description": "Je suis Jacques, un amateur de machines à écrire anciennes. Depuis ma retraite, je passe mes journées à restaurer ces machines et à les utiliser pour écrire des lettres et des histoires. J’apprécie le calme de mon atelier, où je peux me plonger dans des tâches manuelles et créatives. En dehors de cela, j’aime lire des romans classiques et m’intéresse à l’histoire des technologies de communication. Je passe aussi beaucoup de temps à partager mes connaissances avec d’autres passionnés lors de salons et d’expositions.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-caucasian-man-using-vintage-typewriter-grayscale_53876-31560.jpg?t=st=1725032211~exp=1725035811~hmac=fd133fedfcf1cd11cfb5074c62b8d1bdeed30fa7c902b9c4c248c3e3f6500148&w=2000",
-      "email": "jacques.dubois@example.com",
-      "password": "jacques1945!",
-      "status": "active"
-    },
-    {
-      "name": "Henri",
-      "birth_date": "1942-07-22",
-      "description": "Je suis Henri, un passionné de téléphones anciens. J’aime collectionner et restaurer ces objets fascinants qui rappellent une époque révolue. Ma journée typique consiste à travailler sur mes téléphones, en réparant et en nettoyant les pièces pour les faire revivre. J’organise également des rencontres avec d’autres collectionneurs et amateurs de vintage, où nous échangeons des histoires et des techniques de restauration.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/old-man-holding-telephone_23-2148432087.jpg?t=st=1725032288~exp=1725035888~hmac=619f47b4e7d7b1d421a987f46bc01df2c5e1edda177b3a53c0eae830dd8e66ce&w=1060",
-      "email": "henri.moreau@example.com",
-      "password": "henri1942!",
-      "status": "active"
-    },
-    {
-      "name": "Paul",
-      "birth_date": "1938-11-01",
-      "description": "Je suis Paul, un amateur de photographie qui aime capturer des moments précieux avec mon appareil photo. J’ai passé ma vie à explorer le monde à travers l’objectif et à partager mes photos avec d’autres passionnés. Je consacre une grande partie de mon temps à prendre des photos lors de différents événements et paysages, tout en discutant des techniques et des équipements avec mes amis photographes.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/portrait-senior-man-with-camera-device-world-photography-day-celebration_23-2151657270.jpg?t=st=1725032354~exp=1725035954~hmac=5a956684a0deeafc69574ac1dd25227ad998b3c9fe64b0af8a95d7d234e066e0&w=2000",
-      "email": "paul.lefebvre@example.com",
-      "password": "paul1938!",
-      "status": "active"
-    },
-    {
-      "name": "Lucien",
-      "birth_date": "1947-02-10",
-      "description": "Je suis Lucien, un homme sage qui aime passer du temps dans des lieux calmes et paisibles. J’aime me promener et profiter de la tranquillité des espaces intérieurs, où je peux réfléchir et apprécier la simplicité de la vie. Je trouve du plaisir à observer les détails de mon environnement et à partager ces moments de calme avec les autres.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/old-man-posing-indoors-side-view_23-2149883573.jpg?t=st=1725032412~exp=1725036012~hmac=cd9635a4d9330751174c813c7cfa8e51c5ccac00cd5a1d87d5eaa33eff9642eb&w=1060",
-      "email": "lucien.bernard@example.com",
-      "password": "lucien1947!",
-      "status": "active"
-    },
-    {
-      "name": "Éric",
-      "birth_date": "1950-03-05",
-      "description": "Je suis Éric, un homme élégant qui aime s’habiller avec soin et profiter des belles journées ensoleillées. J’apprécie les moments passés en plein air, surtout lorsqu’ils me permettent de montrer mes tenues préférées. Je suis également passionné par la mode et l’élégance, ce qui se reflète dans chaque aspect de ma vie.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-posing-white-shirt-hat_23-2149487991.jpg?t=st=1725032446~exp=1725036046~hmac=371f49f8f4c97c753d37f1a7c3f0942bb440b3aa4f99767716c81009ac87bb65&w=2000",
-      "email": "eric.martin@example.com",
-      "password": "eric1950!",
-      "status": "active"
-    },
-    {
-      "name": "Alain",
-      "birth_date": "1935-09-20",
-      "description": "Je suis Alain, un homme âgé qui aime se détendre dans les parcs et profiter de la nature. J’apprécie particulièrement les moments de repos sur un banc, où je peux observer les gens et profiter du paysage. C’est dans ces moments de calme que je me sens le plus connecté avec le monde qui m’entoure.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/front-view-old-man-sitting-bench_23-2150493075.jpg?t=st=1725032486~exp=1725036086~hmac=e828fbb7cdefd7fcf040257ab6678c3631da7433837adeff4f1111d641bd93aa&w=2000",
-      "email": "alain.durand@example.com",
-      "password": "alain1935!",
-      "status": "active"
-    },
-    {
-      "name": "Maurice",
-      "birth_date": "1949-12-30",
-      "description": "Je suis Maurice, un homme moyen qui apprécie de prendre des promenades régulières pour rester actif et en bonne santé. J’aime découvrir de nouveaux endroits tout en me maintenant en forme. Chaque promenade est une occasion pour moi de réfléchir et de profiter des petites choses de la vie.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/medium-shot-elderly-man-taking-stroll_23-2150168211.jpg?t=st=1725032669~exp=1725036269~hmac=233ff2f2329d68aea9400db57c6581fd1e390c6ca70bddf6e218639f10689d51&w=1060",
-      "email": "maurice.lefevre@example.com",
-      "password": "maurice1949!",
-      "status": "active"
-    },
-    {
-      "name": "Louis",
-      "birth_date": "1939-10-10",
-      "description": "Je suis Louis, un homme sage qui aime poser pour des photos et capturer des moments précieux de la vie. J’apprécie particulièrement les séances photo en studio, où je peux exprimer ma personnalité et partager des instants de ma vie avec les autres.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/wise-senior-man-posing-indoors-front-view_23-2149883531.jpg?t=st=1725032688~exp=1725036288~hmac=00da6a70e10d070217905040c9ae39e5ee3cbe536bda730782877c5ca025b0c9&w=2000",
-      "email": "louis.chevalier@example.com",
-      "password": "louis1939!",
-      "status": "active"
-    },
-    {
-      "name": "Claude",
-      "birth_date": "1948-08-14",
-      "description": "Je suis Claude, un homme âgé qui aime porter des chapeaux élégants. J’apprécie les jours ensoleillés où je peux me promener en extérieur tout en mettant en avant mes accessoires de mode préférés. La mode et le style sont importants pour moi et me permettent de m’exprimer au quotidien.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/front-view-elderly-man-wearing-hat_23-2150168218.jpg?t=st=1725032702~exp=1725036302~hmac=b328d1a98bc49af424cf01c4874705155c90ccca198c78dd0ffbc78b49595e48&w=1060",
-      "email": "claude.duval@example.com",
-      "password": "claude1948!",
-      "status": "active"
-    },
-    {
-      "name": "Jean",
-      "birth_date": "1936-02-28",
-      "description": "Je suis Jean, un homme qui aime profiter des belles journées et de la nature. Rien ne me fait plus plaisir que de prendre une tasse de café en extérieur, entouré par la beauté naturelle. C’est dans ces moments simples que je trouve le plus grand bonheur.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-drinking-coffee-outdoors_23-2148452040.jpg?t=st=1725032724~exp=1725036324~hmac=ea30e1a5b555f947150a4a630b4a5696e03cfbaeb48dd44af5f0a84eb75a25e1&w=1060",
-      "email": "jean.moret@example.com",
-      "password": "jean1936!",
-      "status": "active"
-    },
-    {
-      "name": "Marcel",
-      "birth_date": "1946-03-21",
-      "description": "Je suis Marcel, un passionné de jardinage qui passe la plupart de mon temps dans mon jardin. J'adore planter des fleurs et des légumes et voir comment ils poussent jour après jour. Le jardinage est ma manière de rester actif et connecté avec la nature.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-working-garden_23-2148652132.jpg",
-      "email": "marcel.dupont@example.com",
-      "password": "marcel1946!",
-      "status": "active"
-    },
-    {
-      "name": "Suzanne",
-      "birth_date": "1941-06-30",
-      "description": "Je suis Suzanne, une passionnée de cuisine qui adore préparer de délicieux repas pour ma famille et mes amis. J'ai passé ma vie à perfectionner mes recettes et à apprendre de nouvelles techniques culinaires.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/senior-woman-cooking-kitchen_23-2148652131.jpg",
-      "email": "suzanne.martin@example.com",
-      "password": "suzanne1941!",
-      "status": "active"
-    },
-    {
-      "name": "Pierre",
-      "birth_date": "1939-09-15",
-      "description": "Je suis Pierre, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/old-man-fishing-lake_23-2148432142.jpg",
-      "email": "pierre.renard@example.com",
-      "password": "pierre1939!",
-      "status": "active"
-    },
-    {
-      "name": "Yvonne",
-      "birth_date": "1947-01-12",
-      "description": "Je suis Yvonne, une femme active qui aime faire des randonnées. J'apprécie particulièrement les paysages montagneux où je peux respirer l'air frais et profiter de la beauté de la nature. Chaque randonnée est une nouvelle aventure pour moi.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-hiking-mountains_23-2148432115.jpg",
-      "email": "yvonne.legrand@example.com",
-      "password": "yvonne1947!",
-      "status": "active"
-    },
-    {
-      "name": "René",
-      "birth_date": "1944-11-23",
-      "description": "Je suis René, un passionné de musique classique. Je joue du piano depuis mon enfance et j'aime passer des heures à interpréter mes morceaux préférés. La musique est une partie essentielle de ma vie.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/old-man-playing-piano_23-2148432150.jpg",
-      "email": "rene.beaumont@example.com",
-      "password": "rene1944!",
-      "status": "active"
-    },
-    {
-      "name": "Jeanne",
-      "birth_date": "1938-04-07",
-      "description": "Je suis Jeanne, une passionnée de tricot et de couture. J'aime créer des vêtements et des accessoires pour ma famille et mes amis. Travailler avec mes mains me procure une grande satisfaction.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting_23-2148432149.jpg",
-      "email": "jeanne.laurent@example.com",
-      "password": "jeanne1938!",
-      "status": "active"
-    },
-    {
-      "name": "Michel",
-      "birth_date": "1945-08-19",
-      "description": "Je suis Michel, un amateur de peinture. Depuis ma retraite, je passe beaucoup de temps à peindre des paysages et des portraits. La peinture me permet d'exprimer ma créativité et de me détendre.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-painting-canvas-home_23-2148652133.jpg",
-      "email": "michel.roux@example.com",
-      "password": "michel1945!",
-      "status": "active"
-    },
-    {
-      "name": "Claire",
-      "birth_date": "1952-12-05",
-      "description": "Je suis Claire, une passionnée de voyages. J'aime découvrir de nouveaux pays, cultures et paysages. Chaque voyage est une occasion pour moi d'apprendre et de m'enrichir personnellement.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/senior-woman-traveling-world_23-2148652135.jpg",
-      "email": "claire.durand@example.com",
-      "password": "claire1952!",
-      "status": "active"
-    },
-    {
-      "name": "Georges",
-      "birth_date": "1937-02-15",
-      "description": "Je suis Georges, un passionné d'échecs. J'aime passer du temps à jouer aux échecs, que ce soit en ligne ou avec des amis. Ce jeu me permet de rester mentalement actif et de relever des défis stratégiques.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-playing-chess-park_23-2148652136.jpg",
-      "email": "georges.marchand@example.com",
-      "password": "georges1937!",
-      "status": "active"
-    },
-    {
-      "name": "Elisabeth",
-      "birth_date": "1943-09-25",
-      "description": "Je suis Elisabeth, une amoureuse de la lecture. J'ai toujours un livre à la main et j'aime me plonger dans des mondes différents grâce à la littérature. Les livres sont ma fenêtre sur le monde.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/senior-woman-reading-book-living-room_23-2148652134.jpg",
-      "email": "elisabeth.dubois@example.com",
-      "password": "elisabeth1943!",
-      "status": "active"
-    },
-    {
-      "name": "Antoine",
-      "birth_date": "1948-10-18",
-      "description": "Je suis Antoine, un passionné d'histoire. Je passe mon temps à lire des livres d'histoire et à visiter des musées pour en apprendre davantage sur les événements passés. L'histoire me fascine et j'aime partager mes connaissances avec les autres.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-reading-history-book_23-2148652137.jpg",
-      "email": "antoine.dupuis@example.com",
-      "password": "antoine1948!",
-      "status": "active"
-    },
-    {
-      "name": "Monique",
-      "birth_date": "1946-06-22",
-      "description": "Je suis Monique, une passionnée de danse. Depuis mon plus jeune âge, j'ai toujours aimé danser et je continue à le faire pour rester en forme et m'amuser. La danse me permet de me sentir vivante.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing_23-2148652138.jpg",
-      "email": "monique.lambert@example.com",
-      "password": "monique1946!",
-      "status": "active"
-    },
-    {
-      "name": "André",
-      "birth_date": "1950-03-28",
-      "description": "Je suis André, un passionné de bricolage. J'aime travailler de mes mains et réparer des objets. Que ce soit en bois, en métal ou en électricité, je suis toujours à la recherche de nouveaux projets à réaliser.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-working-workshop_23-2148652139.jpg",
-      "email": "andre.bonnet@example.com",
-      "password": "andre1950!",
-      "status": "active"
-    },
-    {
-      "name": "Isabelle",
-      "birth_date": "1949-11-04",
-      "description": "Je suis Isabelle, une passionnée de jardinage. J'adore cultiver des plantes et voir mon jardin fleurir tout au long de l'année. Le jardinage est pour moi une source de détente et de satisfaction.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652140.jpg",
-      "email": "isabelle.gautier@example.com",
-      "password": "isabelle1949!",
-      "status": "active"
-    },
-    {
-      "name": "Bernard",
-      "birth_date": "1953-08-11",
-      "description": "Je suis Bernard, un passionné de photographie. J'aime capturer les moments de la vie quotidienne ainsi que les paysages lors de mes voyages. La photographie est pour moi un moyen de documenter ma vie et de partager ma vision du monde.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-taking-photo_23-2148652141.jpg",
-      "email": "bernard.giraud@example.com",
-      "password": "bernard1953!",
-      "status": "active"
-    },
-    {
-      "name": "Lucie",
-      "birth_date": "1951-05-29",
-      "description": "Je suis Lucie, une passionnée de couture. J'adore créer des vêtements sur mesure pour moi et ma famille. Coudre est une façon pour moi de m'exprimer et de créer quelque chose de beau et d'unique.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-sewing-home_23-2148652142.jpg",
-      "email": "lucie.leclerc@example.com",
-      "password": "lucie1951!",
-      "status": "active"
-    },
-    {
-      "name": "Henri",
-      "birth_date": "1940-07-16",
-      "description": "Je suis Henri, un passionné de cuisine. J'aime expérimenter de nouvelles recettes et partager mes créations avec ma famille et mes amis. Pour moi, la cuisine est un art et une passion.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-cooking-kitchen_23-2148652143.jpg",
-      "email": "henri.petit@example.com",
-      "password": "henri1940!",
-      "status": "active"
-    },
-    {
-      "name": "Agnès",
-      "birth_date": "1954-09-09",
-      "description": "Je suis Agnès, une passionnée de lecture. Je passe des heures à lire des romans, des biographies, et des poèmes. La lecture est pour moi une échappatoire et un moyen de découvrir de nouveaux mondes.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/senior-woman-reading-book_23-2148652144.jpg",
-      "email": "agnes.lemoine@example.com",
-      "password": "agnes1954!",
-      "status": "active"
-    },
-    {
-      "name": "Louis",
-      "birth_date": "1952-11-21",
-      "description": "Je suis Louis, un passionné de randonnée. J'aime explorer les sentiers de montagne et profiter des vues spectaculaires qu'ils offrent. La randonnée est pour moi une manière de rester en forme et de me ressourcer.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/elderly-man-hiking-mountains_23-2148652145.jpg",
-      "email": "louis.dupuy@example.com",
-      "password": "louis1952!",
-      "status": "active"
-    },
-    {
-      "name": "Marie",
-      "birth_date": "1947-03-06",
-      "description": "Je suis Marie, une passionnée de peinture. J'aime capturer la beauté des paysages et des gens à travers mes pinceaux. Peindre est pour moi un moyen d'expression et une source de bonheur.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-painting-canvas_23-2148652146.jpg",
-      "email": "marie.perrin@example.com",
-      "password": "marie1947!",
-      "status": "active"
-    },
-    {
-      "name": "Robert",
-      "birth_date": "1950-10-30",
-      "description": "Je suis Robert, un amateur de photographie. J'aime immortaliser des moments uniques à travers mon objectif. La photographie me permet de capturer la beauté du monde et de la partager avec les autres.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-taking-pictures-camera_23-2148652147.jpg",
-      "email": "robert.roussel@example.com",
-      "password": "robert1950!",
-      "status": "active"
-    },
-    {
-      "name": "Françoise",
-      "birth_date": "1953-12-13",
-      "description": "Je suis Françoise, une passionnée de tricot. J'aime passer mes soirées à tricoter des pulls, des écharpes et des bonnets pour mes proches. Le tricot est pour moi une activité relaxante et créative.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting-yarn_23-2148652148.jpg",
-      "email": "francoise.lefevre@example.com",
-      "password": "francoise1953!",
-      "status": "active"
-    },
-    {
-      "name": "Gérard",
-      "birth_date": "1954-05-12",
-      "description": "Je suis Gérard, un passionné de jardinage. J'aime passer du temps dans mon jardin, à planter des fleurs et des légumes. Le jardinage est pour moi une source de paix et de satisfaction.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-gardening-backyard_23-2148652149.jpg",
-      "email": "gerard.fontaine@example.com",
-      "password": "gerard1954!",
-      "status": "active"
-    },
-    {
-      "name": "Simone",
-      "birth_date": "1949-11-18",
-      "description": "Je suis Simone, une passionnée de lecture. J'aime passer mes après-midi à lire des romans et des biographies. La lecture est pour moi une façon de voyager sans quitter ma maison.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-reading-book-sofa_23-2148652150.jpg",
-      "email": "simone.renard@example.com",
-      "password": "simone1949!",
-      "status": "active"
-    },
-    {
-      "name": "Luc",
-      "birth_date": "1951-08-05",
-      "description": "Je suis Luc, un passionné de randonnée. J'aime parcourir les sentiers de la nature et découvrir de nouveaux endroits. La randonnée est pour moi un moyen de me connecter à la nature et de rester actif.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/elderly-man-hiking-forest_23-2148652151.jpg",
-      "email": "luc.leroux@example.com",
-      "password": "luc1951!",
-      "status": "active"
-    },
-    {
-      "name": "Renée",
-      "birth_date": "1948-04-02",
-      "description": "Je suis Renée, une passionnée de danse. J'aime danser depuis mon enfance et je continue à pratiquer pour le plaisir et pour rester en forme. La danse est pour moi une expression de joie de vivre.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing-happy_23-2148652152.jpg",
-      "email": "renee.blanc@example.com",
-      "password": "renee1948!",
-      "status": "active"
-    },
-    {
-      "name": "Jacques",
-      "birth_date": "1945-07-20",
-      "description": "Je suis Jacques, un passionné de modélisme. J'aime construire des maquettes d'avions, de trains et de bateaux. Le modélisme est pour moi une activité qui me demande de la patience et de la précision, ce qui me procure beaucoup de satisfaction.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-building-model_23-2148652153.jpg",
-      "email": "jacques.moreau@example.com",
-      "password": "jacques1945!",
-      "status": "active"
-    },
-    {
-      "name": "Louise",
-      "birth_date": "1952-09-15",
-      "description": "Je suis Louise, une passionnée de photographie. J'aime capturer les moments spéciaux et les paysages à travers mon objectif. La photographie est pour moi une façon de figer le temps et de partager ma vision du monde.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-taking-photo-camera_23-2148652154.jpg",
-      "email": "louise.roy@example.com",
-      "password": "louise1952!",
-      "status": "active"
-    },
-    {
-      "name": "Daniel",
-      "birth_date": "1949-11-27",
-      "description": "Je suis Daniel, un passionné de mécanique. J'aime passer du temps dans mon garage à réparer et entretenir des voitures anciennes. La mécanique est pour moi un passe-temps qui me permet de rester actif et de mettre à profit mes compétences.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/elderly-man-fixing-car-garage_23-2148652155.jpg",
-      "email": "daniel.vincent@example.com",
-      "password": "daniel1949!",
-      "status": "active"
-    },
-    {
-      "name": "Catherine",
-      "birth_date": "1947-10-02",
-      "description": "Je suis Catherine, une passionnée de cuisine. J'aime expérimenter avec de nouvelles recettes et partager mes créations culinaires avec ma famille et mes amis. Pour moi, la cuisine est un moyen d'expression et une façon de montrer mon amour.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-cooking-kitchen_23-2148652156.jpg",
-      "email": "catherine.lemarie@example.com",
-      "password": "catherine1947!",
-      "status": "active"
-    },
-    {
-      "name": "Philippe",
-      "birth_date": "1946-05-03",
-      "description": "Je suis Philippe, un passionné de photographie. J'aime immortaliser les moments spéciaux de la vie à travers mon objectif. La photographie est pour moi une manière de capturer et de préserver les souvenirs.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-taking-photos-camera_23-2148652157.jpg",
-      "email": "philippe.guerin@example.com",
-      "password": "philippe1946!",
-      "status": "active"
-    },
-    {
-      "name": "Madeleine",
-      "birth_date": "1953-04-12",
-      "description": "Je suis Madeleine, une passionnée de jardinage. J'adore passer du temps dans mon jardin à planter des fleurs et des légumes. Le jardinage est pour moi une source de paix et de satisfaction.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652158.jpg",
-      "email": "madeleine.feraud@example.com",
-      "password": "madeleine1953!",
-      "status": "active"
-    },
-    {
-      "name": "François",
-      "birth_date": "1948-06-11",
-      "description": "Je suis François, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-fishing-lake_23-2148652159.jpg",
-      "email": "francois.bernard@example.com",
-      "password": "francois1948!",
-      "status": "active"
-    },
-    {
-      "name": "Chantal",
-      "birth_date": "1949-12-21",
-      "description": "Je suis Chantal, une passionnée de peinture. J'aime capturer la beauté des paysages et des gens à travers mes pinceaux. Peindre est pour moi un moyen d'expression et une source de bonheur.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-painting-canvas_23-2148652160.jpg",
-      "email": "chantal.delorme@example.com",
-      "password": "chantal1949!",
-      "status": "active"
-    },
-    {
-      "name": "Christian",
-      "birth_date": "1951-03-14",
-      "description": "Je suis Christian, un passionné de bricolage. J'aime travailler de mes mains et réparer des objets. Que ce soit en bois, en métal ou en électricité, je suis toujours à la recherche de nouveaux projets à réaliser.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-doing-carpentry-workshop_23-2148652161.jpg",
-      "email": "christian.renault@example.com",
-      "password": "christian1951!",
-      "status": "active"
-    },
-    {
-      "name": "Paule",
-      "birth_date": "1954-07-22",
-      "description": "Je suis Paule, une passionnée de danse. Depuis mon plus jeune âge, j'ai toujours aimé danser et je continue à le faire pour rester en forme et m'amuser. La danse me permet de me sentir vivante.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing-happy_23-2148652162.jpg",
-      "email": "paule.leblanc@example.com",
-      "password": "paule1954!",
-      "status": "active"
-    },
-    {
-      "name": "Michel",
-      "birth_date": "1947-09-07",
-      "description": "Je suis Michel, un passionné de musique. Je joue de la guitare et j'aime composer mes propres chansons. La musique est pour moi une manière de m'exprimer et de me connecter aux autres.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-playing-guitar-home_23-2148652163.jpg",
-      "email": "michel.riviere@example.com",
-      "password": "michel1947!",
-      "status": "active"
-    },
-    {
-      "name": "Marguerite",
-      "birth_date": "1950-06-05",
-      "description": "Je suis Marguerite, une passionnée de lecture. J'aime passer mes après-midi à lire des romans et des biographies. La lecture est pour moi une façon de voyager sans quitter ma maison.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-reading-book-couch_23-2148652164.jpg",
-      "email": "marguerite.carre@example.com",
-      "password": "marguerite1950!",
-      "status": "active"
-    },
-    {
-      "name": "Jean",
-      "birth_date": "1951-11-17",
-      "description": "Je suis Jean, un passionné d'histoire. Je passe mon temps à lire des livres d'histoire et à visiter des musées pour en apprendre davantage sur les événements passés. L'histoire me fascine et j'aime partager mes connaissances avec les autres.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/senior-man-reading-history-book_23-2148652165.jpg",
-      "email": "jean.faure@example.com",
-      "password": "jean1951!",
-      "status": "active"
-    },
-    {
-      "name": "Denise",
-      "birth_date": "1952-10-19",
-      "description": "Je suis Denise, une passionnée de tricot. J'aime créer des vêtements sur mesure pour moi et ma famille. Travailler avec mes mains me procure une grande satisfaction.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting-yarn_23-2148652166.jpg",
-      "email": "denise.morin@example.com",
-      "password": "denise1952!",
-      "status": "active"
-    },
-    {
-      "name": "Gilbert",
-      "birth_date": "1953-04-26",
-      "description": "Je suis Gilbert, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
-      "gender": "male",
-      "picture": "https://img.freepik.com/free-photo/elderly-man-fishing-lake_23-2148652167.jpg",
-      "email": "gilbert.charpentier@example.com",
-      "password": "gilbert1953!",
-      "status": "active"
-    },
-    {
-      "name": "Bernadette",
-      "birth_date": "1954-08-14",
-      "description": "Je suis Bernadette, une passionnée de jardinage. J'aime cultiver des plantes et voir mon jardin fleurir tout au long de l'année. Le jardinage est pour moi une source de détente et de satisfaction.",
-      "gender": "female",
-      "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652168.jpg",
-      "email": "bernadette.gaudin@example.com",
-      "password": "bernadette1954!",
-      "status": "active"
-    },
-    {
-      "name": "Monique",
-      "birth_date": "1951-01-12",
-      "description": "Je suis Monique, une passionnée de couture et de design d'intérieur. J'adore transformer des tissus en vêtements élégants et décorer sa maison avec des créations uniques. Je passe également du temps à organiser des ateliers de couture pour partager son savoir-faire.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/3707680/pexels-photo-3707680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "monique@example.com",
-      "status": "active",
-      "password": "monique1951!"
+  {
+    "name": "Jacqueline",
+    "birth_date": "1950-05-15",
+    "description": "Je suis Jacqueline, une passionnée de lecture et de voyages. Depuis ma retraite, j'ai enfin le temps de dévorer tous les livres que je n'avais pas le temps de lire. J'adore également découvrir de nouveaux horizons, rencontrer des gens et explorer différentes cultures. Je suis particulièrement attirée par l'Asie, où j'ai passé plusieurs mois à voyager. En dehors de cela, je suis très impliquée dans le bénévolat, aidant les jeunes à réussir leur parcours scolaire. J'aime aussi jardiner, transformer ma cour en un petit paradis fleuri. La cuisine est une autre de mes passions, surtout la pâtisserie, que je partage avec mes amis lors de goûters que j'organise régulièrement.",
+    "gender": "female",
+    "picture": "https://st4.depositphotos.com/22611548/38059/i/1600/depositphotos_380591824-stock-photo-portrait-happy-mature-woman-eyeglasses.jpg",
+    "email": "jacqueline@example.com",
+    "password": "jacqueline1950!",
+    "status": "active"
   },
   {
-      "name": "Alain",
-      "birth_date": "1949-03-23",
-      "description": "Je suis Alain, un passionné d'histoire et d'archéologie. J'aime explorer des sites historiques et partager ses découvertes à travers des conférences et des articles. En dehors de mes recherches, j'apprécie la randonnée et les voyages culturels.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/3493598/pexels-photo-3493598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "alain@example.com",
-      "status": "active",
-      "password": "alain1949@"
+    "name": "Michel",
+    "birth_date": "1948-11-02",
+    "description": "Je m'appelle Michel et je suis un passionné de photographie. Depuis mon plus jeune âge, j'ai toujours eu un appareil photo à la main, capturant des moments uniques de la vie. Après une carrière dans l'ingénierie, je me consacre maintenant entièrement à ma passion. J'aime particulièrement photographier la nature et les paysages, cherchant toujours à capturer la beauté du monde qui m'entoure. En dehors de la photographie, je suis un amateur de cyclisme. Je passe beaucoup de temps à parcourir les routes de campagne, profitant de l'air frais et du calme. Je suis également un grand fan de jazz, une musique qui m'accompagne souvent lors de mes escapades photographiques.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/236214/pexels-photo-236214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "michel@example.com",
+    "password": "michel1948@",
+    "status": "active"
   },
   {
-      "name": "Claudine",
-      "birth_date": "1952-08-16",
-      "description": "Je suis une amatrice de jardinage et de permaculture. Je cultive un jardin durable, partage mes connaissances avec des groupes locaux, et organise des ateliers sur la culture biologique. J''aime également préparer des plats faits maison avec les produits de mon jardin.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/4104070/pexels-photo-4104070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "claudine@example.com",
-      "status": "active",
-      "password": "claudine1952!"
+    "name": "Renée",
+    "birth_date": "1949-03-08",
+    "description": "Je suis Renée, une passionnée d'art et d'histoire. Après avoir travaillé comme enseignante pendant de nombreuses années, j'ai désormais plus de temps pour me consacrer à mes passions. J'adore visiter des musées et des expositions, m'imprégnant de la culture et des histoires qui s'y trouvent. Je suis également une amatrice de musique classique, que j'écoute régulièrement lors de mes moments de détente. J'aime aussi la peinture, une activité que je pratique moi-même à mes heures perdues. En plus de cela, je participe à des cours de yoga, une discipline que j'ai découverte récemment et qui m'aide à rester en forme et à me détendre.",
+    "gender": "other",
+    "picture": "https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "renee@example.com",
+    "password": "renee1949#",
+    "status": "active"
   },
   {
-      "name": "Jean-Pierre",
-      "birth_date": "1955-07-06",
-      "description": "Je suis un amateur de vin et de gastronomie. J''aime explorer les régions viticoles, découvrir de nouveaux crus, et organiser des dégustations pour mes amis. Je suis aussi un fervent lecteur de romans policiers.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/4067122/pexels-photo-4067122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "jeanpierre@example.com",
-      "status": "active",
-      "password": "jeanpierre1955!"
+    "name": "Henri",
+    "birth_date": "1952-02-14",
+    "description": "Je suis Henri, un mélomane et amateur d'échecs. La musique classique me passionne depuis mon enfance. Je joue du violon dans un orchestre amateur et assiste régulièrement à des concerts. En dehors de la musique, j'aime jouer aux échecs, que ce soit contre des adversaires locaux ou en ligne. Je suis également un grand lecteur, avec une préférence pour les essais philosophiques et les romans historiques. J'aime aussi cuisiner, surtout des plats traditionnels français que je prépare avec soin pour mes amis et ma famille. Lorsqu'il me reste du temps libre, je pars en excursion pour découvrir de nouveaux lieux culturels, toujours à la recherche de nouvelles expériences artistiques.",
+    "gender": "other",
+    "picture": "https://images.pexels.com/photos/3018993/pexels-photo-3018993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "henri@example.com",
+    "password": "henri1952!",
+    "status": "active"
   },
   {
-      "name": "Catherine",
-      "birth_date": "1948-12-11",
-      "description": "Je suis passionnée de musique folk et de chants traditionnels. Je joue de la guitare et chante dans des groupes locaux. En plus de ma passion musicale, j''adore le bricolage et la décoration artisanale.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/1850850/pexels-photo-1850850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "catherine@example.com",
-      "status": "active",
-      "password": "catherine1948!"
+    "name": "Simone",
+    "birth_date": "1953-07-29",
+    "description": "Je suis Simone, ancienne danseuse aujourd'hui reconvertie en sculptrice. La danse a longtemps été ma vie, et même si je ne danse plus, j'ai trouvé une nouvelle forme d'expression artistique dans la sculpture. Je crée des œuvres en argile et en bronze, inspirées par mes années de danse. J'aime également l'art en général, et je visite régulièrement des musées et des galeries. En dehors de mes créations, j'aime me promener en ville et m'imprégner de l'ambiance des quartiers historiques. Je suis une grande amatrice de jazz et de musique classique, et je participe à des ateliers de danse pour seniors où je partage mon expérience.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/1786258/pexels-photo-1786258.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "simone@example.com",
+    "password": "simone#1953",
+    "status": "active"
   },
   {
-      "name": "Henriette",
-      "birth_date": "1954-09-30",
-      "description": "Je suis une fervente défenseuse des droits des animaux et une bénévole dans plusieurs refuges. J''aime également la photographie animalière et passe beaucoup de temps à capturer la faune dans son environnement naturel.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/4585730/pexels-photo-4585730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "henriette@example.com",
-      "status": "active",
-      "password": "henriette1954!"
+    "name": "André",
+    "birth_date": "1946-10-05",
+    "description": "Je m'appelle André, ancien professeur de mathématiques avec une passion pour l'apprentissage et la technologie. Depuis ma retraite, je me consacre à la lecture, explorant des sujets aussi variés que la philosophie, l'histoire et les sciences. J'aime également rester à jour avec les dernières innovations technologiques et j'utilise souvent mon ordinateur pour découvrir de nouvelles idées. Je suis aussi un grand amateur de jardinage, passant beaucoup de temps à entretenir mon jardin. En plus de cela, j'aime voyager et écrire, partageant mes réflexions sur un blog que je tiens régulièrement. Je suis très proche de ma famille et je passe souvent du temps avec mes enfants et petits-enfants.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/3831645/pexels-photo-3831645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "andre@example.com",
+    "password": "andre1946@",
+    "status": "active"
   },
   {
-      "name": "Maurice",
-      "birth_date": "1950-02-19",
-      "description": "Je suis un passionné de mécanique et de voitures anciennes. Je passe mes weekends à restaurer des véhicules classiques et à participer à des concours de voitures anciennes. J''apprécie aussi le théâtre et assiste régulièrement à des représentations.",
-      "gender": "male",
-      "picture": "https://images.pexels.com/photos/3861945/pexels-photo-3861945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "maurice@example.com",
-      "status": "active",
-      "password": "maurice1950!"
+    "name": "Lucienne",
+    "birth_date": "1950-04-02",
+    "description": "Je suis Lucienne, une cuisinière passionnée, connue pour mes recettes savoureuses. J'adore expérimenter de nouvelles recettes et perfectionner mes techniques culinaires. En dehors de la cuisine, je suis une grande amatrice d'artisanat, créant des objets de décoration à partir de matériaux recyclés. J'aime recevoir des invités, organisant souvent des dîners pour mes amis et ma famille. Je passe aussi du temps dans mon jardin potager, cultivant des herbes et des légumes frais que j'utilise dans mes plats. Je suis très sociable, participant à des clubs de lecture et à des groupes de marche avec mes amis.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/34540/old-lady-smile-beautiful-woman.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "lucienne@example.com",
+    "password": "lucienne#1950",
+    "status": "active"
   },
   {
-      "name": "Brigitte",
-      "birth_date": "1951-05-04",
-      "description": "Je suis une passionnée de poésie et de littérature. Je participe à des cercles de lecture et organise des soirées poésie où je partage mes poèmes avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains.",
-      "gender": "female",
-      "picture": "https://images.pexels.com/photos/2056710/pexels-photo-2056710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "email": "brigitte@example.com",
-      "status": "active",
-      "password": "brigitte1951!"
-  }   
-  ]
-  
+    "name": "Gérard",
+    "birth_date": "1947-09-18",
+    "description": "Je m'appelle Gérard, un passionné de sport et de nature. J'ai passé ma vie à enseigner l'éducation physique, et même à la retraite, je reste actif en pratiquant la randonnée et le vélo. J'aime explorer les sentiers de montagne et profiter de la beauté de la nature. En dehors du sport, je suis un amateur de photographie, capturant les paysages que je découvre lors de mes randonnées. J'aime aussi cuisiner des plats simples et sains, souvent avec des ingrédients que je cultive moi-même. Ma famille et mes amis sont très importants pour moi, et je passe beaucoup de temps avec eux, partageant des repas et des moments de convivialité.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/2421934/pexels-photo-2421934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "gerard@example.com",
+    "password": "gerard@1947",
+    "status": "active"
+  },
+  {
+    "name": "Marie",
+    "birth_date": "1949-06-10",
+    "description": "Je suis Marie, une passionnée de jardinage et de lecture. Mon jardin est mon sanctuaire, un endroit où je peux passer des heures à planter, tailler et entretenir mes fleurs. J'aime particulièrement les roses, que je cultive avec soin. Quand je ne suis pas dans mon jardin, je suis probablement en train de lire un roman ou un livre d'histoire. Je fais partie d'un club de lecture où nous partageons nos découvertes littéraires. En plus de cela, j'aime voyager, surtout pour découvrir de nouveaux jardins botaniques et rencontrer d'autres passionnés de plantes. La nature est une source d'inspiration pour moi, et je cherche toujours à apprendre et à partager mes connaissances.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/788567/pexels-photo-788567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "marie@example.com",
+    "password": "marie#1949",
+    "status": "active"
+  },
+  {
+    "name": "Bernard",
+    "birth_date": "1951-12-20",
+    "description": "Je suis Bernard, un passionné d'histoire et de modélisme. Depuis toujours, je suis fasciné par les récits historiques, en particulier ceux qui concernent les guerres mondiales. J'ai passé des années à construire des maquettes de navires et d'avions de cette époque, une activité qui me détend et me passionne. En plus de cela, j'aime lire des biographies et des documentaires historiques. Je suis également un amateur de vin, et j'aime découvrir de nouvelles régions viticoles lors de mes voyages. En dehors de mes passions, je suis très impliqué dans ma communauté, organisant des conférences et des expositions sur l'histoire locale.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/25758/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "bernard@example.com",
+    "password": "bernard1951!",
+    "status": "active"
+  },
+  {
+    "name": "Jacques",
+    "birth_date": "1945-05-14",
+    "description": "Je suis Jacques, un amateur de machines à écrire anciennes. Depuis ma retraite, je passe mes journées à restaurer ces machines et à les utiliser pour écrire des lettres et des histoires. J’apprécie le calme de mon atelier, où je peux me plonger dans des tâches manuelles et créatives. En dehors de cela, j’aime lire des romans classiques et m’intéresse à l’histoire des technologies de communication. Je passe aussi beaucoup de temps à partager mes connaissances avec d’autres passionnés lors de salons et d’expositions.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-caucasian-man-using-vintage-typewriter-grayscale_53876-31560.jpg?t=st=1725032211~exp=1725035811~hmac=fd133fedfcf1cd11cfb5074c62b8d1bdeed30fa7c902b9c4c248c3e3f6500148&w=2000",
+    "email": "jacques.dubois@example.com",
+    "password": "jacques1945!",
+    "status": "active"
+  },
+  {
+    "name": "Henri",
+    "birth_date": "1942-07-22",
+    "description": "Je suis Henri, un passionné de téléphones anciens. J’aime collectionner et restaurer ces objets fascinants qui rappellent une époque révolue. Ma journée typique consiste à travailler sur mes téléphones, en réparant et en nettoyant les pièces pour les faire revivre. J’organise également des rencontres avec d’autres collectionneurs et amateurs de vintage, où nous échangeons des histoires et des techniques de restauration.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/old-man-holding-telephone_23-2148432087.jpg?t=st=1725032288~exp=1725035888~hmac=619f47b4e7d7b1d421a987f46bc01df2c5e1edda177b3a53c0eae830dd8e66ce&w=1060",
+    "email": "henri.moreau@example.com",
+    "password": "henri1942!",
+    "status": "active"
+  },
+  {
+    "name": "Paul",
+    "birth_date": "1938-11-01",
+    "description": "Je suis Paul, un amateur de photographie qui aime capturer des moments précieux avec mon appareil photo. J’ai passé ma vie à explorer le monde à travers l’objectif et à partager mes photos avec d’autres passionnés. Je consacre une grande partie de mon temps à prendre des photos lors de différents événements et paysages, tout en discutant des techniques et des équipements avec mes amis photographes.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/portrait-senior-man-with-camera-device-world-photography-day-celebration_23-2151657270.jpg?t=st=1725032354~exp=1725035954~hmac=5a956684a0deeafc69574ac1dd25227ad998b3c9fe64b0af8a95d7d234e066e0&w=2000",
+    "email": "paul.lefebvre@example.com",
+    "password": "paul1938!",
+    "status": "active"
+  },
+  {
+    "name": "Lucien",
+    "birth_date": "1947-02-10",
+    "description": "Je suis Lucien, un homme sage qui aime passer du temps dans des lieux calmes et paisibles. J’aime me promener et profiter de la tranquillité des espaces intérieurs, où je peux réfléchir et apprécier la simplicité de la vie. Je trouve du plaisir à observer les détails de mon environnement et à partager ces moments de calme avec les autres.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/old-man-posing-indoors-side-view_23-2149883573.jpg?t=st=1725032412~exp=1725036012~hmac=cd9635a4d9330751174c813c7cfa8e51c5ccac00cd5a1d87d5eaa33eff9642eb&w=1060",
+    "email": "lucien.bernard@example.com",
+    "password": "lucien1947!",
+    "status": "active"
+  },
+  {
+    "name": "Éric",
+    "birth_date": "1950-03-05",
+    "description": "Je suis Éric, un homme élégant qui aime s’habiller avec soin et profiter des belles journées ensoleillées. J’apprécie les moments passés en plein air, surtout lorsqu’ils me permettent de montrer mes tenues préférées. Je suis également passionné par la mode et l’élégance, ce qui se reflète dans chaque aspect de ma vie.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-posing-white-shirt-hat_23-2149487991.jpg?t=st=1725032446~exp=1725036046~hmac=371f49f8f4c97c753d37f1a7c3f0942bb440b3aa4f99767716c81009ac87bb65&w=2000",
+    "email": "eric.martin@example.com",
+    "password": "eric1950!",
+    "status": "active"
+  },
+  {
+    "name": "Alain",
+    "birth_date": "1935-09-20",
+    "description": "Je suis Alain, un homme âgé qui aime se détendre dans les parcs et profiter de la nature. J’apprécie particulièrement les moments de repos sur un banc, où je peux observer les gens et profiter du paysage. C’est dans ces moments de calme que je me sens le plus connecté avec le monde qui m’entoure.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/front-view-old-man-sitting-bench_23-2150493075.jpg?t=st=1725032486~exp=1725036086~hmac=e828fbb7cdefd7fcf040257ab6678c3631da7433837adeff4f1111d641bd93aa&w=2000",
+    "email": "alain.durand@example.com",
+    "password": "alain1935!",
+    "status": "active"
+  },
+  {
+    "name": "Maurice",
+    "birth_date": "1949-12-30",
+    "description": "Je suis Maurice, un homme moyen qui apprécie de prendre des promenades régulières pour rester actif et en bonne santé. J’aime découvrir de nouveaux endroits tout en me maintenant en forme. Chaque promenade est une occasion pour moi de réfléchir et de profiter des petites choses de la vie.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/medium-shot-elderly-man-taking-stroll_23-2150168211.jpg?t=st=1725032669~exp=1725036269~hmac=233ff2f2329d68aea9400db57c6581fd1e390c6ca70bddf6e218639f10689d51&w=1060",
+    "email": "maurice.lefevre@example.com",
+    "password": "maurice1949!",
+    "status": "active"
+  },
+  {
+    "name": "Louis",
+    "birth_date": "1939-10-10",
+    "description": "Je suis Louis, un homme sage qui aime poser pour des photos et capturer des moments précieux de la vie. J’apprécie particulièrement les séances photo en studio, où je peux exprimer ma personnalité et partager des instants de ma vie avec les autres.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/wise-senior-man-posing-indoors-front-view_23-2149883531.jpg?t=st=1725032688~exp=1725036288~hmac=00da6a70e10d070217905040c9ae39e5ee3cbe536bda730782877c5ca025b0c9&w=2000",
+    "email": "louis.chevalier@example.com",
+    "password": "louis1939!",
+    "status": "active"
+  },
+  {
+    "name": "Claude",
+    "birth_date": "1948-08-14",
+    "description": "Je suis Claude, un homme âgé qui aime porter des chapeaux élégants. J’apprécie les jours ensoleillés où je peux me promener en extérieur tout en mettant en avant mes accessoires de mode préférés. La mode et le style sont importants pour moi et me permettent de m’exprimer au quotidien.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/front-view-elderly-man-wearing-hat_23-2150168218.jpg?t=st=1725032702~exp=1725036302~hmac=b328d1a98bc49af424cf01c4874705155c90ccca198c78dd0ffbc78b49595e48&w=1060",
+    "email": "claude.duval@example.com",
+    "password": "claude1948!",
+    "status": "active"
+  },
+  {
+    "name": "Jean",
+    "birth_date": "1936-02-28",
+    "description": "Je suis Jean, un homme qui aime profiter des belles journées et de la nature. Rien ne me fait plus plaisir que de prendre une tasse de café en extérieur, entouré par la beauté naturelle. C’est dans ces moments simples que je trouve le plus grand bonheur.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-drinking-coffee-outdoors_23-2148452040.jpg?t=st=1725032724~exp=1725036324~hmac=ea30e1a5b555f947150a4a630b4a5696e03cfbaeb48dd44af5f0a84eb75a25e1&w=1060",
+    "email": "jean.moret@example.com",
+    "password": "jean1936!",
+    "status": "active"
+  },
+  {
+    "name": "Marcel",
+    "birth_date": "1946-03-21",
+    "description": "Je suis Marcel, un passionné de jardinage qui passe la plupart de mon temps dans mon jardin. J'adore planter des fleurs et des légumes et voir comment ils poussent jour après jour. Le jardinage est ma manière de rester actif et connecté avec la nature.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-working-garden_23-2148652132.jpg",
+    "email": "marcel.dupont@example.com",
+    "password": "marcel1946!",
+    "status": "active"
+  },
+  {
+    "name": "Suzanne",
+    "birth_date": "1941-06-30",
+    "description": "Je suis Suzanne, une passionnée de cuisine qui adore préparer de délicieux repas pour ma famille et mes amis. J'ai passé ma vie à perfectionner mes recettes et à apprendre de nouvelles techniques culinaires.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/senior-woman-cooking-kitchen_23-2148652131.jpg",
+    "email": "suzanne.martin@example.com",
+    "password": "suzanne1941!",
+    "status": "active"
+  },
+  {
+    "name": "Pierre",
+    "birth_date": "1939-09-15",
+    "description": "Je suis Pierre, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/old-man-fishing-lake_23-2148432142.jpg",
+    "email": "pierre.renard@example.com",
+    "password": "pierre1939!",
+    "status": "active"
+  },
+  {
+    "name": "Yvonne",
+    "birth_date": "1947-01-12",
+    "description": "Je suis Yvonne, une femme active qui aime faire des randonnées. J'apprécie particulièrement les paysages montagneux où je peux respirer l'air frais et profiter de la beauté de la nature. Chaque randonnée est une nouvelle aventure pour moi.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-hiking-mountains_23-2148432115.jpg",
+    "email": "yvonne.legrand@example.com",
+    "password": "yvonne1947!",
+    "status": "active"
+  },
+  {
+    "name": "René",
+    "birth_date": "1944-11-23",
+    "description": "Je suis René, un passionné de musique classique. Je joue du piano depuis mon enfance et j'aime passer des heures à interpréter mes morceaux préférés. La musique est une partie essentielle de ma vie.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/old-man-playing-piano_23-2148432150.jpg",
+    "email": "rene.beaumont@example.com",
+    "password": "rene1944!",
+    "status": "active"
+  },
+  {
+    "name": "Jeanne",
+    "birth_date": "1938-04-07",
+    "description": "Je suis Jeanne, une passionnée de tricot et de couture. J'aime créer des vêtements et des accessoires pour ma famille et mes amis. Travailler avec mes mains me procure une grande satisfaction.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting_23-2148432149.jpg",
+    "email": "jeanne.laurent@example.com",
+    "password": "jeanne1938!",
+    "status": "active"
+  },
+  {
+    "name": "Michel",
+    "birth_date": "1945-08-19",
+    "description": "Je suis Michel, un amateur de peinture. Depuis ma retraite, je passe beaucoup de temps à peindre des paysages et des portraits. La peinture me permet d'exprimer ma créativité et de me détendre.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-painting-canvas-home_23-2148652133.jpg",
+    "email": "michel.roux@example.com",
+    "password": "michel1945!",
+    "status": "active"
+  },
+  {
+    "name": "Claire",
+    "birth_date": "1952-12-05",
+    "description": "Je suis Claire, une passionnée de voyages. J'aime découvrir de nouveaux pays, cultures et paysages. Chaque voyage est une occasion pour moi d'apprendre et de m'enrichir personnellement.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/senior-woman-traveling-world_23-2148652135.jpg",
+    "email": "claire.durand@example.com",
+    "password": "claire1952!",
+    "status": "active"
+  },
+  {
+    "name": "Georges",
+    "birth_date": "1937-02-15",
+    "description": "Je suis Georges, un passionné d'échecs. J'aime passer du temps à jouer aux échecs, que ce soit en ligne ou avec des amis. Ce jeu me permet de rester mentalement actif et de relever des défis stratégiques.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-playing-chess-park_23-2148652136.jpg",
+    "email": "georges.marchand@example.com",
+    "password": "georges1937!",
+    "status": "active"
+  },
+  {
+    "name": "Elisabeth",
+    "birth_date": "1943-09-25",
+    "description": "Je suis Elisabeth, une amoureuse de la lecture. J'ai toujours un livre à la main et j'aime me plonger dans des mondes différents grâce à la littérature. Les livres sont ma fenêtre sur le monde.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/senior-woman-reading-book-living-room_23-2148652134.jpg",
+    "email": "elisabeth.dubois@example.com",
+    "password": "elisabeth1943!",
+    "status": "active"
+  },
+  {
+    "name": "Antoine",
+    "birth_date": "1948-10-18",
+    "description": "Je suis Antoine, un passionné d'histoire. Je passe mon temps à lire des livres d'histoire et à visiter des musées pour en apprendre davantage sur les événements passés. L'histoire me fascine et j'aime partager mes connaissances avec les autres.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-reading-history-book_23-2148652137.jpg",
+    "email": "antoine.dupuis@example.com",
+    "password": "antoine1948!",
+    "status": "active"
+  },
+  {
+    "name": "Monique",
+    "birth_date": "1946-06-22",
+    "description": "Je suis Monique, une passionnée de danse. Depuis mon plus jeune âge, j'ai toujours aimé danser et je continue à le faire pour rester en forme et m'amuser. La danse me permet de me sentir vivante.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing_23-2148652138.jpg",
+    "email": "monique.lambert@example.com",
+    "password": "monique1946!",
+    "status": "active"
+  },
+  {
+    "name": "André",
+    "birth_date": "1950-03-28",
+    "description": "Je suis André, un passionné de bricolage. J'aime travailler de mes mains et réparer des objets. Que ce soit en bois, en métal ou en électricité, je suis toujours à la recherche de nouveaux projets à réaliser.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-working-workshop_23-2148652139.jpg",
+    "email": "andre.bonnet@example.com",
+    "password": "andre1950!",
+    "status": "active"
+  },
+  {
+    "name": "Isabelle",
+    "birth_date": "1949-11-04",
+    "description": "Je suis Isabelle, une passionnée de jardinage. J'adore cultiver des plantes et voir mon jardin fleurir tout au long de l'année. Le jardinage est pour moi une source de détente et de satisfaction.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652140.jpg",
+    "email": "isabelle.gautier@example.com",
+    "password": "isabelle1949!",
+    "status": "active"
+  },
+  {
+    "name": "Bernard",
+    "birth_date": "1953-08-11",
+    "description": "Je suis Bernard, un passionné de photographie. J'aime capturer les moments de la vie quotidienne ainsi que les paysages lors de mes voyages. La photographie est pour moi un moyen de documenter ma vie et de partager ma vision du monde.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-taking-photo_23-2148652141.jpg",
+    "email": "bernard.giraud@example.com",
+    "password": "bernard1953!",
+    "status": "active"
+  },
+  {
+    "name": "Lucie",
+    "birth_date": "1951-05-29",
+    "description": "Je suis Lucie, une passionnée de couture. J'adore créer des vêtements sur mesure pour moi et ma famille. Coudre est une façon pour moi de m'exprimer et de créer quelque chose de beau et d'unique.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-sewing-home_23-2148652142.jpg",
+    "email": "lucie.leclerc@example.com",
+    "password": "lucie1951!",
+    "status": "active"
+  },
+  {
+    "name": "Henri",
+    "birth_date": "1940-07-16",
+    "description": "Je suis Henri, un passionné de cuisine. J'aime expérimenter de nouvelles recettes et partager mes créations avec ma famille et mes amis. Pour moi, la cuisine est un art et une passion.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-cooking-kitchen_23-2148652143.jpg",
+    "email": "henri.petit@example.com",
+    "password": "henri1940!",
+    "status": "active"
+  },
+  {
+    "name": "Agnès",
+    "birth_date": "1954-09-09",
+    "description": "Je suis Agnès, une passionnée de lecture. Je passe des heures à lire des romans, des biographies, et des poèmes. La lecture est pour moi une échappatoire et un moyen de découvrir de nouveaux mondes.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/senior-woman-reading-book_23-2148652144.jpg",
+    "email": "agnes.lemoine@example.com",
+    "password": "agnes1954!",
+    "status": "active"
+  },
+  {
+    "name": "Louis",
+    "birth_date": "1952-11-21",
+    "description": "Je suis Louis, un passionné de randonnée. J'aime explorer les sentiers de montagne et profiter des vues spectaculaires qu'ils offrent. La randonnée est pour moi une manière de rester en forme et de me ressourcer.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/elderly-man-hiking-mountains_23-2148652145.jpg",
+    "email": "louis.dupuy@example.com",
+    "password": "louis1952!",
+    "status": "active"
+  },
+  {
+    "name": "Marie",
+    "birth_date": "1947-03-06",
+    "description": "Je suis Marie, une passionnée de peinture. J'aime capturer la beauté des paysages et des gens à travers mes pinceaux. Peindre est pour moi un moyen d'expression et une source de bonheur.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-painting-canvas_23-2148652146.jpg",
+    "email": "marie.perrin@example.com",
+    "password": "marie1947!",
+    "status": "active"
+  },
+  {
+    "name": "Robert",
+    "birth_date": "1950-10-30",
+    "description": "Je suis Robert, un amateur de photographie. J'aime immortaliser des moments uniques à travers mon objectif. La photographie me permet de capturer la beauté du monde et de la partager avec les autres.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-taking-pictures-camera_23-2148652147.jpg",
+    "email": "robert.roussel@example.com",
+    "password": "robert1950!",
+    "status": "active"
+  },
+  {
+    "name": "Françoise",
+    "birth_date": "1953-12-13",
+    "description": "Je suis Françoise, une passionnée de tricot. J'aime passer mes soirées à tricoter des pulls, des écharpes et des bonnets pour mes proches. Le tricot est pour moi une activité relaxante et créative.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting-yarn_23-2148652148.jpg",
+    "email": "francoise.lefevre@example.com",
+    "password": "francoise1953!",
+    "status": "active"
+  },
+  {
+    "name": "Gérard",
+    "birth_date": "1954-05-12",
+    "description": "Je suis Gérard, un passionné de jardinage. J'aime passer du temps dans mon jardin, à planter des fleurs et des légumes. Le jardinage est pour moi une source de paix et de satisfaction.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-gardening-backyard_23-2148652149.jpg",
+    "email": "gerard.fontaine@example.com",
+    "password": "gerard1954!",
+    "status": "active"
+  },
+  {
+    "name": "Simone",
+    "birth_date": "1949-11-18",
+    "description": "Je suis Simone, une passionnée de lecture. J'aime passer mes après-midi à lire des romans et des biographies. La lecture est pour moi une façon de voyager sans quitter ma maison.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-reading-book-sofa_23-2148652150.jpg",
+    "email": "simone.renard@example.com",
+    "password": "simone1949!",
+    "status": "active"
+  },
+  {
+    "name": "Luc",
+    "birth_date": "1951-08-05",
+    "description": "Je suis Luc, un passionné de randonnée. J'aime parcourir les sentiers de la nature et découvrir de nouveaux endroits. La randonnée est pour moi un moyen de me connecter à la nature et de rester actif.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/elderly-man-hiking-forest_23-2148652151.jpg",
+    "email": "luc.leroux@example.com",
+    "password": "luc1951!",
+    "status": "active"
+  },
+  {
+    "name": "Renée",
+    "birth_date": "1948-04-02",
+    "description": "Je suis Renée, une passionnée de danse. J'aime danser depuis mon enfance et je continue à pratiquer pour le plaisir et pour rester en forme. La danse est pour moi une expression de joie de vivre.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing-happy_23-2148652152.jpg",
+    "email": "renee.blanc@example.com",
+    "password": "renee1948!",
+    "status": "active"
+  },
+  {
+    "name": "Jacques",
+    "birth_date": "1945-07-20",
+    "description": "Je suis Jacques, un passionné de modélisme. J'aime construire des maquettes d'avions, de trains et de bateaux. Le modélisme est pour moi une activité qui me demande de la patience et de la précision, ce qui me procure beaucoup de satisfaction.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-building-model_23-2148652153.jpg",
+    "email": "jacques.moreau@example.com",
+    "password": "jacques1945!",
+    "status": "active"
+  },
+  {
+    "name": "Louise",
+    "birth_date": "1952-09-15",
+    "description": "Je suis Louise, une passionnée de photographie. J'aime capturer les moments spéciaux et les paysages à travers mon objectif. La photographie est pour moi une façon de figer le temps et de partager ma vision du monde.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-taking-photo-camera_23-2148652154.jpg",
+    "email": "louise.roy@example.com",
+    "password": "louise1952!",
+    "status": "active"
+  },
+  {
+    "name": "Daniel",
+    "birth_date": "1949-11-27",
+    "description": "Je suis Daniel, un passionné de mécanique. J'aime passer du temps dans mon garage à réparer et entretenir des voitures anciennes. La mécanique est pour moi un passe-temps qui me permet de rester actif et de mettre à profit mes compétences.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/elderly-man-fixing-car-garage_23-2148652155.jpg",
+    "email": "daniel.vincent@example.com",
+    "password": "daniel1949!",
+    "status": "active"
+  },
+  {
+    "name": "Catherine",
+    "birth_date": "1947-10-02",
+    "description": "Je suis Catherine, une passionnée de cuisine. J'aime expérimenter avec de nouvelles recettes et partager mes créations culinaires avec ma famille et mes amis. Pour moi, la cuisine est un moyen d'expression et une façon de montrer mon amour.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-cooking-kitchen_23-2148652156.jpg",
+    "email": "catherine.lemarie@example.com",
+    "password": "catherine1947!",
+    "status": "active"
+  },
+  {
+    "name": "Philippe",
+    "birth_date": "1946-05-03",
+    "description": "Je suis Philippe, un passionné de photographie. J'aime immortaliser les moments spéciaux de la vie à travers mon objectif. La photographie est pour moi une manière de capturer et de préserver les souvenirs.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-taking-photos-camera_23-2148652157.jpg",
+    "email": "philippe.guerin@example.com",
+    "password": "philippe1946!",
+    "status": "active"
+  },
+  {
+    "name": "Madeleine",
+    "birth_date": "1953-04-12",
+    "description": "Je suis Madeleine, une passionnée de jardinage. J'adore passer du temps dans mon jardin à planter des fleurs et des légumes. Le jardinage est pour moi une source de paix et de satisfaction.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652158.jpg",
+    "email": "madeleine.feraud@example.com",
+    "password": "madeleine1953!",
+    "status": "active"
+  },
+  {
+    "name": "François",
+    "birth_date": "1948-06-11",
+    "description": "Je suis François, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-fishing-lake_23-2148652159.jpg",
+    "email": "francois.bernard@example.com",
+    "password": "francois1948!",
+    "status": "active"
+  },
+  {
+    "name": "Chantal",
+    "birth_date": "1949-12-21",
+    "description": "Je suis Chantal, une passionnée de peinture. J'aime capturer la beauté des paysages et des gens à travers mes pinceaux. Peindre est pour moi un moyen d'expression et une source de bonheur.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-painting-canvas_23-2148652160.jpg",
+    "email": "chantal.delorme@example.com",
+    "password": "chantal1949!",
+    "status": "active"
+  },
+  {
+    "name": "Christian",
+    "birth_date": "1951-03-14",
+    "description": "Je suis Christian, un passionné de bricolage. J'aime travailler de mes mains et réparer des objets. Que ce soit en bois, en métal ou en électricité, je suis toujours à la recherche de nouveaux projets à réaliser.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-doing-carpentry-workshop_23-2148652161.jpg",
+    "email": "christian.renault@example.com",
+    "password": "christian1951!",
+    "status": "active"
+  },
+  {
+    "name": "Paule",
+    "birth_date": "1954-07-22",
+    "description": "Je suis Paule, une passionnée de danse. Depuis mon plus jeune âge, j'ai toujours aimé danser et je continue à le faire pour rester en forme et m'amuser. La danse me permet de me sentir vivante.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing-happy_23-2148652162.jpg",
+    "email": "paule.leblanc@example.com",
+    "password": "paule1954!",
+    "status": "active"
+  },
+  {
+    "name": "Michel",
+    "birth_date": "1947-09-07",
+    "description": "Je suis Michel, un passionné de musique. Je joue de la guitare et j'aime composer mes propres chansons. La musique est pour moi une manière de m'exprimer et de me connecter aux autres.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-playing-guitar-home_23-2148652163.jpg",
+    "email": "michel.riviere@example.com",
+    "password": "michel1947!",
+    "status": "active"
+  },
+  {
+    "name": "Marguerite",
+    "birth_date": "1950-06-05",
+    "description": "Je suis Marguerite, une passionnée de lecture. J'aime passer mes après-midi à lire des romans et des biographies. La lecture est pour moi une façon de voyager sans quitter ma maison.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-reading-book-couch_23-2148652164.jpg",
+    "email": "marguerite.carre@example.com",
+    "password": "marguerite1950!",
+    "status": "active"
+  },
+  {
+    "name": "Jean",
+    "birth_date": "1951-11-17",
+    "description": "Je suis Jean, un passionné d'histoire. Je passe mon temps à lire des livres d'histoire et à visiter des musées pour en apprendre davantage sur les événements passés. L'histoire me fascine et j'aime partager mes connaissances avec les autres.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/senior-man-reading-history-book_23-2148652165.jpg",
+    "email": "jean.faure@example.com",
+    "password": "jean1951!",
+    "status": "active"
+  },
+  {
+    "name": "Denise",
+    "birth_date": "1952-10-19",
+    "description": "Je suis Denise, une passionnée de tricot. J'aime créer des vêtements sur mesure pour moi et ma famille. Travailler avec mes mains me procure une grande satisfaction.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting-yarn_23-2148652166.jpg",
+    "email": "denise.morin@example.com",
+    "password": "denise1952!",
+    "status": "active"
+  },
+  {
+    "name": "Gilbert",
+    "birth_date": "1953-04-26",
+    "description": "Je suis Gilbert, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
+    "gender": "male",
+    "picture": "https://img.freepik.com/free-photo/elderly-man-fishing-lake_23-2148652167.jpg",
+    "email": "gilbert.charpentier@example.com",
+    "password": "gilbert1953!",
+    "status": "active"
+  },
+  {
+    "name": "Bernadette",
+    "birth_date": "1954-08-14",
+    "description": "Je suis Bernadette, une passionnée de jardinage. J'aime cultiver des plantes et voir mon jardin fleurir tout au long de l'année. Le jardinage est pour moi une source de détente et de satisfaction.",
+    "gender": "female",
+    "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652168.jpg",
+    "email": "bernadette.gaudin@example.com",
+    "password": "bernadette1954!",
+    "status": "active"
+  },
+  {
+    "name": "Monique",
+    "birth_date": "1951-01-12",
+    "description": "Je suis Monique, une passionnée de couture et de design d'intérieur. J'adore transformer des tissus en vêtements élégants et décorer sa maison avec des créations uniques. Je passe également du temps à organiser des ateliers de couture pour partager son savoir-faire.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/3707680/pexels-photo-3707680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "monique@example.com",
+    "status": "active",
+    "password": "monique1951!"
+  },
+  {
+    "name": "Alain",
+    "birth_date": "1949-03-23",
+    "description": "Je suis Alain, un passionné d'histoire et d'archéologie. J'aime explorer des sites historiques et partager ses découvertes à travers des conférences et des articles. En dehors de mes recherches, j'apprécie la randonnée et les voyages culturels.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/3493598/pexels-photo-3493598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "alain@example.com",
+    "status": "active",
+    "password": "alain1949@"
+  },
+  {
+    "name": "Claudine",
+    "birth_date": "1952-08-16",
+    "description": "Je suis une amatrice de jardinage et de permaculture. Je cultive un jardin durable, partage mes connaissances avec des groupes locaux, et organise des ateliers sur la culture biologique. J''aime également préparer des plats faits maison avec les produits de mon jardin.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/4104070/pexels-photo-4104070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "claudine@example.com",
+    "status": "active",
+    "password": "claudine1952!"
+  },
+  {
+    "name": "Jean-Pierre",
+    "birth_date": "1955-07-06",
+    "description": "Je suis un amateur de vin et de gastronomie. J''aime explorer les régions viticoles, découvrir de nouveaux crus, et organiser des dégustations pour mes amis. Je suis aussi un fervent lecteur de romans policiers.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/4067122/pexels-photo-4067122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "jeanpierre@example.com",
+    "status": "active",
+    "password": "jeanpierre1955!"
+  },
+  {
+    "name": "Catherine",
+    "birth_date": "1948-12-11",
+    "description": "Je suis passionnée de musique folk et de chants traditionnels. Je joue de la guitare et chante dans des groupes locaux. En plus de ma passion musicale, j''adore le bricolage et la décoration artisanale.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/1850850/pexels-photo-1850850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "catherine@example.com",
+    "status": "active",
+    "password": "catherine1948!"
+  },
+  {
+    "name": "Henriette",
+    "birth_date": "1954-09-30",
+    "description": "Je suis une fervente défenseuse des droits des animaux et une bénévole dans plusieurs refuges. J''aime également la photographie animalière et passe beaucoup de temps à capturer la faune dans son environnement naturel.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/4585730/pexels-photo-4585730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "henriette@example.com",
+    "status": "active",
+    "password": "henriette1954!"
+  },
+  {
+    "name": "Maurice",
+    "birth_date": "1950-02-19",
+    "description": "Je suis un passionné de mécanique et de voitures anciennes. Je passe mes weekends à restaurer des véhicules classiques et à participer à des concours de voitures anciennes. J''apprécie aussi le théâtre et assiste régulièrement à des représentations.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/3861945/pexels-photo-3861945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "maurice@example.com",
+    "status": "banned",
+    "password": "maurice1950!"
+  },
+  {
+    "name": "Brigitte",
+    "birth_date": "1951-05-04",
+    "description": "Je suis une passionnée de poésie et de littérature. Je participe à des cercles de lecture et organise des soirées poésie où je partage mes poèmes avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/2056710/pexels-photo-2056710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "brigitte@example.com",
+    "status": "banned",
+    "password": "brigitte1951!"
+  }
+]
