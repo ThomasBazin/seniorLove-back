@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { User, Hobby, Event } from '../models/index.js';
+import { User, Hobby } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
@@ -13,7 +13,6 @@ export async function addUser(req, res) {
   }
 
   //joi schema configuration
-  //TODO : gestion de l'age de l'utilisateur >= 60 ans
   const registerSchema = Joi.object({
     name: Joi.string().max(50).required(),
     birth_date: Joi.date().required(),
@@ -31,6 +30,7 @@ export async function addUser(req, res) {
     return res.status(400).json({ message: error.message });
   }
 
+  // Age control using custom function
   if (computeAge(req.body.birth_date) < 60) {
     return res.status(400).json({ message: 'must be over 60 to register' });
   }
