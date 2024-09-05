@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController.js';
+import * as messageController from '../controllers/messageController.js';
 import { controllerWrapper as cw } from '../utils/controllerWrapper.js';
 
 export const privateRouter = Router();
@@ -19,5 +20,32 @@ privateRouter.delete(
   cw(userController.deleteUserToEvent)
 );
 
-//TODO: a faire coté front >>
-//privateRouter.patch('/logout',checkLoggedIn, tc(authController.logoutUser));
+privateRouter.get(
+  '/users/me/suggestions',
+  checkLoggedIn,
+  cw(userController.getAllSameInterestUsers)
+);
+
+privateRouter.get(
+  '/users/:userId',
+  checkLoggedIn,
+  cw(userController.getOneUser)
+);
+
+privateRouter.get(
+  '/messages',
+  checkLoggedIn,
+  cw(messageController.getAllUserMessages)
+);
+
+privateRouter.get(
+  '/contacts',
+  checkLoggedIn,
+  cw(messageController.getAllUserContacts)
+);
+
+privateRouter.post(
+  '/messages',
+  checkLoggedIn,
+  cw(messageController.sendMessageToUser)
+);
