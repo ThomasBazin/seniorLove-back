@@ -3,7 +3,7 @@ import express from 'express';
 import { publicRouter } from './src/routers/publicRouter.js';
 import { privateRouter } from './src/routers/privateRouter.js';
 import { bodySanitizerMiddleware } from './src/middlewares/bodySanitizer.js';
-import { checkLoggedIn } from './src/utils/checkLoggedIn.js';
+import { checkLoggedIn } from './src/middlewares/checkLoggedIn.js';
 import cors from 'cors';
 
 const app = express();
