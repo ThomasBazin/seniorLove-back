@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController.js';
 import * as messageController from '../controllers/messageController.js';
-import { controllerWrapper as cw } from '../utils/controllerWrapper.js';
+import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
 import { checkLoggedIn } from '../middlewares/checkLoggedIn.js';
 
 export const privateRouter = Router();
