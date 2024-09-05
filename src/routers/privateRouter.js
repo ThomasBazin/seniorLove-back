@@ -1,30 +1,54 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController.js';
-import { serverController as tc } from '../utils/tryCatch.js';
-
-import { checkLoggedIn } from '../utils/checkLoggedIn.js';
+import * as messageController from '../controllers/messageController.js';
+import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
+import { checkLoggedIn } from '../middlewares/checkLoggedIn.js';
 
 export const privateRouter = Router();
 
-privateRouter.get(
-  '/users/me',
-  checkLoggedIn,
-  tc(userController.getConnectedUser)
-);
-privateRouter.patch('/users/me', checkLoggedIn, tc(userController.updateUser));
+privateRouter.get('/users/me', cw(userController.getConnectedUser));
+privateRouter.patch('/users/me', cw(userController.updateUser));
 
-privateRouter.delete('/users/me', checkLoggedIn, tc(userController.deleteUser));
+privateRouter.delete('/users/me', cw(userController.deleteUser));
 
 privateRouter.put(
   '/events/:eventId/register',
-  checkLoggedIn,
-  tc(userController.addUserToEvent)
+  cw(userController.addUserToEvent)
 );
 privateRouter.delete(
   '/events/:eventId/unregister',
-  checkLoggedIn,
-  tc(userController.deleteUserToEvent)
+
+  cw(userController.deleteUserToEvent)
 );
 
-//TODO: a faire coté front >>
-//privateRouter.patch('/logout',checkLoggedIn, tc(authController.logoutUser));
+privateRouter.get(
+  '/users/me/suggestions',
+  checkLoggedIn,
+  cw(userController.getAllSameInterestUsers)
+);
+
+privateRouter.get(
+  '/users/:userId',
+  checkLoggedIn,
+  cw(userController.getOneUser)
+);
+
+privateRouter.get(
+  '/messages',
+  checkLoggedIn,
+  cw(messageController.getAllUserMessages)
+);
+
+privateRouter.get(
+  '/contacts',
+  checkLoggedIn,
+  cw(messageController.getAllUserContacts)
+);
+
+privateRouter.post(
+  '/messages',
+  checkLoggedIn,
+  cw(messageController.sendMessageToUser)
+);
+privateRouter.get('/users',checkLoggedIn, cw(userController.getAllUsers));
+privateRouter.patch('/users/me',checkLoggedIn, cw(userController.updateUserProfile));

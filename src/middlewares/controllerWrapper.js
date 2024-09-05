@@ -1,4 +1,4 @@
-export function serverController(mdw) {
+export function controllerWrapper(mdw) {
   return async (req, res, next) => {
     try {
       await mdw(req, res, next);
