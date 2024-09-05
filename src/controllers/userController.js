@@ -40,8 +40,7 @@ export async function getOneUser(req, res) {
     res.status(400).json({ message: 'this id is not valid' });
   }
 
-  //TODO : gestion du 403 unauthorized (token)
-
+  
   const oneUser = await User.findByPk(id);
   if (!oneUser) {
     res.status(404).json({ message: 'user not found' });
