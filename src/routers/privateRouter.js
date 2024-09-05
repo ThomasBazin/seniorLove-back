@@ -14,6 +14,19 @@ privateRouter.get(
 );
 privateRouter.patch('/users/me', checkLoggedIn, tc(userController.updateUser));
 
+privateRouter.delete('/users/me', checkLoggedIn, tc(userController.deleteUser));
+
+privateRouter.put(
+  '/events/:eventId/register',
+  checkLoggedIn,
+  tc(userController.addUserToEvent)
+);
+privateRouter.delete(
+  '/events/:eventId/unregister',
+  checkLoggedIn,
+  tc(userController.deleteUserToEvent)
+);
+
 privateRouter.get(
   '/users/me/suggestions',
   checkLoggedIn,
