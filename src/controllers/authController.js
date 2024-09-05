@@ -69,7 +69,7 @@ export async function loginUser(req, res) {
   });
   const { email, password } = req.body;
 
-  const { error, value } = loginSchema.validate(req.body);
+  const { error } = loginSchema.validate(req.body);
 
   if (error) {
     return res.status(403).json({ message: error.message });
@@ -100,7 +100,6 @@ export async function loginUser(req, res) {
     algorithm: 'HS256',
   });
 
-  //!TODO : Renvoyer les infos user pour l'interface.
   res
     .status(200)
     .json({ name: foundUser.name, picture: foundUser.picture, token });

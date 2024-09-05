@@ -20,7 +20,7 @@ export async function getAllUsers(req, res) {
   res.status(200).json(allUsers);
 }
 
-//Récupérer un utilisateur TODO FAIRE ROUTE
+//Récupérer un utilisateur
 export async function getOneUser(req, res) {
   // Get the userId in params, and check if it's a number
   const userId = parseInt(req.params.userId, 10);
@@ -31,8 +31,7 @@ export async function getOneUser(req, res) {
 
   // Get my id and check if i'm active
   const myId = parseInt(req.user.userId, 10);
-  const me = await User.findByPk(myId);
-  if (!me || me.status === 'pending' || me.status === 'banned') {
+  if (!(await isActiveUser(myId))) {
     return res.status(401).json({ blocked: true });
   }
 
@@ -249,9 +248,10 @@ export async function deleteUserToEvent(req, res) {
   }
 
   const user = await User.findByPk(userId);
-  if (!user) {
-    return res.status(404).json({ message: 'user not found' });
+  if (!user || user.status === 'pending' || user.status === 'banned') {
+    return res.status(401).json({ blocked: true });
   }
+
   await user.removeEvent(event);
   res.status(204).end();
 }
