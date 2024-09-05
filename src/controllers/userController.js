@@ -9,6 +9,7 @@ import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
 import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
+import { computeAge } from '../utils/computeAge.js';
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -22,7 +23,6 @@ export async function getAllUsers(req, res) {
 export async function getOneUser(req, res) {
   // Get the userId in params, and check if it's a number
   const userId = parseInt(req.params.userId, 10);
-  console.log(userId);
 
   if (isNaN(userId)) {
     return res.status(400).json({ message: 'this id is not valid' });
@@ -72,6 +72,7 @@ export async function getOneUser(req, res) {
     id,
     name,
     birth_date,
+    age: computeAge(birth_date),
     description,
     gender,
     picture,
@@ -112,8 +113,35 @@ export async function getConnectedUser(req, res) {
   if (!me || me.status === 'pending' || me.status === 'banned') {
     return res.status(401).json({ blocked: true });
   }
+
+  // Prepare an object to be sent, adding age field (computed)
+  const {
+    id,
+    name,
+    birth_date,
+    description,
+    gender,
+    picture,
+    email,
+    events,
+    hobbies,
+  } = me;
+
+  const meToSend = {
+    id,
+    name,
+    birth_date,
+    age: computeAge(birth_date),
+    description,
+    gender,
+    picture,
+    email,
+    events,
+    hobbies,
+  };
+
   // Send my data
-  res.status(200).json(me);
+  res.status(200).json(meToSend);
 }
 
 //Mettre à jour un utilisateur
@@ -156,7 +184,21 @@ export async function getAllSameInterestUsers(req, res) {
     },
   });
 
-  res.status(200).json(mySuggestions);
+  // Prepare an object to be sent
+  const mySuggestionsToSend = [];
+
+  mySuggestions.forEach((user) => {
+    const userObject = {
+      id: user.id,
+      name: user.name,
+      birth_date: user.birth_date,
+      age: computeAge(user.birth_date),
+      picture: user.picture,
+    };
+    mySuggestionsToSend.push(userObject);
+  });
+
+  res.status(200).json(mySuggestionsToSend);
 }
 
 //Enregistré un utilisateur connecté, à un évenement spécifique
