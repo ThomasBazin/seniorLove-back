@@ -1,9 +1,8 @@
+import 'dotenv/config';
 import { User, Hobby, Event } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
-
-import { jwtSecret } from '../../index.js';
 
 //Ajouter un utilisateur
 export async function addUser(req, res) {
@@ -96,10 +95,19 @@ export async function loginUser(req, res) {
 
   const jwtContent = { userId: foundUser.id };
 
-  const token = jsonwebtoken.sign(jwtContent, jwtSecret, {
+  const token = jsonwebtoken.sign(jwtContent, process.env.TOKEN_KEY, {
     expiresIn: '3h',
     algorithm: 'HS256',
   });
 
-  res.status(200).json({ logged: true, token });
+  //!TODO : Renvoyer les infos user pour l'interface.
+  res
+    .status(200)
+    .json({ name: foundUser.name, picture: foundUser.picture, token });
 }
+
+//Test sanitize
+/*export async function postSanitize(req, res) {
+  console.log(req.body);
+  res.status(200).json(req.body);
+}*/
