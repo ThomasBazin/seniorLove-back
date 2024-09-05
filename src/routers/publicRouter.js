@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import * as hobbyController from '../controllers/hobbyController.js';
-import * as userController from '../controllers/userController.js';
 import { serverController as tc } from '../utils/tryCatch.js';
 import * as eventController from '../controllers/eventController.js';
 import * as authController from '../controllers/authController.js';
@@ -11,9 +10,9 @@ publicRouter.get('/home', (req, res) => {
   res.send('Bonjour');
 });
 
-publicRouter.get('/events', tc(eventController.getAllEvents))
+publicRouter.get('/events', tc(eventController.getAllEvents));
 
-publicRouter.get('/events/:eventId', tc(eventController.getOneEvent))
+publicRouter.get('/events/:eventId', tc(eventController.getOneEvent));
 
 publicRouter.post('/register', tc(authController.addUser));
 

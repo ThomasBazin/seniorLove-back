@@ -11,7 +11,7 @@ import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
 import { computeAge } from '../utils/computeAge.js';
 
-//Récupérer tous les utilisateurs
+//Récupérer tous les utilisateurs TODO FAIRE LA ROUTE
 export async function getAllUsers(req, res) {
   const allUsers = await User.findAll();
   //TODO : gestion du 403 unauthorized (token)
@@ -19,7 +19,7 @@ export async function getAllUsers(req, res) {
   res.status(200).json(allUsers);
 }
 
-//Récupérer un utilisateur
+//Récupérer un utilisateur TODO FAIRE ROUTE
 export async function getOneUser(req, res) {
   // Get the userId in params, and check if it's a number
   const userId = parseInt(req.params.userId, 10);
@@ -148,7 +148,15 @@ export async function getConnectedUser(req, res) {
 export async function updateUser(req, res) {}
 
 //Supprimer un utilisateur
-export async function deleteUser(req, res) {}
+export async function deleteUser(req, res) {
+  const userIdToDelete = parseInt(req.user.userId, 10);
+
+  await User.destroy({
+    where: { id: userIdToDelete },
+  });
+
+  res.status(204).end();
+}
 
 //Récupérer tous les utilisateurs qui ont les mêmes centres d'intérets
 export async function getAllSameInterestUsers(req, res) {
@@ -202,10 +210,47 @@ export async function getAllSameInterestUsers(req, res) {
 }
 
 //Enregistré un utilisateur connecté, à un évenement spécifique
-export async function addUserToEvent(req, res) {}
+export async function addUserToEvent(req, res) {
+  const eventId = parseInt(req.params.eventId, 10);
+  const userId = parseInt(req.user.userId, 10);
+
+  const me = await User.findByPk(userId);
+  if (!me || me.status === 'banned' || me.status === 'pending') {
+    res.status(401).json({ blocked: true });
+    // il faut ensuite que le front déclenche la suppression du token a la
+    //reception de cette valeur 'block : true'
+  }
+
+  const event = await Event.findByPk(eventId);
+  if (!event) {
+    return res.status(404).json({ message: 'event not found' });
+  }
+
+  const user = await User.findByPk(userId);
+  if (!user) {
+    return res.status(404).json({ message: 'user not found' });
+  }
+  await user.addEvent(event);
+  res.status(204).end();
+}
 
 //Supprimer un utilisateur connecté, d'un évenement spécifique
-export async function deleteUserToEvent(req, res) {}
+export async function deleteUserToEvent(req, res) {
+  const eventId = parseInt(req.params.eventId, 10);
+  const userId = parseInt(req.user.userId, 10);
+
+  const event = await Event.findByPk(eventId);
+  if (!event) {
+    return res.status(404).json({ message: 'event not found' });
+  }
+
+  const user = await User.findByPk(userId);
+  if (!user) {
+    return res.status(404).json({ message: 'user not found' });
+  }
+  await user.removeEvent(event);
+  res.status(204).end();
+}
 
 //Récupérer tous les évenements auquels s'est inscrit un utilisateur
 export async function getAllEventsUser(req, res) {}

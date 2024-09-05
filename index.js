@@ -27,6 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//app.use("/api", publicRouter, privateRouter)
 app.use(publicRouter);
 app.use(privateRouter);
 
