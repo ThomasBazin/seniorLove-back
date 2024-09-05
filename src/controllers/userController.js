@@ -145,7 +145,7 @@ export async function getConnectedUser(req, res) {
   res.status(200).json(meToSend);
 }
 
-//Mettre à jour un utilisateur
+//Mettre à jour mettre à jour le Profil
 export async function updateUser(req, res) {}
 
 //Supprimer un utilisateur
