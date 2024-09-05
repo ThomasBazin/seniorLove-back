@@ -6,19 +6,39 @@ import {
   User_hobby,
 } from '../models/index.js';
 import Joi from 'joi';
-import jsonwebtoken from 'jsonwebtoken';
 import { isActiveUser } from '../utils/checkUserStatus.js';
 import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
 import { computeAge } from '../utils/computeAge.js';
+import jsonwebtoken from 'jsonwebtoken';
+import { Scrypt } from '../auth/Scrypt.js';
 
 //Récupérer tous les utilisateurs TODO FAIRE LA ROUTE
 export async function getAllUsers(req, res) {
-  const allUsers = await User.findAll();
-  //TODO : gestion du 403 unauthorized (token)
-
-  res.status(200).json(allUsers);
+ 
+    const excludedUserId = req.user.userId;
+    //const excludedStatuses = ['pending', 'banned'];
+    
+    const allUsers = await User.findAll({
+        where: {
+           status:"active",  
+            id : {[Op.not]:excludedUserId}
+                },
+        attributes: ['id', 'name', 'birth_date', 'picture'],  
+          
+      });
+       
+    // Map over the users and add the computed age
+    const usersWithAge = allUsers.map(user => ({
+        // Convert Sequelize model instance to a plain object
+        ...user.toJSON(),  
+        // Add computed age
+        age: computeAge(user.birth_date)  
+    }));
+  
+    res.status(200).json(usersWithAge);
 }
+
 
 //Récupérer un utilisateur
 export async function getOneUser(req, res) {
@@ -82,7 +102,7 @@ export async function getOneUser(req, res) {
   res.status(200).json(userProfileToSend);
 }
 
-//Récuperer l'utilisateur connecté
+//Récupérer l'utilisateur connecté
 export async function getConnectedUser(req, res) {
   // Get my id and make sure it's a number
   const myId = parseInt(req.user.userId, 10);

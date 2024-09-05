@@ -50,3 +50,5 @@ privateRouter.post(
   checkLoggedIn,
   cw(messageController.sendMessageToUser)
 );
+privateRouter.get('/users',checkLoggedIn, cw(userController.getAllUsers));
+privateRouter.patch('/users/me',checkLoggedIn, cw(userController.updateUserProfile));
