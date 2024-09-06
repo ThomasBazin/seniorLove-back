@@ -594,7 +594,7 @@
     "birth_date": "1952-10-19",
     "description": "Je suis Denise, une passionnée de tricot. J'aime créer des vêtements sur mesure pour moi et ma famille. Travailler avec mes mains me procure une grande satisfaction.",
     "gender": "female",
-    "picture": "hhttps://images.pexels.com/photos/3561566/pexels-photo-3561566.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "picture": "https://images.pexels.com/photos/3561566/pexels-photo-3561566.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "denise.morin@example.com",
     "password": "denise1952!",
     "status": "active"
