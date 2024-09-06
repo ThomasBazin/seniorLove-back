@@ -7,7 +7,12 @@ import { checkLoggedIn } from '../middlewares/checkLoggedIn.js';
 export const privateRouter = Router();
 
 privateRouter.get('/users/me', cw(userController.getConnectedUser));
-privateRouter.patch('/users/me', cw(userController.updateUser));
+privateRouter.get('/users', checkLoggedIn, cw(userController.getAllUsers));
+privateRouter.patch(
+  '/users/me',
+  checkLoggedIn,
+  cw(userController.updateUserProfile)
+);
 
 privateRouter.delete('/users/me', cw(userController.deleteUser));
 
@@ -50,5 +55,3 @@ privateRouter.post(
   checkLoggedIn,
   cw(messageController.sendMessageToUser)
 );
-privateRouter.get('/users',checkLoggedIn, cw(userController.getAllUsers));
-privateRouter.patch('/users/me',checkLoggedIn, cw(userController.updateUserProfile));
