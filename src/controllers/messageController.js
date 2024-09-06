@@ -1,6 +1,7 @@
 import { User_message, User } from '../models/index.js';
 import Joi from 'joi';
 import { Op } from 'sequelize';
+import { isActiveUser } from '../utils/checkUserStatus.js';
 
 // Récupere tous les messages d'un utilisateur connecté
 export async function getAllUserMessages(req, res) {
@@ -106,7 +107,7 @@ export async function sendMessageToUser(req, res) {
   // Build a Joi schema to check data in body
   const messageSchema = Joi.object({
     message: Joi.string().required(),
-    receiver_id: Joi.number().integer().min(1),
+    receiver_id: Joi.number().integer().min(1).invalid(myId).required(),
   });
 
   const { error } = messageSchema.validate(req.body);
@@ -114,10 +115,12 @@ export async function sendMessageToUser(req, res) {
     return res.status(400).json({ message: error.message });
   }
 
-  // Once body is ok, use it to create new message
+  // Once body is ok, extract message and receiver_id and check receiver user
   const { message, receiver_id } = req.body;
 
-  console.log(receiver_id);
+  if (!(await isActiveUser(req.body.receiver_id))) {
+    return res.status(400).json({ message: 'Receiver not found' });
+  }
 
   const messageSent = await User_message.create({
     message,
