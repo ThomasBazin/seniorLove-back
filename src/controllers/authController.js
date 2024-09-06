@@ -34,8 +34,13 @@ export async function addUser(req, res) {
   if (computeAge(req.body.birth_date) < 60) {
     return res.status(400).json({ message: 'must be over 60 to register' });
   }
+  const { repeat_password, email } = req.body;
 
-  const { repeat_password } = req.body;
+  // Check if email already exists
+  const potentialExistingUser = await User.findOne({ where: { email: email } });
+  if (potentialExistingUser) {
+    return res.status(400).json({ message: 'e-mail already registered' });
+  }
 
   const createUser = await User.create({
     name: body.name,
@@ -47,9 +52,8 @@ export async function addUser(req, res) {
     password: Scrypt.hash(repeat_password),
   });
 
-  // récupération de l'id des intérêts
+  // récupération du tableau des id d'intérêts
   const hobbies = req.body.hobbies;
-  console.log(hobbies);
 
   const userHobbies = await Hobby.findAll({
     where: { id: hobbies },
