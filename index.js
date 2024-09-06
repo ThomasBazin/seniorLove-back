@@ -14,6 +14,7 @@ app.use(express.json()); // Parser les bodies de type "application/json"
 
 app.use(bodySanitizerMiddleware);
 
+app.disable('x-powered-by');
 app.use('/api/public', publicRouter);
 app.use('/api/private', checkLoggedIn, privateRouter);
 
