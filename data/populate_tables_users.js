@@ -1,6 +1,6 @@
 import { pgClient } from './pgClient.js';
 import { Scrypt } from '../src/auth/Scrypt.js';
-import users from './users_data_70.json' assert { type: 'json' };
+import users from './users_data_70.json' with { type: 'json' }; //if assert does not work replace it with "with"
 
 await pgClient.connect();
 

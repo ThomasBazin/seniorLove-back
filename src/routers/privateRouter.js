@@ -1,13 +1,18 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController.js';
 import * as messageController from '../controllers/messageController.js';
-import { controllerWrapper as cw } from '../utils/controllerWrapper.js';
-import { checkLoggedIn } from '../utils/checkLoggedIn.js';
+import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
+import { checkLoggedIn } from '../middlewares/checkLoggedIn.js';
 
 export const privateRouter = Router();
 
 privateRouter.get('/users/me', cw(userController.getConnectedUser));
-privateRouter.patch('/users/me', cw(userController.updateUser));
+privateRouter.get('/users', checkLoggedIn, cw(userController.getAllUsers));
+privateRouter.patch(
+  '/users/me',
+  checkLoggedIn,
+  cw(userController.updateUserProfile)
+);
 
 privateRouter.delete('/users/me', cw(userController.deleteUser));
 

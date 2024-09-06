@@ -1,8 +1,9 @@
 import 'dotenv/config';
-import { User, Hobby, Event } from '../models/index.js';
+import { User, Hobby } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
+import { computeAge } from '../utils/computeAge.js';
 
 //Ajouter un utilisateur
 export async function addUser(req, res) {
@@ -12,25 +13,26 @@ export async function addUser(req, res) {
   }
 
   //joi schema configuration
-  //TODO : gestion de l'age de l'utilisateur >= 60 ans
   const registerSchema = Joi.object({
     name: Joi.string().max(50).required(),
     birth_date: Joi.date().required(),
     description: Joi.string(),
     gender: Joi.string().max(10).valid('male', 'female', 'other').required(),
     picture: Joi.string().max(255),
-    email: Joi.string()
-      .max(255)
-      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
-      .required(),
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
     password: Joi.string().min(12).max(255).required(),
-    repeat_password: Joi.ref('password'),
-    hobbies: Joi.array().items(Joi.number().integer().min(1)),
+    repeat_password: Joi.valid(Joi.ref('password')).required(),
+    hobbies: Joi.array().items(Joi.number().integer().min(1)).required(),
   });
 
-  const { error, value } = registerSchema.validate(body);
-  if (!value) {
+  const { error } = registerSchema.validate(body);
+  if (error) {
     return res.status(400).json({ message: error.message });
+  }
+
+  // Age control using custom function
+  if (computeAge(req.body.birth_date) < 60) {
+    return res.status(400).json({ message: 'must be over 60 to register' });
   }
 
   const { repeat_password } = req.body;
@@ -49,11 +51,11 @@ export async function addUser(req, res) {
   const hobbies = req.body.hobbies;
   console.log(hobbies);
 
-  const userHobies = await Hobby.findAll({
+  const userHobbies = await Hobby.findAll({
     where: { id: hobbies },
   });
 
-  await createUser.addHobbies(userHobies);
+  await createUser.addHobbies(userHobbies);
 
   res.status(201).json({ message: 'ok' });
 }
@@ -69,7 +71,7 @@ export async function loginUser(req, res) {
   });
   const { email, password } = req.body;
 
-  const { error, value } = loginSchema.validate(req.body);
+  const { error } = loginSchema.validate(req.body);
 
   if (error) {
     return res.status(403).json({ message: error.message });
