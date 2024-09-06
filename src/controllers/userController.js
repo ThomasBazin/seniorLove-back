@@ -177,14 +177,14 @@ export async function updateUserProfile(req, res) {
       .max(255)
       .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
       .optional(),
-    password: Joi.string().min(12).max(255).optional(),
-    repeat_password: Joi.string().valid(Joi.ref('password')).optional(),
-    old_password: Joi.string().when('password', {
+    new_password: Joi.string().min(12).max(255).optional(),
+    repeat_new_password: Joi.string().valid(Joi.ref('new_password')).optional(),
+    old_password: Joi.string().when('new_password', {
       is: Joi.exist(),
       then: Joi.required(),
     }),
     hobbies: Joi.array().items(Joi.number().integer().min(1)).optional(),
-  });
+  }).min(1);
 
   // Validate request body using Joi
   const { error } = updateUserSchema.validate(req.body);
@@ -217,10 +217,10 @@ export async function updateUserProfile(req, res) {
     description,
     gender,
     picture,
-    password,
+    new_password,
     old_password,
     hobbies,
-    repeat_password,
+    repeat_new_password,
   } = req.body;
 
   // Create an object to update the user's profile
@@ -234,7 +234,7 @@ export async function updateUserProfile(req, res) {
   };
 
   // Update if a new password is provided
-  if (password) {
+  if (new_password) {
     if (!old_password) {
       return res
         .status(400)
@@ -249,11 +249,11 @@ export async function updateUserProfile(req, res) {
       return res.status(400).json({ message: 'Incorrect old password' });
     }
 
-    if (password !== repeat_password) {
+    if (new_password !== repeat_new_password) {
       return res.status(400).json({ message: 'New passwords do not match' });
     }
 
-    const hashedNewPassword = await Scrypt.hash(password);
+    const hashedNewPassword = await Scrypt.hash(new_password);
     newProfile.password = hashedNewPassword;
   }
 
