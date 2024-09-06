@@ -173,10 +173,7 @@ export async function updateUserProfile(req, res) {
     description: Joi.string().optional(),
     gender: Joi.string().max(10).valid('male', 'female', 'other').optional(),
     picture: Joi.string().max(255),
-    email: Joi.string()
-      .max(255)
-      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
-      .optional(),
+    email: Joi.string().max(255).email({ minDomainSegments: 2 }).optional(),
     new_password: Joi.string().min(12).max(255).optional(),
     repeat_new_password: Joi.string().valid(Joi.ref('new_password')).optional(),
     old_password: Joi.string().when('new_password', {
