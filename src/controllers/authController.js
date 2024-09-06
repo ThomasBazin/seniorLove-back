@@ -101,9 +101,12 @@ export async function loginUser(req, res) {
   });
 
   //!TODO : Renvoyer les infos user pour l'interface.
-  res
-    .status(200)
-    .json({ name: foundUser.name, picture: foundUser.picture, token });
+  res.status(200).json({
+    id: foundUser.id,
+    name: foundUser.name,
+    picture: foundUser.picture,
+    token,
+  });
 }
 
 //Test sanitize
