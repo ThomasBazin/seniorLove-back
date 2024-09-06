@@ -7,7 +7,7 @@
     "picture": "https://st4.depositphotos.com/22611548/38059/i/1600/depositphotos_380591824-stock-photo-portrait-happy-mature-woman-eyeglasses.jpg",
     "email": "jacqueline@example.com",
     "password": "jacqueline1950!",
-    "status": "active"
+    "status": "pending"
   },
   {
     "name": "Michel",
@@ -17,7 +17,7 @@
     "picture": "https://images.pexels.com/photos/236214/pexels-photo-236214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "michel@example.com",
     "password": "michel1948@",
-    "status": "active"
+    "status": "banned"
   },
   {
     "name": "Renée",
@@ -194,7 +194,7 @@
     "birth_date": "1936-02-28",
     "description": "Je suis Jean, un homme qui aime profiter des belles journées et de la nature. Rien ne me fait plus plaisir que de prendre une tasse de café en extérieur, entouré par la beauté naturelle. C’est dans ces moments simples que je trouve le plus grand bonheur.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-drinking-coffee-outdoors_23-2148452040.jpg?t=st=1725032724~exp=1725036324~hmac=ea30e1a5b555f947150a4a630b4a5696e03cfbaeb48dd44af5f0a84eb75a25e1&w=1060",
+    "picture": "https://images.pexels.com/photos/34534/people-peoples-homeless-male.jpg?auto=compress&cs=tinysrgb&w=600",
     "email": "jean.moret@example.com",
     "password": "jean1936!",
     "status": "active"
@@ -204,7 +204,7 @@
     "birth_date": "1946-03-21",
     "description": "Je suis Marcel, un passionné de jardinage qui passe la plupart de mon temps dans mon jardin. J'adore planter des fleurs et des légumes et voir comment ils poussent jour après jour. Le jardinage est ma manière de rester actif et connecté avec la nature.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-working-garden_23-2148652132.jpg",
+    "picture": "https://images.pexels.com/photos/1139743/pexels-photo-1139743.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "marcel.dupont@example.com",
     "password": "marcel1946!",
     "status": "active"
@@ -214,7 +214,7 @@
     "birth_date": "1941-06-30",
     "description": "Je suis Suzanne, une passionnée de cuisine qui adore préparer de délicieux repas pour ma famille et mes amis. J'ai passé ma vie à perfectionner mes recettes et à apprendre de nouvelles techniques culinaires.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/senior-woman-cooking-kitchen_23-2148652131.jpg",
+    "picture": "https://images.pexels.com/photos/236214/pexels-photo-236214.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "suzanne.martin@example.com",
     "password": "suzanne1941!",
     "status": "active"
@@ -224,7 +224,7 @@
     "birth_date": "1939-09-15",
     "description": "Je suis Pierre, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/old-man-fishing-lake_23-2148432142.jpg",
+    "picture": "https://images.pexels.com/photos/3018993/pexels-photo-3018993.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "pierre.renard@example.com",
     "password": "pierre1939!",
     "status": "active"
@@ -234,7 +234,7 @@
     "birth_date": "1947-01-12",
     "description": "Je suis Yvonne, une femme active qui aime faire des randonnées. J'apprécie particulièrement les paysages montagneux où je peux respirer l'air frais et profiter de la beauté de la nature. Chaque randonnée est une nouvelle aventure pour moi.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/elderly-woman-hiking-mountains_23-2148432115.jpg",
+    "picture": "https://images.pexels.com/photos/4057756/pexels-photo-4057756.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "yvonne.legrand@example.com",
     "password": "yvonne1947!",
     "status": "active"
@@ -244,7 +244,7 @@
     "birth_date": "1944-11-23",
     "description": "Je suis René, un passionné de musique classique. Je joue du piano depuis mon enfance et j'aime passer des heures à interpréter mes morceaux préférés. La musique est une partie essentielle de ma vie.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/old-man-playing-piano_23-2148432150.jpg",
+    "picture": "https://images.pexels.com/photos/35065/homeless-man-color-poverty.jpg?auto=compress&cs=tinysrgb&w=600",
     "email": "rene.beaumont@example.com",
     "password": "rene1944!",
     "status": "active"
@@ -254,7 +254,7 @@
     "birth_date": "1938-04-07",
     "description": "Je suis Jeanne, une passionnée de tricot et de couture. J'aime créer des vêtements et des accessoires pour ma famille et mes amis. Travailler avec mes mains me procure une grande satisfaction.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting_23-2148432149.jpg",
+    "picture": "https://images.pexels.com/photos/3778171/pexels-photo-3778171.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "jeanne.laurent@example.com",
     "password": "jeanne1938!",
     "status": "active"
@@ -264,7 +264,7 @@
     "birth_date": "1945-08-19",
     "description": "Je suis Michel, un amateur de peinture. Depuis ma retraite, je passe beaucoup de temps à peindre des paysages et des portraits. La peinture me permet d'exprimer ma créativité et de me détendre.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-painting-canvas-home_23-2148652133.jpg",
+    "picture": "https://images.pexels.com/photos/41008/cowboy-ronald-reagan-cowboy-hat-hat-41008.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "michel.roux@example.com",
     "password": "michel1945!",
     "status": "active"
@@ -274,7 +274,7 @@
     "birth_date": "1952-12-05",
     "description": "Je suis Claire, une passionnée de voyages. J'aime découvrir de nouveaux pays, cultures et paysages. Chaque voyage est une occasion pour moi d'apprendre et de m'enrichir personnellement.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/senior-woman-traveling-world_23-2148652135.jpg",
+    "picture": "https://images.pexels.com/photos/638196/pexels-photo-638196.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "claire.durand@example.com",
     "password": "claire1952!",
     "status": "active"
@@ -284,7 +284,7 @@
     "birth_date": "1937-02-15",
     "description": "Je suis Georges, un passionné d'échecs. J'aime passer du temps à jouer aux échecs, que ce soit en ligne ou avec des amis. Ce jeu me permet de rester mentalement actif et de relever des défis stratégiques.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-playing-chess-park_23-2148652136.jpg",
+    "picture": "https://images.pexels.com/photos/818261/pexels-photo-818261.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "georges.marchand@example.com",
     "password": "georges1937!",
     "status": "active"
@@ -294,7 +294,7 @@
     "birth_date": "1943-09-25",
     "description": "Je suis Elisabeth, une amoureuse de la lecture. J'ai toujours un livre à la main et j'aime me plonger dans des mondes différents grâce à la littérature. Les livres sont ma fenêtre sur le monde.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/senior-woman-reading-book-living-room_23-2148652134.jpg",
+    "picture": "https://images.pexels.com/photos/1676021/pexels-photo-1676021.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "elisabeth.dubois@example.com",
     "password": "elisabeth1943!",
     "status": "active"
@@ -304,7 +304,7 @@
     "birth_date": "1948-10-18",
     "description": "Je suis Antoine, un passionné d'histoire. Je passe mon temps à lire des livres d'histoire et à visiter des musées pour en apprendre davantage sur les événements passés. L'histoire me fascine et j'aime partager mes connaissances avec les autres.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-reading-history-book_23-2148652137.jpg",
+    "picture": "https://images.pexels.com/photos/2774292/pexels-photo-2774292.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "antoine.dupuis@example.com",
     "password": "antoine1948!",
     "status": "active"
@@ -314,7 +314,7 @@
     "birth_date": "1946-06-22",
     "description": "Je suis Monique, une passionnée de danse. Depuis mon plus jeune âge, j'ai toujours aimé danser et je continue à le faire pour rester en forme et m'amuser. La danse me permet de me sentir vivante.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/elderly-woman-dancing_23-2148652138.jpg",
+    "picture": "https://images.pexels.com/photos/3768117/pexels-photo-3768117.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "monique.lambert@example.com",
     "password": "monique1946!",
     "status": "active"
@@ -324,7 +324,7 @@
     "birth_date": "1950-03-28",
     "description": "Je suis André, un passionné de bricolage. J'aime travailler de mes mains et réparer des objets. Que ce soit en bois, en métal ou en électricité, je suis toujours à la recherche de nouveaux projets à réaliser.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-working-workshop_23-2148652139.jpg",
+    "picture": "https://images.pexels.com/photos/2880285/pexels-photo-2880285.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "andre.bonnet@example.com",
     "password": "andre1950!",
     "status": "active"
@@ -334,7 +334,7 @@
     "birth_date": "1949-11-04",
     "description": "Je suis Isabelle, une passionnée de jardinage. J'adore cultiver des plantes et voir mon jardin fleurir tout au long de l'année. Le jardinage est pour moi une source de détente et de satisfaction.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/elderly-woman-gardening_23-2148652140.jpg",
+    "picture": "https://images.pexels.com/photos/731506/pexels-photo-731506.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "isabelle.gautier@example.com",
     "password": "isabelle1949!",
     "status": "active"
@@ -344,7 +344,7 @@
     "birth_date": "1953-08-11",
     "description": "Je suis Bernard, un passionné de photographie. J'aime capturer les moments de la vie quotidienne ainsi que les paysages lors de mes voyages. La photographie est pour moi un moyen de documenter ma vie et de partager ma vision du monde.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-taking-photo_23-2148652141.jpg",
+    "picture": "https://images.pexels.com/photos/162547/man-old-white-beard-face-162547.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "bernard.giraud@example.com",
     "password": "bernard1953!",
     "status": "active"
@@ -354,7 +354,7 @@
     "birth_date": "1951-05-29",
     "description": "Je suis Lucie, une passionnée de couture. J'adore créer des vêtements sur mesure pour moi et ma famille. Coudre est une façon pour moi de m'exprimer et de créer quelque chose de beau et d'unique.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/elderly-woman-sewing-home_23-2148652142.jpg",
+    "picture": "https://images.pexels.com/photos/34540/old-lady-smile-beautiful-woman.jpg?auto=compress&cs=tinysrgb&w=600",
     "email": "lucie.leclerc@example.com",
     "password": "lucie1951!",
     "status": "active"
@@ -364,7 +364,7 @@
     "birth_date": "1940-07-16",
     "description": "Je suis Henri, un passionné de cuisine. J'aime expérimenter de nouvelles recettes et partager mes créations avec ma famille et mes amis. Pour moi, la cuisine est un art et une passion.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/senior-man-cooking-kitchen_23-2148652143.jpg",
+    "picture": "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "henri.petit@example.com",
     "password": "henri1940!",
     "status": "active"
@@ -374,7 +374,7 @@
     "birth_date": "1954-09-09",
     "description": "Je suis Agnès, une passionnée de lecture. Je passe des heures à lire des romans, des biographies, et des poèmes. La lecture est pour moi une échappatoire et un moyen de découvrir de nouveaux mondes.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/senior-woman-reading-book_23-2148652144.jpg",
+    "picture": "https://images.pexels.com/photos/1786258/pexels-photo-1786258.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "agnes.lemoine@example.com",
     "password": "agnes1954!",
     "status": "active"
@@ -384,7 +384,7 @@
     "birth_date": "1952-11-21",
     "description": "Je suis Louis, un passionné de randonnée. J'aime explorer les sentiers de montagne et profiter des vues spectaculaires qu'ils offrent. La randonnée est pour moi une manière de rester en forme et de me ressourcer.",
     "gender": "male",
-    "picture": "https://img.freepik.com/free-photo/elderly-man-hiking-mountains_23-2148652145.jpg",
+    "picture": "https://images.pexels.com/photos/3075517/pexels-photo-3075517.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "louis.dupuy@example.com",
     "password": "louis1952!",
     "status": "active"
@@ -414,7 +414,7 @@
     "birth_date": "1953-12-13",
     "description": "Je suis Françoise, une passionnée de tricot. J'aime passer mes soirées à tricoter des pulls, des écharpes et des bonnets pour mes proches. Le tricot est pour moi une activité relaxante et créative.",
     "gender": "female",
-    "picture": "https://img.freepik.com/free-photo/elderly-woman-knitting-yarn_23-2148652148.jpg",
+    "picture": "https://images.pexels.com/photos/2382890/pexels-photo-2382890.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "francoise.lefevre@example.com",
     "password": "francoise1953!",
     "status": "active"
@@ -637,9 +637,25 @@
     "picture": "https://images.pexels.com/photos/3493598/pexels-photo-3493598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "alain@example.com",
     "status": "active",
+    "password": "alain1949@",
+    "name": "Alain",
+    "birth_date": "1949-03-23",
+    "description": "Je suis Alain, un passionné d'histoire et d'archéologie. J'aime explorer des sites historiques et partager ses découvertes à travers des conférences et des articles. En dehors de mes recherches, j'apprécie la randonnée et les voyages culturels.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/3493598/pexels-photo-3493598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "alain@example.com",
+    "status": "active",
     "password": "alain1949@"
   },
   {
+    "name": "Claudine",
+    "birth_date": "1952-08-16",
+    "description": "Je suis une amatrice de jardinage et de permaculture. Je cultive un jardin durable, partage mes connaissances avec des groupes locaux, et organise des ateliers sur la culture biologique. J''aime également préparer des plats faits maison avec les produits de mon jardin.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/4104070/pexels-photo-4104070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "claudine@example.com",
+    "status": "active",
+    "password": "claudine1952!",
     "name": "Claudine",
     "birth_date": "1952-08-16",
     "description": "Je suis une amatrice de jardinage et de permaculture. Je cultive un jardin durable, partage mes connaissances avec des groupes locaux, et organise des ateliers sur la culture biologique. J''aime également préparer des plats faits maison avec les produits de mon jardin.",
@@ -657,9 +673,25 @@
     "picture": "https://images.pexels.com/photos/4067122/pexels-photo-4067122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "jeanpierre@example.com",
     "status": "active",
+    "password": "jeanpierre1955!",
+    "name": "Jean-Pierre",
+    "birth_date": "1955-07-06",
+    "description": "Je suis un amateur de vin et de gastronomie. J''aime explorer les régions viticoles, découvrir de nouveaux crus, et organiser des dégustations pour mes amis. Je suis aussi un fervent lecteur de romans policiers.",
+    "gender": "male",
+    "picture": "https://images.pexels.com/photos/4067122/pexels-photo-4067122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "jeanpierre@example.com",
+    "status": "active",
     "password": "jeanpierre1955!"
   },
   {
+    "name": "Catherine",
+    "birth_date": "1948-12-11",
+    "description": "Je suis passionnée de musique folk et de chants traditionnels. Je joue de la guitare et chante dans des groupes locaux. En plus de ma passion musicale, j''adore le bricolage et la décoration artisanale.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/1850850/pexels-photo-1850850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "catherine@example.com",
+    "status": "active",
+    "password": "catherine1948!",
     "name": "Catherine",
     "birth_date": "1948-12-11",
     "description": "Je suis passionnée de musique folk et de chants traditionnels. Je joue de la guitare et chante dans des groupes locaux. En plus de ma passion musicale, j''adore le bricolage et la décoration artisanale.",
@@ -677,6 +709,14 @@
     "picture": "https://images.pexels.com/photos/4585730/pexels-photo-4585730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "henriette@example.com",
     "status": "active",
+    "password": "henriette1954!",
+    "name": "Henriette",
+    "birth_date": "1954-09-30",
+    "description": "Je suis une fervente défenseuse des droits des animaux et une bénévole dans plusieurs refuges. J''aime également la photographie animalière et passe beaucoup de temps à capturer la faune dans son environnement naturel.",
+    "gender": "female",
+    "picture": "https://images.pexels.com/photos/4585730/pexels-photo-4585730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "email": "henriette@example.com",
+    "status": "active",
     "password": "henriette1954!"
   },
   {
@@ -686,7 +726,7 @@
     "gender": "male",
     "picture": "https://images.pexels.com/photos/3861945/pexels-photo-3861945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "maurice@example.com",
-    "status": "banned",
+    "status": "active",
     "password": "maurice1950!"
   },
   {
@@ -696,7 +736,7 @@
     "gender": "female",
     "picture": "https://images.pexels.com/photos/2056710/pexels-photo-2056710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "brigitte@example.com",
-    "status": "banned",
+    "status": "active",
     "password": "brigitte1951!"
   }
 ]
