@@ -51,11 +51,11 @@ export async function addUser(req, res) {
   const hobbies = req.body.hobbies;
   console.log(hobbies);
 
-  const userHobies = await Hobby.findAll({
+  const userHobbies = await Hobby.findAll({
     where: { id: hobbies },
   });
 
-  await createUser.addHobbies(userHobies);
+  await createUser.addHobbies(userHobbies);
 
   res.status(201).json({ message: 'ok' });
 }
