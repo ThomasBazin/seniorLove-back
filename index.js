@@ -5,6 +5,7 @@ import { privateRouter } from './src/routers/privateRouter.js';
 import { bodySanitizerMiddleware } from './src/middlewares/bodySanitizer.js';
 import { checkLoggedIn } from './src/middlewares/checkLoggedIn.js';
 import cors from 'cors';
+import { adminRouter } from './src/routers/adminRouter.js';
 
 const app = express();
 app.use(cors(process.env.ALLOWED_DOMAINS || '*'));
@@ -17,6 +18,7 @@ app.use(bodySanitizerMiddleware);
 app.disable('x-powered-by');
 app.use('/api/public', publicRouter);
 app.use('/api/private', checkLoggedIn, privateRouter);
+app.use('/admin', adminRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {
