@@ -1,4 +1,4 @@
-import { Admin, User, Hobby } from '../models/index.js';
+import { Admin, User, Hobby, Event } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import { Op } from 'sequelize';
@@ -104,6 +104,12 @@ const adminController = {
     };
 
     return res.status(200).render('user', { user: newUser });
+  },
+  renderEvents: async (req, res) => {
+    const events = await Event.findAll({
+      attributes: ['id', 'name', 'date'],
+    });
+    return res.status(200).render('events', { events });
   },
 };
 

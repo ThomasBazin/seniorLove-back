@@ -3,86 +3,75 @@
   <main class="container mt-4">
     <div class="row">
       <!-- Sidebar Navigation -->
-      <nav class="col-md-3 d-flex flex-column p-3 border-right">
-        <div class="mb-4">
-          <h3>Utilisateurs</h3>
-          <a href="/admin/home" class="d-block mb-2 text-dark text-decoration-none">En attente de validation</a>
-          <a href="/admin/users" class="d-block text-dark text-decoration-none">Tous les membres</a>
-        </div>
-        <div>
-          <h3>Événements</h3>
-          <a href="#" class="d-block mb-2 text-dark text-decoration-none">Liste</a>
-          <a href="#" class="d-block text-dark text-decoration-none">Créer</a>
-        </div>
-      </nav>
+      <%- include ('partials/sideNav') %>
 
-      <!-- Main Content -->
-      <div class="col-md-9 p-3">
-        <h2>Inspection</h2>
+        <!-- Main Content -->
+        <div class="col-md-9 p-3">
+          <h2>Inspection</h2>
 
-        <!-- Status Container -->
-        <div class="user_card p-3 border border-primary mb-2">
-          <div class="status_container mb-4 p-3 text-center"
-            style="width:fit-content; background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
-            <p class="fw-bold text-gray-900 fs-6 mb-0">
-              <%= user.status.toUpperCase() %>
-            </p>
+          <!-- Status Container -->
+          <div class="user_card p-3 border border-primary mb-2">
+            <div class="status_container mb-4 p-3 text-center"
+              style="width:fit-content; background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
+              <p class="fw-bold text-gray-900 fs-6 mb-0">
+                <%= user.status.toUpperCase() %>
+              </p>
+            </div>
+
+            <!-- Details and Image Container -->
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <!-- Details Container -->
+              <div class="details_container" style="flex: 1;">
+                <h3>#ID : <%= user.id %>
+                </h3>
+                <h3>Nom : <%= user.name %>
+                </h3>
+                <h3>Age : <%= user.age %>
+                </h3>
+                <h3>Centres d’intérêt</h3>
+                <ul>
+                  <% user.hobbies.forEach((hobby)=> { %>
+                    <li>
+                      <%= hobby.name %>
+                    </li>
+                    <% }) %>
+                </ul>
+              </div>
+
+              <!-- Image Container -->
+              <div class="image-container w-50 d-flex flex-shrink-0"
+                style="max-width: 20rem; max-height: 20rem; overflow: hidden;">
+                <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid"
+                  style="object-fit: cover; width: 100%; height: 100%;" />
+              </div>
+            </div>
+
+            <!-- Description Container -->
+            <div class="description_container">
+              <h3>Description</h3>
+              <p class="description_content fw-medium">
+                <%= user.description %>
+              </p>
+            </div>
           </div>
 
-          <!-- Details and Image Container -->
-          <div class="d-flex justify-content-between align-items-start mb-4">
-            <!-- Details Container -->
-            <div class="details_container" style="flex: 1;">
-              <h3>#ID : <%= user.id %>
-              </h3>
-              <h3>Nom : <%= user.name %>
-              </h3>
-              <h3>Age : <%= user.age %>
-              </h3>
-              <h3>Centres d’intérêt</h3>
-              <ul>
-                <% user.hobbies.forEach((hobby)=> { %>
-                  <li>
-                    <%= hobby.name %>
-                  </li>
-                  <% }) %>
+          <!-- Dropdown -->
+          <div class="buttons_container d-flex justify-content-end gap-2">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Changer le statut
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">ACTIVE</a></li>
+                <li><a class="dropdown-item" href="#">PENDING</a></li>
+                <li><a class="dropdown-item" href="#">BANNED</a></li>
               </ul>
             </div>
-
-            <!-- Image Container -->
-            <div class="image-container w-50 d-flex flex-shrink-0"
-              style="max-width: 20rem; max-height: 20rem; overflow: hidden;">
-              <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid"
-                style="object-fit: cover; width: 100%; height: 100%;" />
-            </div>
-          </div>
-
-          <!-- Description Container -->
-          <div class="description_container">
-            <h3>Description</h3>
-            <p class="description_content fw-medium">
-              <%= user.description %>
-            </p>
+            <a href="#" class="btn btn-primary">Valider</a>
+            <a href="#" class="btn btn-primary">Annuler</a>
           </div>
         </div>
-
-        <!-- Dropdown -->
-        <div class="buttons_container d-flex justify-content-end gap-2">
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Changer le statut
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="#">ACTIVE</a></li>
-              <li><a class="dropdown-item" href="#">PENDING</a></li>
-              <li><a class="dropdown-item" href="#">BANNED</a></li>
-            </ul>
-          </div>
-          <a href="#" class="btn btn-primary">Valider</a>
-          <a href="#" class="btn btn-primary">Annuler</a>
-        </div>
-      </div>
     </div>
   </main>
 

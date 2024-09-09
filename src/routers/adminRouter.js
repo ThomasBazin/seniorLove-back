@@ -9,3 +9,4 @@ adminRouter.post('/home', adminController.home);
 adminRouter.get('/users', adminController.renderAllUsers);
 adminRouter.get('/home', adminController.renderPendingUsers);
 adminRouter.get('/users/:id', adminController.renderUser);
+adminRouter.get('/events', adminController.renderEvents);
