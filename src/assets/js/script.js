@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const userSubmitButton = document.getElementById('user-submit_btn');
   const userDeleteButton = document.getElementById('user-delete_btn');
   const userCancelButton = document.getElementById('user-cancel_btn');
+  const hobbiesCheckboxes = document.querySelectorAll('.hobby-checkbox');
 
   dropdownItems.forEach(function (item) {
     item.addEventListener('click', function () {
@@ -81,6 +82,25 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error('Error:', error);
           alert('Failed to delete user.');
         });
+    });
+  }
+  // Check if hobbiesCheckboxes is defined and not null
+  if (hobbiesCheckboxes) {
+    // Iterate over each checkbox element in the hobbiesCheckboxes NodeList
+    hobbiesCheckboxes.forEach(function (checkbox) {
+      // Add an event listener to each checkbox that listens for changes
+      checkbox.addEventListener('change', function () {
+        // Create an array of checked checkboxes
+        const checkedHobbies = Array.from(hobbiesCheckboxes)
+          // Filter the checkboxes to include only those that are checked
+          .filter(function (checkbox) {
+            return checkbox.checked;
+          })
+          // Map the filtered checkboxes to their values
+          .map(function (checkbox) {
+            return checkbox.value;
+          });
+      });
     });
   }
 });

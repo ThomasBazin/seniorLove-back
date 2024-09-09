@@ -4,6 +4,7 @@ import Joi from 'joi';
 import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
 import { computeAge } from '../utils/computeAge.js';
+import { Event_hobby } from '../models/associative_tables/Event_hobby.js';
 
 const adminController = {
   // Login page
@@ -313,6 +314,7 @@ const adminController = {
     if (req.session.admin) {
       const { name, date, picture, location, time, hobbies, description } =
         req.body;
+
       const adminId = req.session.admin.id;
 
       if (!name || !date || !location || !time || !description || !adminId) {
@@ -320,7 +322,6 @@ const adminController = {
           .status(400)
           .render('error', { error: 'Missing event data', statusCode: 400 });
       }
-
       // Create the event
       const newEvent = await Event.create({
         name,
@@ -332,6 +333,18 @@ const adminController = {
         description,
         adminId,
       });
+
+      // Check if hobbies are provided
+      if (hobbies && hobbies.length > 0) {
+        // Assuming `hobbies` is an array of hobby IDs
+        const hobbiesArray = hobbies.map((hobbyId) => ({
+          event_id: newEvent.id,
+          hobby_id: hobbyId,
+        }));
+
+        // Insert relationships into the `events_hobbies` table
+        await Event_hobby.bulkCreate(hobbiesArray);
+      }
 
       // Redirect to the events page after the event creation
       return res.status(204).redirect('/admin/events');
