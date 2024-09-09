@@ -9,7 +9,7 @@ const adminController = {
   index: async (req, res) => {
     res.render('login'); // Ensure this matches your view filename
   },
-  login: async (req, res) => {
+  home: async (req, res) => {
     const loginSchema = Joi.object({
       email: Joi.string()
         .max(255)
@@ -56,6 +56,19 @@ const adminController = {
       age: computeAge(user.birth_date),
     }));
     // Redirect to dashboard or another page after successful login
+    return res.status(200).render('home', { users: pendingUsersWithAge });
+  },
+  renderPendingUsers: async (req, res) => {
+    const pendingUsers = await User.findAll({
+      where: {
+        status: 'pending',
+      },
+      attributes: ['id', 'name', 'birth_date', 'status'],
+    });
+    const pendingUsersWithAge = pendingUsers.map((user) => ({
+      ...user.toJSON(),
+      age: computeAge(user.birth_date),
+    }));
     return res.status(200).render('home', { users: pendingUsersWithAge });
   },
   renderAllUsers: async (req, res) => {
