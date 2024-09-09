@@ -56,23 +56,27 @@
           </div>
 
           <!-- Dropdown -->
-          <div class="buttons_container d-flex justify-content-end gap-2">
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Changer le statut
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" data-value="ACTIVE">ACTIVE</a></li>
-                <li><a class="dropdown-item" href="#" data-value="PENDING">PENDING</a></li>
-                <li><a class="dropdown-item" href="#" data-value="BANNED">BANNED</a></li>
-              </ul>
-            </div>
-            <a href="#" class="btn btn-primary">Valider</a>
-            <a href="#" class="btn btn-primary">Annuler</a>
+          <div class="buttons_container">
+            <form class="d-flex justify-content-end gap-2" action="/users/<%=user.id%>/status" method="POST"
+              id="statusForm">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Changer le statut
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#" data-value="ACTIVE" data-user-id="<%=user.id %>">ACTIVE</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="PENDING" data-user-id="<%=user.id %>">PENDING</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#" data-value="BANNED" data-user-id="<%=user.id %>">BANNED</a></li>
+                </ul>
+              </div>
+              <input type="hidden" name="status" id="statusInput" value="ACTIVE">
+              <button type="submit" class="btn btn-primary" id="submit-btn">Valider</button>
+              <button class="btn btn-primary">Annuler</button>
+            </form>
           </div>
         </div>
-    </div>
   </main>
 
   <%- include('partials/footer') %>

@@ -9,6 +9,7 @@ const adminController = {
   index: async (req, res) => {
     res.render('login');
   },
+
   login: async (req, res) => {
     const loginSchema = Joi.object({
       email: Joi.string()
@@ -52,12 +53,14 @@ const adminController = {
     // Redirect to dashboard or another page after successful login
     return res.status(200).render('dashboard', { adminName });
   },
+
   renderPendingUsers: async (req, res) => {
     const pendingUsers = await User.findAll({
       where: {
         status: 'pending',
       },
       attributes: ['id', 'name', 'birth_date', 'status'],
+      order: [['id', 'ASC']],
     });
     const pendingUsersWithAge = pendingUsers.map((user) => ({
       ...user.toJSON(),
@@ -65,9 +68,14 @@ const adminController = {
     }));
     return res.status(200).render('users', { users: pendingUsersWithAge });
   },
+
   renderAllUsers: async (req, res) => {
     const users = await User.findAll({
       attributes: ['id', 'name', 'birth_date', 'status'],
+      order: [
+        ['status', 'ASC'],
+        ['id', 'ASC'],
+      ],
     });
     if (users) {
       res.locals.displayAll = true;
@@ -78,6 +86,7 @@ const adminController = {
     }));
     return res.status(200).render('users', { users: usersWithAge });
   },
+
   renderUser: async (req, res) => {
     const { id } = req.params;
     const user = await User.findByPk(id, {
@@ -101,23 +110,47 @@ const adminController = {
 
     return res.status(200).render('user', { user: newUser });
   },
+
+  renderBanishedUsers: async (req, res) => {
+    const banishedUsers = await User.findAll({
+      where: {
+        status: 'banned',
+      },
+      attributes: ['id', 'name', 'birth_date', 'status'],
+      order: [['id', 'ASC']],
+    });
+    const banishedUsersWithAge = banishedUsers.map((user) => ({
+      ...user.toJSON(),
+      age: computeAge(user.birth_date),
+    }));
+    return res.status(200).render('users', { users: banishedUsersWithAge });
+  },
+
   updateUserStatus: async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
+    console.log('Status:', status);
+    console.log('User ID:', id);
 
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(id, {
+      include: [
+        {
+          model: Hobby,
+          as: 'hobbies',
+        },
+      ],
+    });
 
     if (!user) {
       return res
         .status(404)
         .render('error', { error: 'User not found', statusCode: 404 });
     }
-
     const updatedUser = await user.update({
       status,
     });
 
-    return res.status(200).render('user', { user: updatedUser });
+    return res.status(200);
   },
   renderEvents: async (req, res) => {
     const events = await Event.findAll({
