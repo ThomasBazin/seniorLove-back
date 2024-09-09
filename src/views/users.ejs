@@ -7,11 +7,13 @@
 
           <!-- Main Content -->
           <div class="main_container col-md-9 p-3">
-            <h2>En attente de validation</h2>
+
             <% if(locals.displayAll) {%>
+              <h2>Tous les membres</h2>
               <p>Nombre d'utilisateurs : <%= users.length %>
               </p>
               <% } else {%>
+                <h2>En attente de validation</h2>
                 <p>Nombre à inspecter : <%= users.length %>
                 </p>
                 <% } %>

@@ -7,9 +7,9 @@ import { computeAge } from '../utils/computeAge.js';
 
 const adminController = {
   index: async (req, res) => {
-    res.render('login'); // Ensure this matches your view filename
+    res.render('login');
   },
-  home: async (req, res) => {
+  login: async (req, res) => {
     const loginSchema = Joi.object({
       email: Joi.string()
         .max(255)
@@ -24,7 +24,9 @@ const adminController = {
     const { error } = loginSchema.validate(req.body);
 
     if (error) {
-      return res.status(400).render('login', { error: error.message });
+      return res
+        .status(400)
+        .render('error', { error: error.message, statusCode: 400 });
     }
 
     // Find the admin user in the database
@@ -33,30 +35,22 @@ const adminController = {
     });
 
     if (!foundAdmin) {
-      return res.status(404).render('login', { error: 'Admin not found' });
+      return res
+        .status(404)
+        .render('error', { error: 'Admin not found', statusCode: 404 });
     }
 
     // Compare the passwords
     const isGood = await Scrypt.compare(password, foundAdmin.password);
 
     if (!isGood) {
-      return res.status(401).render('login', { error: 'Not authorized' });
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
     }
-
-    const pendingUsers = await User.findAll({
-      where: {
-        status: 'pending',
-      },
-      attributes: ['id', 'name', 'birth_date', 'status'],
-    });
-    const pendingUsersWithAge = pendingUsers.map((user) => ({
-      // Convert Sequelize model instance to a plain object
-      ...user.toJSON(),
-      // Add computed age
-      age: computeAge(user.birth_date),
-    }));
+    const adminName = foundAdmin.name;
     // Redirect to dashboard or another page after successful login
-    return res.status(200).render('home', { users: pendingUsersWithAge });
+    return res.status(200).render('dashboard', { adminName });
   },
   renderPendingUsers: async (req, res) => {
     const pendingUsers = await User.findAll({
@@ -69,7 +63,7 @@ const adminController = {
       ...user.toJSON(),
       age: computeAge(user.birth_date),
     }));
-    return res.status(200).render('home', { users: pendingUsersWithAge });
+    return res.status(200).render('users', { users: pendingUsersWithAge });
   },
   renderAllUsers: async (req, res) => {
     const users = await User.findAll({
@@ -82,7 +76,7 @@ const adminController = {
       ...user.toJSON(),
       age: computeAge(user.birth_date),
     }));
-    return res.status(200).render('home', { users: usersWithAge });
+    return res.status(200).render('users', { users: usersWithAge });
   },
   renderUser: async (req, res) => {
     const { id } = req.params;
@@ -95,7 +89,9 @@ const adminController = {
       ],
     });
     if (!user) {
-      return res.status(404).render('home', { error: 'User not found' });
+      return res
+        .status(404)
+        .render('error', { error: 'User not found', statusCode: 404 });
     }
     const userAge = computeAge(user.birth_date);
     const newUser = {
@@ -104,6 +100,24 @@ const adminController = {
     };
 
     return res.status(200).render('user', { user: newUser });
+  },
+  updateUserStatus: async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res
+        .status(404)
+        .render('error', { error: 'User not found', statusCode: 404 });
+    }
+
+    const updatedUser = await user.update({
+      status,
+    });
+
+    return res.status(200).render('user', { user: updatedUser });
   },
   renderEvents: async (req, res) => {
     const events = await Event.findAll({
