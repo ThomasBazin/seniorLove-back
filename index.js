@@ -1,11 +1,17 @@
 import 'dotenv/config';
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { publicRouter } from './src/routers/publicRouter.js';
 import { privateRouter } from './src/routers/privateRouter.js';
 import { bodySanitizerMiddleware } from './src/middlewares/bodySanitizer.js';
 import { checkLoggedIn } from './src/middlewares/checkLoggedIn.js';
 import cors from 'cors';
 import { adminRouter } from './src/routers/adminRouter.js';
+
+// Convert import.meta.url to __filename and __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors(process.env.ALLOWED_DOMAINS || '*'));
@@ -24,6 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 // Setup view engine
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
+// Statically served files
+app.use(express.static(path.join(__dirname, 'src/assets')));
+
 app.use('/admin', adminRouter);
 
 const port = process.env.PORT;

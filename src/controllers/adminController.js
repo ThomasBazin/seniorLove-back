@@ -4,7 +4,7 @@ import Joi from 'joi';
 
 const adminController = {
   index: async (req, res) => {
-    res.render('home'); // Ensure this matches your view filename
+    res.render('login'); // Ensure this matches your view filename
   },
   login: async (req, res) => {
     const loginSchema = Joi.object({
@@ -41,7 +41,7 @@ const adminController = {
     }
 
     // Redirect to dashboard or another page after successful login
-    return res.status(200).send('Login successful');
+    return res.status(200).render('home');
   },
 };
 
