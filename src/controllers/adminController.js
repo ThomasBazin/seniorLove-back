@@ -267,7 +267,7 @@ const adminController = {
       // Delete the user
       await user.destroy();
 
-      res.status(200).json({ message: 'User deleted successfully' });
+      res.status(204).json({ message: 'User deleted successfully' });
     } else {
       return res
         .status(401)
@@ -277,13 +277,19 @@ const adminController = {
 
   // Render all events
   renderEvents: async (req, res) => {
-    // Find all events
-    const events = await Event.findAll({
-      attributes: ['id', 'name', 'date'],
-    });
+    if (req.session.admin) {
+      // Find all events
+      const events = await Event.findAll({
+        attributes: ['id', 'name', 'date'],
+      });
 
-    // Render the events page with the events data
-    return res.status(200).render('events', { events });
+      // Render the events page with the events data
+      return res.status(200).render('events', { events });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
   },
 };
 
