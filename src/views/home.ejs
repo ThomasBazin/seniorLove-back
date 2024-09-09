@@ -1,5 +1,61 @@
 <%- include ('partials/navBar') %>
 
-  <main class="container mt-4">
-    <!-- Main content goes here -->
+  <main class="container mt-4 d-flex">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-3 d-flex flex-column p-3 border-right">
+          <div class="mb-4">
+            <h3>Utilisateurs</h3>
+            <a href="#" class="d-block mb-2 text-dark text-decoration-none">En attente de validation</a>
+            <a href="#" class="d-block text-dark text-decoration-none">Tous les membres</a>
+          </div>
+          <div>
+            <h3>Événements</h3>
+            <a href="#" class="d-block mb-2 text-dark text-decoration-none">Liste</a>
+            <a href="#" class="d-block text-dark text-decoration-none">Créer</a>
+          </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 p-3">
+          <h2>En attente de validation</h2>
+          <p>Nombre à inspecter : 3</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#id</th>
+                <th>Nom</th>
+                <th>Age</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>28</td>
+                <td>PENDING</td>
+                <td><a href="#" class="btn btn-link">Inspecter</a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>34</td>
+                <td>PENDING</td>
+                <td><a href="#" class="btn btn-link">Inspecter</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Emily Johnson</td>
+                <td>22</td>
+                <td>PENDING</td>
+                <td><a href="#" class="btn btn-link">Inspecter</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+
   </main>
