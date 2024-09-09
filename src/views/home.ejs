@@ -7,7 +7,7 @@
           <div class="mb-4">
             <h3>Utilisateurs</h3>
             <a href="#" class="d-block mb-2 text-dark text-decoration-none">En attente de validation</a>
-            <a href="#" class="d-block text-dark text-decoration-none">Tous les membres</a>
+            <a href="/admin/users" class="d-block text-dark text-decoration-none">Tous les membres</a>
           </div>
           <div>
             <h3>Événements</h3>
@@ -19,41 +19,48 @@
         <!-- Main Content -->
         <main class="col-md-9 p-3">
           <h2>En attente de validation</h2>
-          <p>Nombre à inspecter : <%=pendingUsers.length %>
-          </p>
-          <table class="table table-striped">
-            <thead>
+          <% if(locals.displayAll) {%>
+            <p>Nombre d'utilisateurs : <%= users.length %>
+            </p>
+            <% } else {%>
+              <p>Nombre à inspecter : <%= users.length %>
+              </p>
+              <% } %>
 
-              <tr>
-                <th>#id</th>
-                <th>Nom</th>
-                <th>Age</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% pendingUsers.forEach((user)=> { %>
-                <tr>
-                  <td>
-                    <%= user.id %>
-                  </td>
-                  <td>
-                    <%= user.name %>
-                  </td>
-                  <td>
-                    <%= user.age %>
-                  </td>
-                  <td>
-                    <%= user.status.toUpperCase() %>
-                  </td>
-                  <td><a href="#" class="btn btn-link">Inspecter</a></td>
-                </tr>
-                <% }) %>
-            </tbody>
-          </table>
+                <table class="table table-striped text-center">
+                  <thead>
+                    <tr>
+                      <th>#id</th>
+                      <th>Nom</th>
+                      <th>Age</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% users.forEach((user)=> { %>
+                      <tr>
+                        <td>
+                          <%= user.id %>
+                        </td>
+                        <td>
+                          <%= user.name %>
+                        </td>
+                        <td>
+                          <%= user.age %>
+                        </td>
+                        <td class="fw-bold text-gray-900"
+                          style="background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
+                          <%= user.status.toUpperCase() %>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-link text-decoration-none">Inspecter</a>
+                        </td>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+                </table>
         </main>
       </div>
     </div>
-
   </main>

@@ -56,9 +56,20 @@ const adminController = {
       age: computeAge(user.birth_date),
     }));
     // Redirect to dashboard or another page after successful login
-    return res
-      .status(200)
-      .render('home', { pendingUsers: pendingUsersWithAge });
+    return res.status(200).render('home', { users: pendingUsersWithAge });
+  },
+  renderAllUsers: async (req, res) => {
+    const users = await User.findAll({
+      attributes: ['id', 'name', 'birth_date', 'status'],
+    });
+    if (users) {
+      res.locals.displayAll = true;
+    }
+    const usersWithAge = users.map((user) => ({
+      ...user.toJSON(),
+      age: computeAge(user.birth_date),
+    }));
+    return res.status(200).render('home', { users: usersWithAge });
   },
 };
 
