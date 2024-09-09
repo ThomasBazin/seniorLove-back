@@ -13,5 +13,6 @@ adminRouter.get('/users/pending', cw(adminController.renderPendingUsers));
 adminRouter.get('/users/banished', cw(adminController.renderBanishedUsers));
 adminRouter.get('/users/:id', cw(adminController.renderUser));
 adminRouter.post('/users/:id/status', cw(adminController.updateUserStatus));
+adminRouter.delete('/users/:id/delete', cw(adminController.deleteUser));
 
 adminRouter.get('/events', cw(adminController.renderEvents));

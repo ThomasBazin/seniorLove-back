@@ -56,7 +56,7 @@
           </div>
 
           <!-- Dropdown -->
-          <div class="buttons_container">
+          <div class="buttons_container d-flex gap-2 justify-content-end">
             <form class="d-flex justify-content-end gap-2" action="/users/<%=user.id%>/status" method="POST"
               id="statusForm">
               <div class="dropdown">
@@ -65,16 +65,18 @@
                   Changer le statut
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item" href="#" data-value="ACTIVE" data-user-id="<%=user.id %>">ACTIVE</a></li>
-                  <li><a class="dropdown-item" href="#" data-value="PENDING" data-user-id="<%=user.id %>">PENDING</a>
+                  <li><a class="dropdown-item" href="#" data-value="ACTIVE">ACTIVE</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="PENDING">PENDING</a>
                   </li>
-                  <li><a class="dropdown-item" href="#" data-value="BANNED" data-user-id="<%=user.id %>">BANNED</a></li>
+                  <li><a class="dropdown-item" href="#" data-value="BANNED">BANNED</a></li>
                 </ul>
               </div>
               <input type="hidden" name="status" id="statusInput" value="ACTIVE">
-              <button type="submit" class="btn btn-primary" id="submit-btn">Valider</button>
-              <button class="btn btn-primary">Annuler</button>
+              <button type="submit" class="btn btn-success" id="user-submit_btn"
+                data-user-id="<%=user.id %>">Valider</button>
             </form>
+            <button class="btn btn-secondary" id="user-cancel_btn">Annuler</button>
+            <button class="btn btn-danger" id="user-delete_btn" data-user-id="<%=user.id %>">Supprimer</button>
           </div>
         </div>
   </main>

@@ -203,32 +203,76 @@ const adminController = {
 
   // Update the status of a user
   updateUserStatus: async (req, res) => {
-    const { id } = req.params;
-    const { status } = req.body;
+    if (req.session.admin) {
+      const { id } = req.params;
 
-    // Find the user by id
-    const user = await User.findByPk(id, {
-      include: [
-        {
-          model: Hobby,
-          as: 'hobbies',
-        },
-      ],
-    });
+      if (!id) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing user id', statusCode: 400 });
+      }
 
-    if (!user) {
+      const { status } = req.body;
+
+      // Find the user by id
+      const user = await User.findByPk(id, {
+        include: [
+          {
+            model: Hobby,
+            as: 'hobbies',
+          },
+        ],
+      });
+
+      if (!user) {
+        return res
+          .status(404)
+          .render('error', { error: 'User not found', statusCode: 404 });
+      }
+
+      // Update the status of the user
+      const updatedUser = await user.update({
+        status,
+      });
+
+      //
+      return res.status(204);
+    } else {
       return res
-        .status(404)
-        .render('error', { error: 'User not found', statusCode: 404 });
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
     }
+  },
 
-    // Update the status of the user
-    const updatedUser = await user.update({
-      status,
-    });
+  // Delete a user
+  deleteUser: async (req, res) => {
+    if (req.session.admin) {
+      const { id } = req.params;
 
-    //
-    return res.status(200);
+      if (!id) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing user id', statusCode: 400 });
+      }
+
+      // Find the user by id
+      const user = await User.findByPk(id);
+
+      if (!user) {
+        return res
+          .status(404)
+          .render('error', { error: 'User not found', statusCode: 404 });
+      }
+
+      // Delete the user
+      await user.destroy();
+
+      res.status(200).json({ message: 'User deleted successfully' });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
   },
 
   // Render all events
