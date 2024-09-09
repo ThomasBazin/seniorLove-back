@@ -1,6 +1,9 @@
-import { Admin } from '../models/index.js';
+import { Admin, User } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
+import { Op } from 'sequelize';
+import { sequelize } from '../models/index.js';
+import { computeAge } from '../utils/computeAge.js';
 
 const adminController = {
   index: async (req, res) => {
@@ -40,8 +43,22 @@ const adminController = {
       return res.status(401).render('login', { error: 'Not authorized' });
     }
 
+    const pendingUsers = await User.findAll({
+      where: {
+        status: 'pending',
+      },
+      attributes: ['id', 'name', 'birth_date', 'status'],
+    });
+    const pendingUsersWithAge = pendingUsers.map((user) => ({
+      // Convert Sequelize model instance to a plain object
+      ...user.toJSON(),
+      // Add computed age
+      age: computeAge(user.birth_date),
+    }));
     // Redirect to dashboard or another page after successful login
-    return res.status(200).render('home');
+    return res
+      .status(200)
+      .render('home', { pendingUsers: pendingUsersWithAge });
   },
 };
 

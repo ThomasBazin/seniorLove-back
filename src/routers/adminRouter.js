@@ -5,3 +5,4 @@ export const adminRouter = Router();
 
 adminRouter.get('/login', adminController.index);
 adminRouter.post('/login', adminController.login); 
+
