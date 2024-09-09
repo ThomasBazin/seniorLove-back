@@ -21,10 +21,10 @@
         <h2>Inspection</h2>
 
         <!-- Status Container -->
-        <div class="user_card p-3 border border-primary">
+        <div class="user_card p-3 border border-primary mb-2">
           <div class="status_container mb-4 p-3 text-center"
-            style="width: 15%; background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
-            <p class="fw-bold text-grey-900 fs-6 mb-0">
+            style="width:fit-content; background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
+            <p class="fw-bold text-gray-900 fs-6 mb-0">
               <%= user.status.toUpperCase() %>
             </p>
           </div>
@@ -52,7 +52,8 @@
             <!-- Image Container -->
             <div class="image-container w-50 d-flex flex-shrink-0"
               style="max-width: 20rem; max-height: 20rem; overflow: hidden;">
-              <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid w-100 h-100 object-fit-contain" />
+              <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid"
+                style="object-fit: cover; width: 100%; height: 100%;" />
             </div>
           </div>
 
@@ -64,6 +65,25 @@
             </p>
           </div>
         </div>
+
+        <!-- Dropdown -->
+        <div class="buttons_container d-flex justify-content-end gap-2">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Changer le statut
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#">ACTIVE</a></li>
+              <li><a class="dropdown-item" href="#">PENDING</a></li>
+              <li><a class="dropdown-item" href="#">BANNED</a></li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary">Valider</a>
+          <a href="#" class="btn btn-primary">Annuler</a>
+        </div>
       </div>
     </div>
   </main>
+
+  <%- include('partials/footer') %>
