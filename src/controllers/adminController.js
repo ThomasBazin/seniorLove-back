@@ -84,6 +84,15 @@ const adminController = {
     }));
     return res.status(200).render('home', { users: usersWithAge });
   },
+  renderUser: async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    console.log(user);
+    if (!user) {
+      return res.status(404).render('home', { error: 'User not found' });
+    }
+    return res.status(200).render('user', { user });
+  },
 };
 
 export default adminController;

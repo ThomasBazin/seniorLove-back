@@ -1,0 +1,55 @@
+<%- include ('partials/navBar') %>
+
+  <main class="container mt-4 d-flex">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-3 d-flex flex-column p-3 border-right">
+          <div class="mb-4">
+            <h3>Utilisateurs</h3>
+            <a href="/admin/home" class="d-block mb-2 text-dark text-decoration-none">En attente de validation</a>
+            <a href="/admin/users" class="d-block text-dark text-decoration-none">Tous les membres</a>
+          </div>
+          <div>
+            <h3>Événements</h3>
+            <a href="#" class="d-block mb-2 text-dark text-decoration-none">Liste</a>
+            <a href="#" class="d-block text-dark text-decoration-none">Créer</a>
+          </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main_container col-md-9 p-3">
+          <h2>Inspection</h2>
+          <div class="status_container w-30"
+            style="background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
+            <p class="fw-bold text-gray">
+              <%= user.status.toUpperCase() %>
+            </p>
+          </div>>
+
+          <div class="details-image_container">
+            <div class="details_container">
+              <h3>#ID : <% user.id %>
+              </h3>
+              <h3>Nom : <% user.name %>
+              </h3>
+              <h3>Age : <% user.age %>
+              </h3>
+
+            </div>
+            <div class="image_container">
+              <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid" />
+            </div>
+          </div>
+
+          <div class="description_container">
+            <h3>Description</h3>
+            <p class="description_content">
+              <%= user.description %>
+            </p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </main>
