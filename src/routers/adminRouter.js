@@ -16,3 +16,5 @@ adminRouter.post('/users/:id/status', cw(adminController.updateUserStatus));
 adminRouter.delete('/users/:id/delete', cw(adminController.deleteUser));
 
 adminRouter.get('/events', cw(adminController.renderEvents));
+adminRouter.get('/events/create', cw(adminController.renderCreateEvent));
+adminRouter.post('/events/create', cw(adminController.createEvent));

@@ -1,0 +1,61 @@
+<%- include('partials/navBar') %>
+
+  <main class="container mt-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <%- include ('partials/sideNav') %>
+
+        <!-- Main Content -->
+        <div class="col-md-9 p-3">
+
+          <form method="POST" action="/admin/events/create" class="border border-light rounded p-4 shadow-sm mx-auto ">
+            <h3 class="mb-4">Créer un événement</h3>
+            <div class="form-group mb-4 d-flex gap-2 flex-wrap">
+              <div class="form-group mb-2 w-75% ">
+                <label for="title" class="fw-medium">Titre</label>
+                <input type="text" placeholder="Mon titre" name="name" id="title" class="form-control" required />
+              </div>
+              <div class="form-group mb-2 w-75%">
+                <label for="image" class="fw-medium">Image</label>
+                <input type="text" placeholder="Url" name="picture" id="image" class="form-control" />
+              </div>
+              <div class="form-group mb-2 w-75%">
+                <label for="location" class="fw-medium">Lieu</label>
+                <input type="text" placeholder="Lieu" name="location" id="location" class="form-control" required />
+              </div>
+              <div class="form-group mb-2 w-75%">
+                <label for="date" class="fw-medium">Date</label>
+                <input type="date" name="date" id="date" class="form-control" required />
+              </div>
+              <div class="form-group mb-2 w-75%">
+                <label for="time" class="fw-medium">Heure</label>
+                <input type="time" name="time" id="time" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              <label for="hobbies" class="fw-medium">Tags lies</label>
+              <ul class="d-flex gap-2 flex-wrap">
+                <% hobbies.forEach(hobby=> { %>
+                  <li class="list-unstyled">
+                    <input type="checkbox" name="hobbies" class="hobby-checkbox"value="<%= hobby.id %>" id="hobby-<%= hobby.id %>">
+                    <label for="<%= hobby.id %>">
+                      <%= hobby.name %>
+                    </label>
+                  </li>
+                  <% }) %>
+              </ul>
+            </div>
+            <div class="form-group mb-4">
+              <label for="description" class="fw-medium">Description de l’événement</label>
+              <textarea name="description" id="description" class="form-control"
+                placeholder="Tapez votre description ici" rows="7" required></textarea>
+            </div>
+            <div class="buttons_container d-flex gap-2 justify-content-end">
+              <button type="submit" class="btn btn-primary w-50% d-block">Créer</button>
+              <button class="btn btn-secondary" id="createEvent-cancel_btn">Annuler</button>
+            </div>
+          </form>
+        </div>
+  </main>
+
+  <%- include('partials/footer') %>

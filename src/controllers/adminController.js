@@ -281,10 +281,60 @@ const adminController = {
       // Find all events
       const events = await Event.findAll({
         attributes: ['id', 'name', 'date'],
+        order: [['date', 'DESC']],
       });
 
       // Render the events page with the events data
       return res.status(200).render('events', { events });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
+  },
+
+  // Render the create event page
+  renderCreateEvent: async (req, res) => {
+    if (req.session.admin) {
+      const hobbies = await Hobby.findAll({
+        attributes: ['id', 'name'],
+        order: [['name', 'ASC']],
+      });
+      return res.status(200).render('createEvent', { hobbies });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
+  },
+
+  // Create an event
+  createEvent: async (req, res) => {
+    if (req.session.admin) {
+      const { name, date, picture, location, time, hobbies, description } =
+        req.body;
+      const adminId = req.session.admin.id;
+
+      if (!name || !date || !location || !time || !description || !adminId) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing event data', statusCode: 400 });
+      }
+
+      // Create the event
+      const newEvent = await Event.create({
+        name,
+        location,
+        description,
+        picture,
+        date,
+        time,
+        description,
+        adminId,
+      });
+
+      // Redirect to the events page after the event creation
+      return res.status(204).redirect('/admin/events');
     } else {
       return res
         .status(401)
