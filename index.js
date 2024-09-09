@@ -18,6 +18,12 @@ app.use(bodySanitizerMiddleware);
 app.disable('x-powered-by');
 app.use('/api/public', publicRouter);
 app.use('/api/private', checkLoggedIn, privateRouter);
+
+// Body parser
+app.use(express.urlencoded({ extended: true }));
+// Setup view engine
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
 app.use('/admin', adminRouter);
 
 const port = process.env.PORT;

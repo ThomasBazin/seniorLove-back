@@ -1,7 +1,7 @@
 import { Router } from 'express';
+import adminController from '../controllers/adminController.js';
 
 export const adminRouter = Router();
 
-adminRouter.get('/home', (req, res) => {
-  res.send('Nous sommes des admins !!! :P');
-});
+adminRouter.get('/home', adminController.index); // Ensure adminController.index is defined
+adminRouter.post('/login', adminController.login); // Ensure adminController.login is defined
