@@ -1,54 +1,68 @@
-<%- include ('partials/navBar') %>
+<%- include('partials/navBar') %>
 
-  <main class="container mt-4 d-flex">
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-3 d-flex flex-column p-3 border-right">
-          <div class="mb-4">
-            <h3>Utilisateurs</h3>
-            <a href="/admin/home" class="d-block mb-2 text-dark text-decoration-none">En attente de validation</a>
-            <a href="/admin/users" class="d-block text-dark text-decoration-none">Tous les membres</a>
-          </div>
-          <div>
-            <h3>Événements</h3>
-            <a href="#" class="d-block mb-2 text-dark text-decoration-none">Liste</a>
-            <a href="#" class="d-block text-dark text-decoration-none">Créer</a>
-          </div>
-        </nav>
+  <main class="container mt-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <nav class="col-md-3 d-flex flex-column p-3 border-right">
+        <div class="mb-4">
+          <h3>Utilisateurs</h3>
+          <a href="/admin/home" class="d-block mb-2 text-dark text-decoration-none">En attente de validation</a>
+          <a href="/admin/users" class="d-block text-dark text-decoration-none">Tous les membres</a>
+        </div>
+        <div>
+          <h3>Événements</h3>
+          <a href="#" class="d-block mb-2 text-dark text-decoration-none">Liste</a>
+          <a href="#" class="d-block text-dark text-decoration-none">Créer</a>
+        </div>
+      </nav>
 
-        <!-- Main Content -->
-        <div class="main_container col-md-9 p-3">
-          <h2>Inspection</h2>
-          <div class="status_container w-30"
-            style="background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
-            <p class="fw-bold text-gray">
+      <!-- Main Content -->
+      <div class="col-md-9 p-3">
+        <h2>Inspection</h2>
+
+        <!-- Status Container -->
+        <div class="user_card p-3 border border-primary">
+          <div class="status_container mb-4 p-3 text-center"
+            style="width: 15%; background-color: <%= user.status === 'active' ? 'rgba(0, 128, 0, 0.5)' : user.status === 'pending' ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)' %>">
+            <p class="fw-bold text-grey-900 fs-6 mb-0">
               <%= user.status.toUpperCase() %>
             </p>
-          </div>>
+          </div>
 
-          <div class="details-image_container">
-            <div class="details_container">
-              <h3>#ID : <% user.id %>
+          <!-- Details and Image Container -->
+          <div class="d-flex justify-content-between align-items-start mb-4">
+            <!-- Details Container -->
+            <div class="details_container" style="flex: 1;">
+              <h3>#ID : <%= user.id %>
               </h3>
-              <h3>Nom : <% user.name %>
+              <h3>Nom : <%= user.name %>
               </h3>
-              <h3>Age : <% user.age %>
+              <h3>Age : <%= user.age %>
               </h3>
-
+              <h3>Centres d’intérêt</h3>
+              <ul>
+                <% user.hobbies.forEach((hobby)=> { %>
+                  <li>
+                    <%= hobby.name %>
+                  </li>
+                  <% }) %>
+              </ul>
             </div>
-            <div class="image_container">
-              <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid" />
+
+            <!-- Image Container -->
+            <div class="image-container w-50 d-flex flex-shrink-0"
+              style="max-width: 20rem; max-height: 20rem; overflow: hidden;">
+              <img src="<%= user.picture %>" alt="<%= user.name %>" class="img-fluid w-100 h-100 object-fit-contain" />
             </div>
           </div>
 
+          <!-- Description Container -->
           <div class="description_container">
             <h3>Description</h3>
-            <p class="description_content">
+            <p class="description_content fw-medium">
               <%= user.description %>
             </p>
           </div>
-
-
         </div>
       </div>
     </div>

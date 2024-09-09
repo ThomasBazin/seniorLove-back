@@ -1,4 +1,4 @@
-import { Admin, User } from '../models/index.js';
+import { Admin, User, Hobby } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import { Op } from 'sequelize';
@@ -86,12 +86,24 @@ const adminController = {
   },
   renderUser: async (req, res) => {
     const { id } = req.params;
-    const user = await User.findByPk(id);
-    console.log(user);
+    const user = await User.findByPk(id, {
+      include: [
+        {
+          model: Hobby,
+          as: 'hobbies',
+        },
+      ],
+    });
     if (!user) {
       return res.status(404).render('home', { error: 'User not found' });
     }
-    return res.status(200).render('user', { user });
+    const userAge = computeAge(user.birth_date);
+    const newUser = {
+      ...user.toJSON(),
+      age: userAge,
+    };
+
+    return res.status(200).render('user', { user: newUser });
   },
 };
 
