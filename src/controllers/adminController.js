@@ -8,7 +8,7 @@ import { computeAge } from '../utils/computeAge.js';
 const adminController = {
   // Login page
   index: async (req, res) => {
-    res.render('login');
+    res.status(200).render('login');
   },
 
   // Login process
@@ -24,6 +24,13 @@ const adminController = {
 
     // Data extraction from the request body
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).render('error', {
+        error: 'Missing email or password',
+        statusCode: 400,
+      });
+    }
 
     // Validate the request body
     const { error } = loginSchema.validate(req.body);
@@ -52,107 +59,146 @@ const adminController = {
       return res
         .status(401)
         .render('error', { error: 'Not authorized', statusCode: 401 });
+    } else {
+      req.session.admin = foundAdmin;
     }
+
     const adminName = foundAdmin.name;
 
     // Redirect to dashboard or another page after successful login
     return res.status(200).render('dashboard', { adminName });
   },
 
-  // Render all pending users
-  renderPendingUsers: async (req, res) => {
-    // Find all users with status 'pending'
-    const pendingUsers = await User.findAll({
-      where: {
-        status: 'pending',
-      },
-      attributes: ['id', 'name', 'birth_date', 'status'],
-      order: [['id', 'ASC']],
-    });
-
-    // Compute the age of each user
-    const pendingUsersWithAge = pendingUsers.map((user) => ({
-      ...user.toJSON(),
-      age: computeAge(user.birth_date),
-    }));
-    // Render the users page with the users data
-    return res.status(200).render('users', { users: pendingUsersWithAge });
+  // Logout process
+  logout: async (req, res) => {
+    req.session.destroy();
+    res.redirect('/admin/login');
   },
 
   // Render all users
   renderAllUsers: async (req, res) => {
-    // Find all users
-    const users = await User.findAll({
-      attributes: ['id', 'name', 'birth_date', 'status'],
-      order: [
-        ['status', 'ASC'],
-        ['id', 'ASC'],
-      ],
-    });
+    if (req.session.admin) {
+      // Find all users
+      const users = await User.findAll({
+        attributes: ['id', 'name', 'birth_date', 'status'],
+        order: [
+          ['status', 'ASC'],
+          ['id', 'ASC'],
+        ],
+      });
 
-    if (users) {
-      res.locals.displayAll = true;
+      if (users) {
+        res.locals.displayAll = true;
+      }
+
+      // Compute the age of each user
+      const usersWithAge = users.map((user) => ({
+        ...user.toJSON(),
+        age: computeAge(user.birth_date),
+      }));
+      // Render the users page with the users data
+      return res.status(200).render('users', { users: usersWithAge });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
     }
+  },
 
-    // Compute the age of each user
-    const usersWithAge = users.map((user) => ({
-      ...user.toJSON(),
-      age: computeAge(user.birth_date),
-    }));
-    // Render the users page with the users data
-    return res.status(200).render('users', { users: usersWithAge });
+  // Render all pending users
+  renderPendingUsers: async (req, res) => {
+    if (req.session.admin) {
+      // Find all users with status 'pending'
+      const pendingUsers = await User.findAll({
+        where: {
+          status: 'pending',
+        },
+        attributes: ['id', 'name', 'birth_date', 'status'],
+        order: [['id', 'ASC']],
+      });
+
+      // Compute the age of each user
+      const pendingUsersWithAge = pendingUsers.map((user) => ({
+        ...user.toJSON(),
+        age: computeAge(user.birth_date),
+      }));
+      // Render the users page with the users data
+      return res.status(200).render('users', { users: pendingUsersWithAge });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
   },
 
   // Render a specific user
   renderUser: async (req, res) => {
-    const { id } = req.params;
+    if (req.session.admin) {
+      const { id } = req.params;
 
-    // Find the user by id
-    const user = await User.findByPk(id, {
-      include: [
-        {
-          model: Hobby,
-          as: 'hobbies',
-        },
-      ],
-    });
+      if (!id) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing user id', statusCode: 400 });
+      }
 
-    if (!user) {
+      // Find the user by id
+      const user = await User.findByPk(id, {
+        include: [
+          {
+            model: Hobby,
+            as: 'hobbies',
+          },
+        ],
+      });
+
+      if (!user) {
+        return res
+          .status(404)
+          .render('error', { error: 'User not found', statusCode: 404 });
+      }
+
+      //
+      const userAge = computeAge(user.birth_date);
+      const newUser = {
+        ...user.toJSON(),
+        age: userAge,
+      };
+
+      // Render the user page with the user data
+      return res.status(200).render('user', { user: newUser });
+    } else {
       return res
-        .status(404)
-        .render('error', { error: 'User not found', statusCode: 404 });
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
     }
-
-    //
-    const userAge = computeAge(user.birth_date);
-    const newUser = {
-      ...user.toJSON(),
-      age: userAge,
-    };
-
-    // Render the user page with the user data
-    return res.status(200).render('user', { user: newUser });
   },
 
   // Render all banished users
   renderBanishedUsers: async (req, res) => {
-    // Find all users with status 'banned'
-    const banishedUsers = await User.findAll({
-      where: {
-        status: 'banned',
-      },
-      attributes: ['id', 'name', 'birth_date', 'status'],
-      order: [['id', 'ASC']],
-    });
+    if (req.session.admin) {
+      // Find all users with status 'banned'
+      const banishedUsers = await User.findAll({
+        where: {
+          status: 'banned',
+        },
+        attributes: ['id', 'name', 'birth_date', 'status'],
+        order: [['id', 'ASC']],
+      });
 
-    // Compute the age of each user
-    const banishedUsersWithAge = banishedUsers.map((user) => ({
-      ...user.toJSON(),
-      age: computeAge(user.birth_date),
-    }));
+      // Compute the age of each user
+      const banishedUsersWithAge = banishedUsers.map((user) => ({
+        ...user.toJSON(),
+        age: computeAge(user.birth_date),
+      }));
 
-    // Render the users page with the users data
-    return res.status(200).render('users', { users: banishedUsersWithAge });
+      // Render the users page with the users data
+      return res.status(200).render('users', { users: banishedUsersWithAge });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
   },
 
   // Update the status of a user

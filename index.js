@@ -8,6 +8,7 @@ import { bodySanitizerMiddleware } from './src/middlewares/bodySanitizer.js';
 import { checkLoggedIn } from './src/middlewares/checkLoggedIn.js';
 import cors from 'cors';
 import { adminRouter } from './src/routers/adminRouter.js';
+import session from 'express-session';
 
 // Convert import.meta.url to __filename and __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -19,7 +20,26 @@ app.use(cors(process.env.ALLOWED_DOMAINS || '*'));
 app.use(express.urlencoded({ extended: true })); // Parser les bodies de type "application/www-form-urlencoded"
 app.use(express.json()); // Parser les bodies de type "application/json"
 
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'Guess it!',
+    cookie: {
+      secure: false,
+      maxAge: 1000 * 60 * 60, // ça fait une heure
+    },
+  })
+);
+
 app.use(bodySanitizerMiddleware);
+
+app.use((req, res, next) => {
+  if (!req.session.admin) {
+    req.session.admin = {};
+  }
+  next();
+});
 
 app.disable('x-powered-by');
 app.use('/api/public', publicRouter);
