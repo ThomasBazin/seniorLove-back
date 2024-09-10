@@ -328,7 +328,7 @@ export async function getAllSameInterestUsers(req, res) {
 
   // find all users that share at least one of my hobbies, in random order, except me
   const mySuggestions = await User.findAll({
-    attributes: ['id', 'name', 'birth_date', 'picture'],
+    attributes: ['id', 'name', 'gender', 'birth_date', 'picture'],
     order: sequelize.random(),
     include: {
       association: 'hobbies',
@@ -349,6 +349,7 @@ export async function getAllSameInterestUsers(req, res) {
     const userObject = {
       id: user.id,
       name: user.name,
+      gender: user.gender,
       birth_date: user.birth_date,
       age: computeAge(user.birth_date),
       picture: user.picture,
