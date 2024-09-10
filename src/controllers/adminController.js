@@ -423,7 +423,6 @@ const adminController = {
     if (req.session.admin) {
       const { name, date, picture, location, time, hobbies, description } =
         req.body;
-      console.log('verif admin');
       if (!name || !date || !location || !time || !description) {
         return res
           .status(400)
@@ -449,6 +448,12 @@ const adminController = {
         time,
       });
 
+      await Event_hobby.destroy({
+        where: {
+          event_id: eventToUpdate.id,
+        },
+      });
+
       // Check if hobbies are provided
       if (hobbies && hobbies.length > 0) {
         // Assuming `hobbies` is an array of hobby IDs
@@ -458,9 +463,7 @@ const adminController = {
         }));
 
         // Insert relationships into the `events_hobbies` table
-        await Event_hobby.bulkCreate(hobbiesArray, {
-          ignoreDuplicates: true,
-        });
+        await Event_hobby.bulkCreate(hobbiesArray);
       }
 
       // Redirect to the events page after the event creation
