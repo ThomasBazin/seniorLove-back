@@ -12,9 +12,12 @@ adminRouter.get('/users', cw(adminController.renderAllUsers));
 adminRouter.get('/users/pending', cw(adminController.renderPendingUsers));
 adminRouter.get('/users/banished', cw(adminController.renderBanishedUsers));
 adminRouter.get('/users/:id', cw(adminController.renderUser));
-adminRouter.post('/users/:id/status', cw(adminController.updateUserStatus));
+adminRouter.patch('/users/:id/status', cw(adminController.updateUserStatus));
 adminRouter.delete('/users/:id/delete', cw(adminController.deleteUser));
 
 adminRouter.get('/events', cw(adminController.renderEvents));
 adminRouter.get('/events/create', cw(adminController.renderCreateEvent));
 adminRouter.post('/events/create', cw(adminController.createEvent));
+adminRouter.delete('/events/:id/delete', cw(adminController.deleteEvent));
+adminRouter.get('/events/:id', cw(adminController.renderUpdateEvent));
+// adminRouter.patch('/events/:id/update', cw(adminController.updateEvent));

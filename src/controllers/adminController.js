@@ -282,7 +282,7 @@ const adminController = {
       // Find all events
       const events = await Event.findAll({
         attributes: ['id', 'name', 'date'],
-        order: [['date', 'DESC']],
+        order: [['date', 'ASC']],
       });
 
       // Render the events page with the events data
@@ -330,7 +330,6 @@ const adminController = {
         picture,
         date,
         time,
-        description,
         adminId,
       });
 
@@ -348,6 +347,97 @@ const adminController = {
 
       // Redirect to the events page after the event creation
       return res.status(204).redirect('/admin/events');
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
+  },
+
+  // Delete an event
+  deleteEvent: async (req, res) => {
+    if (req.session.admin) {
+      const { id } = req.params;
+      if (!id) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing event id', statusCode: 400 });
+      }
+      const event = await Event.findByPk(id);
+      if (!event) {
+        return res
+          .status(404)
+          .render('error', { error: 'Event not found', statusCode: 404 });
+      }
+
+      await event.destroy();
+      res.status(204).json({ message: 'Event deleted successfully' });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
+  },
+
+  // Render the update event page
+  renderUpdateEvent: async (req, res) => {
+    if (req.session.admin) {
+      const { id } = req.params;
+      if (!id) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing event id', statusCode: 400 });
+      }
+      const event = await Event.findByPk(id, {
+        include: [
+          {
+            model: Hobby,
+            as: 'hobbies',
+            attributes: ['id', 'name'],
+            through: { attributes: [] },
+          },
+        ],
+      });
+
+      if (!event) {
+        return res
+          .status(404)
+          .render('error', { error: 'Event not found', statusCode: 404 });
+      }
+
+      const allHobbies = await Hobby.findAll({
+        attributes: ['id', 'name'],
+      });
+
+      // Create an array of event hobbies names
+      const hobbiesFilter = [];
+      event.hobbies.forEach((hobby) => {
+        hobbiesFilter.push(hobby.dataValues.name);
+      });
+
+      const hobbiesChecked = [];
+      event.hobbies.forEach((hobby) => {
+        hobbiesChecked.push(hobby.dataValues);
+      });
+
+      // Create an array of all hobbies data
+      const allHobbiesData = [];
+      allHobbies.forEach((hobby) => {
+        allHobbiesData.push(hobby.dataValues);
+      });
+
+      // Create an array of hobbies that are not checked
+      const hobbiesUncheck = allHobbiesData.filter(
+        (hobby) => !hobbiesFilter.includes(hobby.name)
+      );
+
+      if (event) {
+        res.locals.updateEvent = true;
+      }
+
+      return res
+        .status(200)
+        .render('createEvent', { event, hobbiesUncheck, hobbiesChecked });
     } else {
       return res
         .status(401)

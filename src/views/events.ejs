@@ -32,18 +32,12 @@
                       <%= new Date(event.date).toLocaleDateString('fr') %>
                     </td>
                     <td class="fw-bold text-gray-900">
-                      <a href="#"
-                        class="btn btn-link text-decoration-none d-flex justify-content-center align-items-center gap-2 ">
-                        <img src="/logos/edit-2.svg" alt="edit">
-                        <p class="mb-0">Modifier</p>
-                      </a>
+                      <a href="/admin/events/<%=event.id%>" class="btn btn-link text-decoration-none"><img
+                          src="/logos/edit-2.svg" alt="Modifier"> Modifier</button></a>
                     </td>
                     <td>
-                      <a href="#"
-                        class="btn btn-link text-decoration-none d-flex justify-content-center align-items-center gap-2">
-                        <img src="/logos/trash-2.svg" alt="supprimer">
-                        <p class="mb-0">Supprimer</p>
-                      </a>
+                      <button class="btn btn-danger event-delete_btn" data-event-id="<%=event.id %>"><img
+                          src="/logos/trash-2.svg" alt="supprimer"> Supprimer</button>
                     </td>
 
                   </tr>

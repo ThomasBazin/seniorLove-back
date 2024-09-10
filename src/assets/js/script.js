@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // const eventUpdateButtons = document.querySelectorAll('.event-update_btn');
+
+  // User page dropdown behavior
   const dropdownItems = document.querySelectorAll('.dropdown-item');
   const dropdownButton = document.getElementById('dropdownMenuButton');
   let statusValue = ''; // Default value
-  const userSubmitButton = document.getElementById('user-submit_btn');
-  const userDeleteButton = document.getElementById('user-delete_btn');
-  const userCancelButton = document.getElementById('user-cancel_btn');
-  const hobbiesCheckboxes = document.querySelectorAll('.hobby-checkbox');
-
   dropdownItems.forEach(function (item) {
     item.addEventListener('click', function () {
       const newValue = item.getAttribute('data-value');
@@ -26,13 +24,16 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // User page submit button behavior
+  const userSubmitButton = document.getElementById('user-submit_btn');
   if (userSubmitButton) {
     const userId = userSubmitButton.getAttribute('data-user-id');
     userSubmitButton.addEventListener('click', function (event) {
       event.preventDefault();
       // Perform the fetch request to update user status
       fetch(`/admin/users/${userId}/status`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -50,19 +51,23 @@ document.addEventListener('DOMContentLoaded', function () {
       location.reload();
     });
   }
+
+  // User page cancel button behavior
+  const userCancelButton = document.getElementById('user-cancel_btn');
   if (userCancelButton) {
     userCancelButton.addEventListener('click', function (event) {
       event.preventDefault();
       window.history.back();
     });
   }
+
+  // User page delete button behavior
+  const userDeleteButton = document.getElementById('user-delete_btn');
   if (userDeleteButton) {
     const userId = userDeleteButton.getAttribute('data-user-id');
     userDeleteButton.addEventListener('click', function (event) {
       event.preventDefault(); // Prevent the default link behavior
-
       // Confirm the deletion
-
       fetch(`/admin/users/${userId}/delete`, {
         method: 'DELETE',
         headers: {
@@ -84,6 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
   }
+
+  // User page hobby checkbox behavior
+  const hobbiesCheckboxes = document.querySelectorAll('.hobby-checkbox');
   // Check if hobbiesCheckboxes is defined and not null
   if (hobbiesCheckboxes) {
     // Iterate over each checkbox element in the hobbiesCheckboxes NodeList
@@ -101,6 +109,48 @@ document.addEventListener('DOMContentLoaded', function () {
             return checkbox.value;
           });
       });
+    });
+  }
+
+  // Events page delete button behavior
+  const eventDeleteButtons = document.querySelectorAll('.event-delete_btn');
+  if (eventDeleteButtons) {
+    eventDeleteButtons.forEach((eventButton) => {
+      const eventId = eventButton.getAttribute('data-event-id');
+      eventButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Confirm the deletion
+        async function deleteEvent(eventId) {
+          try {
+            const response = await fetch(`/admin/events/${eventId}/delete`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            if (response.ok) {
+              window.location.href = '/admin/events'; // Redirect to events list
+            } else {
+              const data = await response.json();
+              throw new Error(data.message || 'Failed to delete event');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to delete event.');
+          }
+        }
+        deleteEvent(eventId);
+      });
+    });
+  }
+
+  // Event page cancel button behavior
+  const eventCancelButton = document.getElementById('createEvent-cancel_btn');
+  if (eventCancelButton) {
+    eventCancelButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      window.history.back();
     });
   }
 });
