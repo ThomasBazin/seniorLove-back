@@ -434,10 +434,63 @@ const adminController = {
       if (event) {
         res.locals.updateEvent = true;
       }
-
       return res
         .status(200)
         .render('createEvent', { event, hobbiesUncheck, hobbiesChecked });
+    } else {
+      return res
+        .status(401)
+        .render('error', { error: 'Not authorized', statusCode: 401 });
+    }
+  },
+
+  // Update an event
+  updateEvent: async (req, res) => {
+    if (req.session.admin) {
+      const { name, date, picture, location, time, hobbies, description } =
+        req.body;
+      console.log('verif admin');
+      if (!name || !date || !location || !time || !description) {
+        return res
+          .status(400)
+          .render('error', { error: 'Missing event data', statusCode: 400 });
+      }
+
+      const eventToUpdate = await Event.findByPk(req.params.id, {
+        include: [
+          {
+            model: Hobby,
+            as: 'hobbies',
+          },
+        ],
+      });
+
+      // Update the event
+      await eventToUpdate.update({
+        name,
+        location,
+        description,
+        picture,
+        date,
+        time,
+      });
+
+      // Check if hobbies are provided
+      if (hobbies && hobbies.length > 0) {
+        // Assuming `hobbies` is an array of hobby IDs
+        const hobbiesArray = hobbies.map((hobbyId) => ({
+          event_id: eventToUpdate.id,
+          hobby_id: hobbyId,
+        }));
+
+        // Insert relationships into the `events_hobbies` table
+        await Event_hobby.bulkCreate(hobbiesArray, {
+          ignoreDuplicates: true,
+        });
+      }
+
+      // Redirect to the events page after the event creation
+      return res.status(204).json({ message: 'Event modified successfully' });
     } else {
       return res
         .status(401)

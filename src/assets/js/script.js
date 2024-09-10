@@ -153,4 +153,46 @@ document.addEventListener('DOMContentLoaded', function () {
       window.history.back();
     });
   }
+
+  const eventUpdateButton = document.getElementById('event-update_btn');
+  const form = document.getElementById('event-form');
+
+  if (eventUpdateButton) {
+    eventUpdateButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      // Create FormData and convert it to a plain object
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        if (key in data) {
+          data[key] = [...data[key], value];
+        } else {
+          data[key] = value;
+        }
+      });
+
+      // Get event ID from the button
+      const eventId = eventUpdateButton.getAttribute('data-event-id');
+
+      try {
+        const response = await fetch(`/admin/events/${eventId}/update`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          window.location.href = '/admin/events'; // Redirect to events list
+        } else {
+          const responseData = await response.json();
+          throw new Error(responseData.message || 'Failed to update event');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to update event.');
+      }
+    });
+  }
 });
