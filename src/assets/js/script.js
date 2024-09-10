@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error('Error:', error);
           // Optionally, show an error message
         });
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 200);
     });
   }
 

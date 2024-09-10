@@ -22,8 +22,8 @@ app.use(express.json()); // Parser les bodies de type "application/json"
 
 app.use(
   session({
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     secret: 'Guess it!',
     cookie: {
       secure: false,
@@ -33,13 +33,6 @@ app.use(
 );
 
 app.use(bodySanitizerMiddleware);
-
-app.use((req, res, next) => {
-  if (!req.session.admin) {
-    req.session.admin = {};
-  }
-  next();
-});
 
 app.disable('x-powered-by');
 app.use('/api/public', publicRouter);

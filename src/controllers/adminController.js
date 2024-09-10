@@ -57,22 +57,19 @@ const adminController = {
     const isGood = await Scrypt.compare(password, foundAdmin.password);
 
     if (!isGood) {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     } else {
-      req.session.admin = foundAdmin;
+      req.session.admin = true;
     }
 
-    const adminName = foundAdmin.name;
-
     // Redirect to dashboard or another page after successful login
-    return res.status(200).render('dashboard', { adminName });
+    return res.status(200).redirect('/admin/users/pending');
   },
 
   // Logout process
   logout: async (req, res) => {
     req.session.destroy();
+    res.clearCookie('connect.sid');
     res.redirect('/admin/login');
   },
 
@@ -100,9 +97,7 @@ const adminController = {
       // Render the users page with the users data
       return res.status(200).render('users', { users: usersWithAge });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -126,9 +121,7 @@ const adminController = {
       // Render the users page with the users data
       return res.status(200).render('users', { users: pendingUsersWithAge });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -152,7 +145,6 @@ const adminController = {
           },
         ],
       });
-
       if (!user) {
         return res
           .status(404)
@@ -169,9 +161,7 @@ const adminController = {
       // Render the user page with the user data
       return res.status(200).render('user', { user: newUser });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -196,9 +186,7 @@ const adminController = {
       // Render the users page with the users data
       return res.status(200).render('users', { users: banishedUsersWithAge });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -215,33 +203,33 @@ const adminController = {
 
       const { status } = req.body;
 
-      // Find the user by id
-      const user = await User.findByPk(id, {
-        include: [
-          {
-            model: Hobby,
-            as: 'hobbies',
-          },
-        ],
-      });
+      if (status) {
+        // Find the user by id
+        const user = await User.findByPk(id, {
+          include: [
+            {
+              model: Hobby,
+              as: 'hobbies',
+            },
+          ],
+        });
 
-      if (!user) {
-        return res
-          .status(404)
-          .render('error', { error: 'User not found', statusCode: 404 });
+        if (!user) {
+          return res
+            .status(404)
+            .render('error', { error: 'User not found', statusCode: 404 });
+        }
+
+        // Update the status of the user
+        const updatedUser = await user.update({
+          status,
+        });
+
+        //
+        return res.status(204);
       }
-
-      // Update the status of the user
-      const updatedUser = await user.update({
-        status,
-      });
-
-      //
-      return res.status(204);
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -270,9 +258,7 @@ const adminController = {
 
       res.status(204).json({ message: 'User deleted successfully' });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -288,9 +274,7 @@ const adminController = {
       // Render the events page with the events data
       return res.status(200).render('events', { events });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -303,9 +287,7 @@ const adminController = {
       });
       return res.status(200).render('createEvent', { hobbies });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -348,9 +330,7 @@ const adminController = {
       // Redirect to the events page after the event creation
       return res.status(204).redirect('/admin/events');
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -373,9 +353,7 @@ const adminController = {
       await event.destroy();
       res.status(204).json({ message: 'Event deleted successfully' });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -438,9 +416,7 @@ const adminController = {
         .status(200)
         .render('createEvent', { event, hobbiesUncheck, hobbiesChecked });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 
@@ -492,9 +468,7 @@ const adminController = {
       // Redirect to the events page after the event creation
       return res.status(204).json({ message: 'Event modified successfully' });
     } else {
-      return res
-        .status(401)
-        .render('error', { error: 'Not authorized', statusCode: 401 });
+      return res.status(401).redirect('/admin/login');
     }
   },
 };
