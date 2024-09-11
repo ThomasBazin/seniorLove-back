@@ -455,15 +455,19 @@ const adminController = {
       });
 
       // Check if hobbies are provided
-      if (hobbies && hobbies.length > 0) {
+      if (hobbies && hobbies.length > 1) {
         // Assuming `hobbies` is an array of hobby IDs
         const hobbiesArray = hobbies.map((hobbyId) => ({
           event_id: eventToUpdate.id,
           hobby_id: hobbyId,
         }));
-
-        // Insert relationships into the `events_hobbies` table
         await Event_hobby.bulkCreate(hobbiesArray);
+      } else if (hobbies) {
+        const hobby = {
+          event_id: eventToUpdate.id,
+          hobby_id: hobbies,
+        };
+        await Event_hobby.create(hobby);
       }
 
       // Redirect to the events page after the event creation
