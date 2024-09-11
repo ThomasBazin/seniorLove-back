@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
+
   function eventSubmitButton() {
     const eventUpdateButton = document.getElementById('event-update_btn');
     const form = document.getElementById('event-form');
