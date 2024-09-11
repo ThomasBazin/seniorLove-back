@@ -21,3 +21,5 @@ adminRouter.post('/events/create', cw(adminController.createEvent));
 adminRouter.delete('/events/:id/delete', cw(adminController.deleteEvent));
 adminRouter.get('/events/:id', cw(adminController.renderUpdateEvent));
 adminRouter.patch('/events/:id/update', cw(adminController.updateEvent));
+
+
