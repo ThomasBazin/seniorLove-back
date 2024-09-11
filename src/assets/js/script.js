@@ -109,13 +109,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // Events page delete button behavior
   function eventDeleteButton() {
     const eventDeleteButtons = document.querySelectorAll('.event-delete_btn');
+    const confirmDeleteButton = document.getElementById('confirmDeleteButton');
     if (eventDeleteButtons) {
       eventDeleteButtons.forEach((eventButton) => {
         const eventId = eventButton.getAttribute('data-event-id');
         eventButton.addEventListener('click', function (event) {
-          event.preventDefault(); // Prevent the default link behavior
-
-          // Confirm the deletion
+          event.preventDefault();
+          confirmDeleteButton.setAttribute('data-event-id', eventId);
+        });
+      });
+      if (confirmDeleteButton) {
+        confirmDeleteButton.addEventListener('click', async function () {
+          const eventId = this.getAttribute('data-event-id');
           async function deleteEvent(eventId) {
             try {
               const response = await fetch(`/admin/events/${eventId}/delete`, {
@@ -137,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
           deleteEvent(eventId);
         });
-      });
+      }
     }
   }
 
