@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
       eventUpdateButton.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        // Create FormData and convert it to a plain object
+        // Create FormData and convert it to a plain object // GPT
         const formData = new FormData(form);
         const data = {};
         formData.forEach((value, key) => {
@@ -173,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
 
-        // Get event ID from the button
         const eventId = eventUpdateButton.getAttribute('data-event-id');
 
         try {
