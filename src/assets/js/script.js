@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   eventDeleteButton();
   eventCancelButton();
   eventSubmitButton();
+  setMinTimeAndDate();
 
   let statusValue = ''; // Initialize statusValue variable
 
@@ -196,27 +197,30 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
-  const today = new Date();
-  const todayDate = new Date().toISOString().split('T')[0];
-  const currentTime = today.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false, // Ensure 24-hour format
-  });
 
-  const dateElement = document.getElementById('date');
-  const timeInput = document.getElementById('time');
-
-  if (dateElement) {
-    dateElement.setAttribute('min', todayDate);
-    dateElement.addEventListener('change', function () {
-      if (this.value === todayDate) {
-        // If the selected date is today, restrict the time to the current time or later
-        timeInput.setAttribute('min', currentTime);
-      } else {
-        // If the selected date is in the future, remove the time restriction
-        timeInput.removeAttribute('min');
-      }
+  function setMinTimeAndDate() {
+    const today = new Date();
+    const todayDate = new Date().toISOString().split('T')[0];
+    const currentTime = today.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false, // Ensure 24-hour format
     });
+
+    const dateElement = document.getElementById('date');
+    const timeInput = document.getElementById('time');
+
+    if (dateElement) {
+      dateElement.setAttribute('min', todayDate);
+      dateElement.addEventListener('change', function () {
+        if (this.value === todayDate) {
+          // If the selected date is today, restrict the time to the current time or later
+          timeInput.setAttribute('min', currentTime);
+        } else {
+          // If the selected date is in the future, remove the time restriction
+          timeInput.removeAttribute('min');
+        }
+      });
+    }
   }
 });
