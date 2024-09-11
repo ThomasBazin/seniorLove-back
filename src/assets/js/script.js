@@ -44,14 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('button clicked');
         async function updateUserStatus(userId, statusValue) {
           try {
-            const response = await fetch(`/admin/users/${userId}/status`, {
+            await fetch(`/admin/users/${userId}/status`, {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({ status: statusValue }),
             });
-            return await response.json();
           } catch (error) {
             console.error('Error:', error);
           }
@@ -197,5 +196,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }
+  }
+  const today = new Date().toISOString().split('T')[0];
+  const dateElement = document.getElementById('date');
+  if (dateElement) {
+    dateElement.setAttribute('min', today);
   }
 });
