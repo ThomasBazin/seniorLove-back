@@ -58,6 +58,7 @@ const adminController = {
       return res.status(401).redirect('/admin/login');
     } else {
       req.session.admin = true;
+      req.session.adminId = foundAdmin.id;
     }
 
     // Redirect to dashboard or another page after successful login
@@ -219,7 +220,7 @@ const adminController = {
         }
 
         // Update the status of the user
-        const updatedUser = await user.update({
+        await user.update({
           status,
         });
 
@@ -295,7 +296,7 @@ const adminController = {
       const { name, date, picture, location, time, hobbies, description } =
         req.body;
 
-      const adminId = req.session.admin.id;
+      const adminId = req.session.adminId;
 
       if (!name || !date || !location || !time || !description || !adminId) {
         return res
@@ -428,7 +429,9 @@ const adminController = {
           .status(400)
           .render('error', { error: 'Missing event data', statusCode: 400 });
       }
-
+      console.log(hobbies);
+      console.log(typeof hobbies);
+      console.log(hobbies.length);
       const eventToUpdate = await Event.findByPk(req.params.id, {
         include: [
           {
@@ -447,7 +450,6 @@ const adminController = {
         date,
         time,
       });
-
       await Event_hobby.destroy({
         where: {
           event_id: eventToUpdate.id,
@@ -455,15 +457,19 @@ const adminController = {
       });
 
       // Check if hobbies are provided
-      if (hobbies && hobbies.length > 0) {
+      if (hobbies && hobbies.length > 1) {
         // Assuming `hobbies` is an array of hobby IDs
         const hobbiesArray = hobbies.map((hobbyId) => ({
           event_id: eventToUpdate.id,
           hobby_id: hobbyId,
         }));
-
-        // Insert relationships into the `events_hobbies` table
         await Event_hobby.bulkCreate(hobbiesArray);
+      } else if (hobbies) {
+        const hobby = {
+          event_id: eventToUpdate.id,
+          hobby_id: hobbies,
+        };
+        await Event_hobby.create(hobby);
       }
 
       // Redirect to the events page after the event creation
