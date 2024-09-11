@@ -4,7 +4,7 @@ In order to use **Multer**, I have installed Multer via pnpm using:
 pnpm i multer
 ```
 
-I then created a test form on the front-end that directs to "http://localhost:4000/test" with a POST method and, most crucially, encType="multipart/form-data".
+I then created a test form on the front-end that directs to "http://localhost:4000/test" with a POST method and, most crucially, **encType="multipart/form-data"**.
 
 On the back-end, for clarity, I created a Multer router and a Multer controller for tests.
 
@@ -92,3 +92,26 @@ import storage from '../cloudinary/index.js';
 
 const upload = multer({ storage });
 ```
+
+Now if we resubmit the form we should have a result similar to this
+
+```json
+{
+  "message": "File uploaded successfully",
+  "file": {
+    "fieldname": "image",
+    "originalname": "ghosts-hugging-walkway-park.jpg",
+    "encoding": "7bit",
+    "mimetype": "image/jpeg",
+    "path": "https://res.cloudinary.com/dyexhzu04/image/upload/v1726076547/multer_test/iv2bgehxqaivok2gltz5.jpg",
+    "size": 8806747,
+    "filename": "multer_test/iv2bgehxqaivok2gltz5"
+  }
+}
+```
+
+We will need to store in the database the path and the filename in order to use them for display purposes.
+
+For that we need to update the user model so that it accepts a **picture_url** and a **picture_filename**.
+
+We then need to go back to our controller and update our function so that we can set the the **req.file.path** to **user.picture_url** and **req.file.filename** to **user.picture_filename**.
