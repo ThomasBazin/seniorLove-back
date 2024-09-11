@@ -58,6 +58,7 @@ const adminController = {
       return res.status(401).redirect('/admin/login');
     } else {
       req.session.admin = true;
+      req.session.adminId = foundAdmin.id;
     }
 
     // Redirect to dashboard or another page after successful login
@@ -295,7 +296,7 @@ const adminController = {
       const { name, date, picture, location, time, hobbies, description } =
         req.body;
 
-      const adminId = req.session.admin.id;
+      const adminId = req.session.adminId;
 
       if (!name || !date || !location || !time || !description || !adminId) {
         return res
@@ -428,7 +429,9 @@ const adminController = {
           .status(400)
           .render('error', { error: 'Missing event data', statusCode: 400 });
       }
-
+      console.log(hobbies);
+      console.log(typeof hobbies);
+      console.log(hobbies.length);
       const eventToUpdate = await Event.findByPk(req.params.id, {
         include: [
           {
@@ -447,7 +450,6 @@ const adminController = {
         date,
         time,
       });
-
       await Event_hobby.destroy({
         where: {
           event_id: eventToUpdate.id,

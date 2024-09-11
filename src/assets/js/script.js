@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data[key] = value;
           }
         });
-        console.log(data);
+
         // Get event ID from the button
         const eventId = eventUpdateButton.getAttribute('data-event-id');
 
