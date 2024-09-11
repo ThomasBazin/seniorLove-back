@@ -429,9 +429,7 @@ const adminController = {
           .status(400)
           .render('error', { error: 'Missing event data', statusCode: 400 });
       }
-      console.log(hobbies);
-      console.log(typeof hobbies);
-      console.log(hobbies.length);
+
       const eventToUpdate = await Event.findByPk(req.params.id, {
         include: [
           {
@@ -456,14 +454,14 @@ const adminController = {
         },
       });
 
-      // Check if hobbies are provided
-      if (hobbies && hobbies.length > 1) {
-        // Assuming `hobbies` is an array of hobby IDs
+      // Check if hobbies is an array and has a length greater than 0
+      if (Array.isArray(hobbies) && hobbies.length > 0) {
         const hobbiesArray = hobbies.map((hobbyId) => ({
           event_id: eventToUpdate.id,
           hobby_id: hobbyId,
         }));
         await Event_hobby.bulkCreate(hobbiesArray);
+        // Else check if hobbies is truthy
       } else if (hobbies) {
         const hobby = {
           event_id: eventToUpdate.id,
