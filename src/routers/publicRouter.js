@@ -25,5 +25,4 @@ publicRouter.get('/hobbies', cw(hobbyController.getHobbies));
 //Test sanitize
 //publicRouter.post('/sanitize', cw(authController.postSanitize));
 
-// test multer
-publicRouter.post('/test', cw(eventController.testMulter));
+

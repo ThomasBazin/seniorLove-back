@@ -9,6 +9,7 @@ import { checkLoggedIn } from './src/middlewares/checkLoggedIn.js';
 import cors from 'cors';
 import { adminRouter } from './src/routers/adminRouter.js';
 import session from 'express-session';
+import { multerRouter } from './src/routers/multerRouter.js';
 
 // Convert import.meta.url to __filename and __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -37,6 +38,7 @@ app.use(bodySanitizerMiddleware);
 app.disable('x-powered-by');
 app.use('/api/public', publicRouter);
 app.use('/api/private', checkLoggedIn, privateRouter);
+app.use(multerRouter);
 
 // Body parser
 app.use(express.urlencoded({ extended: true }));

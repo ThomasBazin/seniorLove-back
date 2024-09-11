@@ -25,7 +25,3 @@ export async function getOneEvent(req, res) {
   res.status(200).json(oneEvent);
 }
 
-//test multer
-export function testMulter(req, res) {
-  res.send(req.body);
-}
