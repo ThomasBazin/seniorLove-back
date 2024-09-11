@@ -219,7 +219,7 @@ const adminController = {
         }
 
         // Update the status of the user
-        const updatedUser = await user.update({
+        await user.update({
           status,
         });
 

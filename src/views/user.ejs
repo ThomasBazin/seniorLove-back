@@ -75,9 +75,38 @@
                 data-user-id="<%=user.id %>">Valider</button>
             </form>
             <button class="btn btn-secondary" id="user-cancel_btn">Annuler</button>
-            <button class="btn btn-danger" id="user-delete_btn" data-user-id="<%=user.id %>">Supprimer</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#userDeleteModal">
+              Supprimer
+            </button>
           </div>
         </div>
   </main>
 
   <%- include('partials/footer') %>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="userDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression du compte de <span class="text-danger">
+                <%= user.name %>
+              </span>
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Souhaitez-vous vraiment supprimer ce compte ?
+            <p class="fst-italic fw-lighter">(Cette action est irréversible)</p>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-danger">Supprimer</button> -->
+            <button type="button" class="btn btn-danger" id="user-delete_btn"
+              data-user-id="<%=user.id %>">Supprimer</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          </div>
+        </div>
+      </div>
+    </div>
