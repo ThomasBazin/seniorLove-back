@@ -67,9 +67,15 @@ const adminController = {
 
   // Logout process
   logout: async (req, res) => {
-    req.session.destroy();
-    res.clearCookie('connect.sid');
-    res.redirect('/admin/login');
+    req.session.destroy((err) => {
+      if (err) {
+        return res
+          .status(500)
+          .render('error', { error: 'Failed to logout', statusCode: 500 });
+      }
+      res.clearCookie('connect.sid');
+      res.redirect('/admin/login');
+    });
   },
 
   // Render all users
@@ -314,16 +320,20 @@ const adminController = {
         adminId,
       });
 
-      // Check if hobbies are provided
-      if (hobbies && hobbies.length > 0) {
-        // Assuming `hobbies` is an array of hobby IDs
+      // Check if hobbies is an array and has a length greater than 0
+      if (Array.isArray(hobbies) && hobbies.length > 0) {
         const hobbiesArray = hobbies.map((hobbyId) => ({
           event_id: newEvent.id,
           hobby_id: hobbyId,
         }));
-
-        // Insert relationships into the `events_hobbies` table
         await Event_hobby.bulkCreate(hobbiesArray);
+        // Else check if hobbies is truthy
+      } else if (hobbies) {
+        const hobby = {
+          event_id: newEvent.id,
+          hobby_id: hobbies,
+        };
+        await Event_hobby.create(hobby);
       }
 
       // Redirect to the events page after the event creation

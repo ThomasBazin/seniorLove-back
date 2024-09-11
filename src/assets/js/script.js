@@ -44,14 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('button clicked');
         async function updateUserStatus(userId, statusValue) {
           try {
-            const response = await fetch(`/admin/users/${userId}/status`, {
+            await fetch(`/admin/users/${userId}/status`, {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({ status: statusValue }),
             });
-            return await response.json();
           } catch (error) {
             console.error('Error:', error);
           }
@@ -158,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
       eventUpdateButton.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        // Create FormData and convert it to a plain object
+        // Create FormData and convert it to a plain object // GPT
         const formData = new FormData(form);
         const data = {};
         formData.forEach((value, key) => {
@@ -169,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
 
-        // Get event ID from the button
         const eventId = eventUpdateButton.getAttribute('data-event-id');
 
         try {
