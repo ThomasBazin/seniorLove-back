@@ -61,7 +61,7 @@
   },
   {
     "name": "Lucienne",
-    "birth_date": "1950-04-02",
+    "birth_date": "1960-04-02",
     "description": "Je suis Lucienne, une cuisinière passionnée, connue pour mes recettes savoureuses. J'adore expérimenter de nouvelles recettes et perfectionner mes techniques culinaires. En dehors de la cuisine, je suis une grande amatrice d'artisanat, créant des objets de décoration à partir de matériaux recyclés. J'aime recevoir des invités, organisant souvent des dîners pour mes amis et ma famille. Je passe aussi du temps dans mon jardin potager, cultivant des herbes et des légumes frais que j'utilise dans mes plats. Je suis très sociable, participant à des clubs de lecture et à des groupes de marche avec mes amis.",
     "gender": "female",
     "picture": "https://img.freepik.com/photos-gratuite/femme-ainee-manger-vue-frontale_23-2149742209.jpg?t=st=1725824342~exp=1725827942~hmac=13cba072e6d5f4fb8fd1ae1e3cc577362eb27621210939983c19d18d7fd5ee0f&w=360",
@@ -141,7 +141,7 @@
   },
   {
     "name": "Éric",
-    "birth_date": "1950-03-05",
+    "birth_date": "1962-03-05",
     "description": "Je suis Éric, un homme élégant qui aime s’habiller avec soin et profiter des belles journées ensoleillées. J’apprécie les moments passés en plein air, surtout lorsqu’ils me permettent de montrer mes tenues préférées. Je suis également passionné par la mode et l’élégance, ce qui se reflète dans chaque aspect de ma vie.",
     "gender": "male",
     "picture": "https://img.freepik.com/photos-gratuite/vieil-homme-elegant-dans-parc-automne-ensoleille_1157-19117.jpg?t=st=1725825124~exp=1725828724~hmac=ed0a87a3e495e4102c9c48bc384b67ed6c5101a1081bdf4f0711ef8a7f0f8952&w=996",
@@ -221,7 +221,7 @@
   },
   {
     "name": "Pierre",
-    "birth_date": "1939-09-15",
+    "birth_date": "1957-09-15",
     "description": "Je suis Pierre, un passionné de pêche. Depuis ma retraite, je passe mes journées au bord de l'eau, profitant de la tranquillité et de la patience que nécessite ce passe-temps. Pour moi, la pêche est une manière de me détendre et de me reconnecter avec la nature.",
     "gender": "male",
     "picture": "https://img.freepik.com/photos-gratuite/man-son-petit-fils-assis-ponton-bois-cannes-peche-dans-mains-profitant-belle-nature-petit-garcon-pointant-quelque-chose-son-doigt_176532-10836.jpg?t=st=1725826064~exp=1725829664~hmac=aeb40c0c97ff8d34fa11269e5c9960431c5ce691bfd25c6e48366a3d02b25b4c&w=996",
@@ -271,7 +271,7 @@
   },
   {
     "name": "Claire",
-    "birth_date": "1952-12-05",
+    "birth_date": "1959-12-05",
     "description": "Je suis Claire, une passionnée de voyages. J'aime découvrir de nouveaux pays, cultures et paysages. Chaque voyage est une occasion pour moi d'apprendre et de m'enrichir personnellement.",
     "gender": "female",
     "picture": "https://img.freepik.com/photos-gratuite/femme-agee-voyageant-autour-du-monde_23-2149172023.jpg?t=st=1725828862~exp=1725832462~hmac=df46098617296baec602f1049b8f25ea8d2c863c1dad428e2668c1d32ec726d0&w=996",
@@ -321,7 +321,7 @@
   },
   {
     "name": "André",
-    "birth_date": "1950-03-28",
+    "birth_date": "1961-03-28",
     "description": "Je suis André, un passionné de bricolage. J'aime travailler de mes mains et réparer des objets. Que ce soit en bois, en métal ou en électricité, je suis toujours à la recherche de nouveaux projets à réaliser.",
     "gender": "male",
     "picture": "https://img.freepik.com/photos-gratuite/concept-reparation-renovation-construction-occupation_343059-3494.jpg?t=st=1725826592~exp=1725830192~hmac=7f061df30e1214dfe6cf0c637ff4036796e9f8d5ddd9a9dc525a8e4c86aba53f&w=996",
@@ -371,7 +371,7 @@
   },
   {
     "name": "Agnès",
-    "birth_date": "1954-09-09",
+    "birth_date": "1962-09-09",
     "description": "Je suis Agnès, une passionnée de lecture. Je passe des heures à lire des romans, des biographies, et des poèmes. La lecture est pour moi une échappatoire et un moyen de découvrir de nouveaux mondes.",
     "gender": "female",
     "picture": "https://img.freepik.com/free-photo/front-view-woman-sitting-home_23-2150355652.jpg?t=st=1725659247~exp=1725662847~hmac=ef0314f2582050fc0ac2e9f4aef6940aa3a44519657d7144f2f940fea07a08be&w=996",
@@ -441,7 +441,7 @@
   },
   {
     "name": "Luc",
-    "birth_date": "1951-08-05",
+    "birth_date": "1956-08-05",
     "description": "Je suis Luc, un passionné de randonnée. J'aime parcourir les sentiers de la nature et découvrir de nouveaux endroits. La randonnée est pour moi un moyen de me connecter à la nature et de rester actif.",
     "gender": "male",
     "picture": "https://img.freepik.com/photos-gratuite/homme-senior-expressif-posant-plein-air_344912-329.jpg?t=st=1725826952~exp=1725830552~hmac=63a830fff7e831b051e4851fd358babab875ff59fe91e291f92a7b1225b1ce37&w=996",
@@ -511,7 +511,7 @@
   },
   {
     "name": "Madeleine",
-    "birth_date": "1953-04-12",
+    "birth_date": "1958-04-12",
     "description": "Je suis Madeleine, une passionnée de jardinage. J'adore passer du temps dans mon jardin à planter des fleurs et des légumes. Le jardinage est pour moi une source de paix et de satisfaction.",
     "gender": "female",
     "picture": "https://img.freepik.com/free-photo/senior-woman-with-flowers-garden_329181-8751.jpg?t=st=1725658866~exp=1725662466~hmac=263d575ee6280b5397402294d439dfe0048af54b16e4bc98aa38ed413629f932&w=360",
@@ -651,7 +651,7 @@
   },
   {
     "name": "Jean-Pierre",
-    "birth_date": "1955-07-06",
+    "birth_date": "1964-07-06",
     "description": "Je suis un amateur de vin et de gastronomie. J''aime explorer les régions viticoles, découvrir de nouveaux crus, et organiser des dégustations pour mes amis. Je suis aussi un fervent lecteur de romans policiers.",
     "gender": "male",
     "picture": "https://images.pexels.com/photos/1152705/pexels-photo-1152705.jpeg?auto=compress&cs=tinysrgb&w=600",
