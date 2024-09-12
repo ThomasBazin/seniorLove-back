@@ -3,6 +3,7 @@ import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import { computeAge } from '../utils/computeAge.js';
 import { Event_hobby } from '../models/associative_tables/Event_hobby.js';
+import { v2 as cloudinary } from 'cloudinary';
 
 const adminController = {
   // Login page
@@ -452,9 +453,17 @@ const adminController = {
           },
         ],
       });
-      let picture = req.body.picture;
+
+      let picture = eventToUpdate.picture;
+      let picture_url = eventToUpdate.picture_url;
+      let picture_id = eventToUpdate.picture_id;
+
       if (req.file) {
+        const oldPublicId = picture_id;
         picture = req.file.path;
+        picture_url = req.file.path;
+        picture_id = req.file.filename;
+        await cloudinary.uploader.destroy(oldPublicId);
       }
 
       // Update the event
@@ -463,6 +472,8 @@ const adminController = {
         location,
         description,
         picture,
+        picture_url,
+        picture_id,
         date,
         time,
       });

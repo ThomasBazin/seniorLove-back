@@ -164,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
       eventUpdateButton.addEventListener('click', async (event) => {
         event.preventDefault();
 
-  
         const formData = new FormData(form);
 
         const eventId = eventUpdateButton.getAttribute('data-event-id');
