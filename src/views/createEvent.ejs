@@ -24,11 +24,6 @@
                   (locals.updateEvent) { %> value="<%=event.name %>"<% } %> required />
               </div>
               <div class="form-group mb-2 w-75%">
-                <label for="image" class="fw-medium">Image</label>
-                <input type="text" placeholder="Url" name="picture" id="image" class="form-control" <% if
-                  (locals.updateEvent) { %> value="<%=event.picture %>"<% } %> />
-              </div>
-              <div class="form-group mb-2 w-75%">
                 <label for="location" class="fw-medium">Lieu</label>
                 <input type="text" placeholder="Lieu de l'événement" name="location" id="location" class="form-control"
                   <% if (locals.updateEvent) { %> value="<%=event.location %>"<% } %>
@@ -44,6 +39,17 @@
                 <input type="time" name="time" id="time" class="form-control" <% if(locals.updateEvent) {%>
                 value="<%= event.time %>"
                   <%}%> required />
+              </div>
+              <div class="form-group mb-2 w-75%">
+                <label for="image" class="fw-medium">Image</label>
+                <input type="text" placeholder="Url" name="picture" id="image" class="form-control" <% if
+                  (locals.updateEvent) { %> value="<%=event.picture %>"<% } %> />
+                    <% if(locals.event) { %>
+                      <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="<%= event.picture %>" alt="<%= event.name %>" class="event-img"
+                          style="cursor:pointer;" />
+                      </a>
+                      <% } %>
               </div>
             </div>
             <div class="form-group mb-4">
@@ -101,3 +107,19 @@
   </main>
 
   <%- include('partials/footer') %>
+    <% if(locals.event) { %>
+      <!-- Modal -->
+      <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <a href="<%= event.picture %>" target="_blank"><img src="<%= event.picture %>" alt="<%= event.name %>"
+                  class="img-fluid"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
