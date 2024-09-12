@@ -8,8 +8,8 @@ BEGIN;
 
 -- Insert sample data into administrators
 
-INSERT INTO "administrators" ("id", "name", "email", "password", "created_at", "updated_at") VALUES
-(1, 'admin', 'admin@seniorlove.com', 'adminpass123', NOW(), NOW());
+-- INSERT INTO "administrators" ("id", "name", "email", "password", "created_at", "updated_at") VALUES
+-- (1, 'admin', 'admin@seniorlove.com', 'adminpass123', NOW(), NOW());
 
 -- Insert sample data into events
 

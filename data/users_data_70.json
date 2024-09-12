@@ -27,7 +27,7 @@
     "picture": "https://img.freepik.com/free-photo/women-shopping-buying-consumer-products-customer-day-celebration_23-2151623410.jpg?t=st=1725660432~exp=1725664032~hmac=9002893bf1b620f515a788035537e8472f0821139452168028f73f7e82d2dee4&w=360",
     "email": "renee@example.com",
     "password": "renee1949#",
-    "status": "active"
+    "status": "pending"
   },
   {
     "name": "Henri",
@@ -37,7 +37,7 @@
     "picture": "https://images.pexels.com/photos/3018993/pexels-photo-3018993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "henri@example.com",
     "password": "henri1952!",
-    "status": "active"
+    "status": "pending"
   },
   {
     "name": "Simone",
@@ -47,7 +47,7 @@
     "picture": "https://img.freepik.com/photos-gratuite/coup-moyen-femme-agee-s-amusant_23-2149304701.jpg?t=st=1725824111~exp=1725827711~hmac=ca4d5e5fdbc247de47068ea54c809bec9ace856caa157fcd9c60fd19b19b3985&w=360",
     "email": "simone@example.com",
     "password": "simone#1953",
-    "status": "active"
+    "status": "pending"
   },
   {
     "name": "André",
@@ -634,7 +634,7 @@
     "birth_date": "1949-03-23",
     "description": "Je suis Alain, un passionné d'histoire et d'archéologie. J'aime explorer des sites historiques et partager ses découvertes à travers des conférences et des articles. En dehors de mes recherches, j'apprécie la randonnée et les voyages culturels.",
     "gender": "male",
-    "picture": "https://img.freepik.com/photos-gratuite/portrait-homme-age-appareil-photo-pour-celebration-journee-mondiale-photographie_23-2151657263.jpg?t=st=1725828250~exp=1725831850~hmac=1fce5781547f4d27744e29926df3cd27d23e6a40f7ab1e3ade4af1f6b0b88237&w=360",
+    "picture": "https://images.pexels.com/photos/45852/farmer-smile-man-person-45852.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "alain@example.com",
     "status": "active",
     "password": "alain1949@"
@@ -644,7 +644,7 @@
     "birth_date": "1952-08-16",
     "description": "Je suis une amatrice de jardinage et de permaculture. Je cultive un jardin durable, partage mes connaissances avec des groupes locaux, et organise des ateliers sur la culture biologique. J''aime également préparer des plats faits maison avec les produits de mon jardin.",
     "gender": "female",
-    "picture": "https://img.freepik.com/photos-gratuite/femme-tailler-buisson_23-2148568681.jpg?t=st=1725828147~exp=1725831747~hmac=51217d56a6502af47574fa8a4e52d88bdd932b4e1f1293de45a53f61804d001b&w=740",
+    "picture": "https://images.pexels.com/photos/3171160/pexels-photo-3171160.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "claudine@example.com",
     "status": "active",
     "password": "claudine1952!"
@@ -654,7 +654,7 @@
     "birth_date": "1955-07-06",
     "description": "Je suis un amateur de vin et de gastronomie. J''aime explorer les régions viticoles, découvrir de nouveaux crus, et organiser des dégustations pour mes amis. Je suis aussi un fervent lecteur de romans policiers.",
     "gender": "male",
-    "picture": "https://img.freepik.com/photos-gratuite/coup-moyen-homme-tenant-verre-vin_23-2149213146.jpg?t=st=1725828595~exp=1725832195~hmac=3a94a4e317af750f061747cedef972937944352b81e09cb79a4ed6ae753a3dba&w=360",
+    "picture": "https://images.pexels.com/photos/1152705/pexels-photo-1152705.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "jeanpierre@example.com",
     "status": "active",
     "password": "jeanpierre1955!"
@@ -664,7 +664,7 @@
     "birth_date": "1948-12-11",
     "description": "Je suis passionnée de musique folk et de chants traditionnels. Je joue de la guitare et chante dans des groupes locaux. En plus de ma passion musicale, j''adore le bricolage et la décoration artisanale.",
     "gender": "female",
-    "picture": "https://img.freepik.com/photos-gratuite/femme-agee-maison-canape-aide-ordinateur-portable-pour-cours-guitare_23-2148991584.jpg?t=st=1725828525~exp=1725832125~hmac=b013421f9294412ef1e1219cc512855d145919fc2a6cd5d537e53e07c3df61fa&w=996",
+    "picture": "https://images.pexels.com/photos/4511649/pexels-photo-4511649.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "catherine@example.com",
     "status": "active",
     "password": "catherine1948!"
@@ -674,7 +674,7 @@
     "birth_date": "1954-09-30",
     "description": "Je suis une fervente défenseuse des droits des animaux et une bénévole dans plusieurs refuges. J''aime également la photographie animalière et passe beaucoup de temps à capturer la faune dans son environnement naturel.",
     "gender": "female",
-    "picture": "https://img.freepik.com/photos-gratuite/personne-agee-son-chien_23-2149429290.jpg?t=st=1725828371~exp=1725831971~hmac=77ee3654f7c300737cdea2469e74609355a814889f049a1e96dabac6beaa74b9&w=360",
+    "picture": "https://images.pexels.com/photos/3677094/pexels-photo-3677094.jpeg?auto=compress&cs=tinysrgb&w=600",
     "email": "henriette@example.com",
     "status": "active",
     "password": "henriette1954!"

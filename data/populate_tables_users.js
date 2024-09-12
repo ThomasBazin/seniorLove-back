@@ -30,4 +30,16 @@ for (const user of users) {
   console.log(result.rows);
 }
 
+const adminName = 'admin';
+const adminEmail = 'admin1@seniorlove.com';
+const adminPassword = Scrypt.hash('adminpass123');
+const query = `INSERT INTO administrators (name, email, password)
+        VALUES ($1,$2,$3) RETURNING *`;
+const result = await pgClient.query(query, [
+  adminName,
+  adminEmail,
+  adminPassword,
+]);
+console.log(result.rows);
+
 await pgClient.end();
