@@ -8,13 +8,22 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET, // Your Cloudinary API secret
 });
 
-// Configure Cloudinary storage for Multer
-const storage = new CloudinaryStorage({
-  cloudinary, // Pass the configured Cloudinary instance
+// Configure Cloudinary storage for event photos
+const eventPhotoStorage = new CloudinaryStorage({
+  cloudinary,
   params: {
-    folder: 'event_photos', // The folder in Cloudinary where files will be stored
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'], // Allowed file formats for upload
+    folder: 'event_photos', // Folder for event photos
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
   },
 });
 
-export default storage; // Export the storage configuration for use with Multer
+// Configure Cloudinary storage for user profile pictures
+const userPhotoStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'user_photos', // Folder for user profile pictures
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+  },
+});
+
+export { eventPhotoStorage, userPhotoStorage };

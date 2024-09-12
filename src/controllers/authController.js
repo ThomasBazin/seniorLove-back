@@ -19,6 +19,7 @@ export async function addUser(req, res) {
     description: Joi.string(),
     gender: Joi.string().max(10).valid('male', 'female', 'other').required(),
     picture: Joi.string().max(255),
+    picture_id: Joi.string().max(255),
     email: Joi.string().email({ minDomainSegments: 2 }).required(),
     password: Joi.string().min(12).max(255).required(),
     repeat_password: Joi.valid(Joi.ref('password')).required(),
@@ -42,12 +43,18 @@ export async function addUser(req, res) {
     return res.status(400).json({ message: 'e-mail already registered' });
   }
 
+  if (req.file) {
+    const picture = req.file.path;
+    const picture_id = req.file.filename;
+  }
+
   const createUser = await User.create({
     name: body.name,
     birth_date: body.birth_date,
     description: body.description,
+    picture,
+    picture_id,
     gender: body.gender,
-    picture: body.picture,
     email: body.email,
     password: Scrypt.hash(repeat_password),
   });

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
-import storage from '../cloudinary/index.js';
-const upload = multer({ storage });
+import { eventPhotoStorage } from '../cloudinary/index.js';
+const uploadEventPhoto = multer({ storage: eventPhotoStorage });
 
 import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
 import adminController from '../controllers/adminController.js';
@@ -23,13 +23,13 @@ adminRouter.get('/events', cw(adminController.renderEvents));
 adminRouter.get('/events/create', cw(adminController.renderCreateEvent));
 adminRouter.post(
   '/events/create',
-  upload.single('photo'),
+  uploadEventPhoto.single('photo'),
   cw(adminController.createEvent)
 );
 adminRouter.delete('/events/:id/delete', cw(adminController.deleteEvent));
 adminRouter.get('/events/:id', cw(adminController.renderUpdateEvent));
 adminRouter.patch(
   '/events/:id/update',
-  upload.single('picture'),
+  uploadEventPhoto.single('picture'),
   cw(adminController.updateEvent)
 );
