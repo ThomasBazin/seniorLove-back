@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import multer from 'multer';
 import { userPhotoStorage } from '../cloudinary/index.js';
-const upload = multer({ userPhotoStorage });
+const uploadUserPhoto = multer({ storage: userPhotoStorage });
 
 import * as hobbyController from '../controllers/hobbyController.js';
 import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
@@ -20,7 +20,7 @@ publicRouter.get('/events/:eventId', cw(eventController.getOneEvent));
 
 publicRouter.post(
   '/register',
-  upload.single('picture'),
+  uploadUserPhoto.single('picture'),
   cw(authController.addUser)
 );
 
