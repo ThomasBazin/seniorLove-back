@@ -12,8 +12,8 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary, // Pass the configured Cloudinary instance
   params: {
-    folder: 'multer_test', // The folder in Cloudinary where files will be stored
-    allowed_formats: ['jpg', 'png', 'webp'], // Allowed file formats for upload
+    folder: 'event_photos', // The folder in Cloudinary where files will be stored
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'], // Allowed file formats for upload
   },
 });
 
