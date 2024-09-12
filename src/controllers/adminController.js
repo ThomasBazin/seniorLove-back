@@ -302,8 +302,7 @@ const adminController = {
     if (req.session.admin) {
       const { name, date, location, time, hobbies, description } = req.body;
 
-      const picture = req.file.originalname;
-      const picture_url = req.file.path;
+      const picture = req.file.path;
       const picture_id = req.file.filename;
 
       const adminId = req.session.adminId;
@@ -319,7 +318,6 @@ const adminController = {
         location,
         description,
         picture,
-        picture_url,
         picture_id,
         date,
         time,
@@ -455,13 +453,11 @@ const adminController = {
       });
 
       let picture = eventToUpdate.picture;
-      let picture_url = eventToUpdate.picture_url;
       let picture_id = eventToUpdate.picture_id;
 
       if (req.file) {
         const oldPublicId = picture_id;
         picture = req.file.path;
-        picture_url = req.file.path;
         picture_id = req.file.filename;
         await cloudinary.uploader.destroy(oldPublicId);
       }
@@ -472,7 +468,6 @@ const adminController = {
         location,
         description,
         picture,
-        picture_url,
         picture_id,
         date,
         time,
