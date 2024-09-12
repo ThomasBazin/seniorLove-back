@@ -23,9 +23,13 @@ adminRouter.get('/events', cw(adminController.renderEvents));
 adminRouter.get('/events/create', cw(adminController.renderCreateEvent));
 adminRouter.post(
   '/events/create',
-  upload.single('picture'),
+  upload.single('photo'),
   cw(adminController.createEvent)
 );
 adminRouter.delete('/events/:id/delete', cw(adminController.deleteEvent));
 adminRouter.get('/events/:id', cw(adminController.renderUpdateEvent));
-adminRouter.patch('/events/:id/update', cw(adminController.updateEvent));
+adminRouter.patch(
+  '/events/:id/update',
+  upload.single('picture'),
+  cw(adminController.updateEvent)
+);

@@ -166,26 +166,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create FormData and convert it to a plain object // GPT
         const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-          if (key in data) {
-            data[key] = [...data[key], value];
-          } else {
-            data[key] = value;
-          }
-        });
+        // const data = {};
+        // formData.forEach((value, key) => {
+        //   if (key in data) {
+        //     data[key] = [...data[key], value];
+        //   } else {
+        //     data[key] = value;
+        //   }
+        // });
+
+        // data.picture = '';
 
         const eventId = eventUpdateButton.getAttribute('data-event-id');
+
+        // const imageELement = document.getElementById('image');
+        // imageELement.removeAttribute('value');
 
         try {
           const response = await fetch(`/admin/events/${eventId}/update`, {
             method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+            body: formData,
           });
           if (response.ok) {
+            // const responseData = await response.json();
             window.location.href = '/admin/events'; // Redirect to events list
           } else {
             const responseData = await response.json();

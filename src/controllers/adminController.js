@@ -433,8 +433,7 @@ const adminController = {
   // Update an event
   updateEvent: async (req, res) => {
     if (req.session.admin) {
-      const { name, date, picture, location, time, hobbies, description } =
-        req.body;
+      const { name, date, location, time, hobbies, description } = req.body;
       if (!name || !date || !location || !time || !description) {
         return res
           .status(400)
@@ -449,6 +448,10 @@ const adminController = {
           },
         ],
       });
+      let picture = req.body.picture;
+      if (req.file) {
+        picture = req.file.path;
+      }
 
       // Update the event
       await eventToUpdate.update({
@@ -482,7 +485,9 @@ const adminController = {
       }
 
       // Redirect to the events page after the event creation
-      return res.status(204).json({ message: 'Event modified successfully' });
+      return res
+        .status(200)
+        .json({ message: 'Event modified successfully', event: eventToUpdate });
     } else {
       return res.status(401).redirect('/admin/login');
     }

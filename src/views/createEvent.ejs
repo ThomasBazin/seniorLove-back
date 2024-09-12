@@ -12,7 +12,7 @@
             class="border border-light rounded p-4 shadow-sm mx-auto" id="event-form">
             <h3 class="mb-4">
               <% if(locals.updateEvent) {%>
-                Modifier un evenement
+                Modifier un événement
                 <% } else {%>
                   Créer un événement
                   <% } %>
@@ -42,14 +42,16 @@
               </div>
               <div class="form-group mb-2 w-75%">
                 <label for="image" class="fw-medium">Image</label>
-                <input type="file" placeholder="Url" name="picture" id="image" class="form-control" <% if
-                  (locals.updateEvent) { %> value="<%=event.picture %>"<% } %> />
-                    <% if(locals.event) { %>
-                      <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#imageModal">
-                        <img src="<%= event.picture %>" alt="<%= event.name %>" class="event-img"
-                          style="cursor:pointer;" />
-                      </a>
-                      <% } %>
+
+                <input type="file" name=<% if(locals.updateEvent) {%>"picture"<% } else {%>"photo"<% } %> id="image"
+                    class="form-control" <% if (locals.updateEvent) { %>
+                      value="<%=event.picture %>"<% } %> />
+                          <% if(locals.event) { %>
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#imageModal">
+                              <img src="<%= event.picture %>" alt="<%= event.name %>" class="event-img"
+                                style="cursor:pointer;" />
+                            </a>
+                            <% } %>
               </div>
             </div>
             <div class="form-group mb-4">
