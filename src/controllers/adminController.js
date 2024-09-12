@@ -367,8 +367,11 @@ const adminController = {
           .render('error', { error: 'Missing event id', statusCode: 400 });
       }
       const event = await Event.findByPk(id);
-      const cloudinaryId = event.picture_id;
-      await cloudinary.uploader.destroy(cloudinaryId);
+      if (event.picture_id) {
+        const cloudinaryId = event.picture_id;
+        await cloudinary.uploader.destroy(cloudinaryId);
+      }
+
       if (!event) {
         return res
           .status(404)
