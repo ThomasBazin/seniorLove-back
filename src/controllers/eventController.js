@@ -4,7 +4,7 @@ import { Event, Hobby } from '../models/associations.js';
 export async function getAllEvents(req, res) {
   const allEvents = await Event.findAll({
     include: [{ model: Hobby, as: 'hobbies' }],
-    order: [['created_at', 'DESC']],
+    order: [['date', 'ASC']],
   });
   res.status(200).json(allEvents);
 }
