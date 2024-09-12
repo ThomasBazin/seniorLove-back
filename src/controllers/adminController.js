@@ -299,8 +299,9 @@ const adminController = {
   // Create an event
   createEvent: async (req, res) => {
     if (req.session.admin) {
-      const { name, date, picture, location, time, hobbies, description } =
-        req.body;
+      const { name, date, location, time, hobbies, description } = req.body;
+
+      const picture = req.file.path;
 
       const adminId = req.session.adminId;
 

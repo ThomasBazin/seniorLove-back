@@ -9,6 +9,10 @@ import storage from '../cloudinary/index.js';
 const upload = multer({ storage });
 
 // test multer
-multerRouter.post('/test', upload.single('image'), multerController.testMulter);
+multerRouter.post(
+  '/test',
+  upload.single('picture'),
+  multerController.testMulter
+);
 // we can use upload.array to upload multiple files -> we need to add
 // "multiple" to the input in the form and req.files in the controller
