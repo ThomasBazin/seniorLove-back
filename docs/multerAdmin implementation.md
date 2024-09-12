@@ -43,7 +43,7 @@ pnpm i multer cloudinary multer-storage-cloudinary
 
 3. Create cloudinary account that will give you a cloud name, a api key and an api secret
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 4. Add details to .env file
 
