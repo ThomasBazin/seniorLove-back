@@ -25,6 +25,12 @@ Event.init(
     picture: {
       type: DataTypes.STRING(255),
     },
+    picture_url: {
+      type: DataTypes.STRING(255),
+    },
+    picture_id: {
+      type: DataTypes.STRING(255),
+    },
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,

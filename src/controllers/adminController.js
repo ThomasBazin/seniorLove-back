@@ -301,7 +301,9 @@ const adminController = {
     if (req.session.admin) {
       const { name, date, location, time, hobbies, description } = req.body;
 
-      const picture = req.file.path;
+      const picture = req.file.originalname;
+      const picture_url = req.file.path;
+      const picture_id = req.file.filename;
 
       const adminId = req.session.adminId;
 
@@ -316,6 +318,8 @@ const adminController = {
         location,
         description,
         picture,
+        picture_url,
+        picture_id,
         date,
         time,
         adminId,

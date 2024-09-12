@@ -164,23 +164,10 @@ document.addEventListener('DOMContentLoaded', function () {
       eventUpdateButton.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        // Create FormData and convert it to a plain object // GPT
+  
         const formData = new FormData(form);
-        // const data = {};
-        // formData.forEach((value, key) => {
-        //   if (key in data) {
-        //     data[key] = [...data[key], value];
-        //   } else {
-        //     data[key] = value;
-        //   }
-        // });
-
-        // data.picture = '';
 
         const eventId = eventUpdateButton.getAttribute('data-event-id');
-
-        // const imageELement = document.getElementById('image');
-        // imageELement.removeAttribute('value');
 
         try {
           const response = await fetch(`/admin/events/${eventId}/update`, {
@@ -188,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
             body: formData,
           });
           if (response.ok) {
-            // const responseData = await response.json();
             window.location.href = '/admin/events'; // Redirect to events list
           } else {
             const responseData = await response.json();
