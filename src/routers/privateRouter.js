@@ -55,3 +55,5 @@ privateRouter.post(
   checkLoggedIn,
   cw(messageController.sendMessageToUser)
 );
+
+privateRouter.delete('/users/me/delete', cw(userController.deleteUser));
