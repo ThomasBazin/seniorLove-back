@@ -366,7 +366,7 @@ export async function addUserToEvent(req, res) {
   const userId = parseInt(req.user.userId, 10);
 
   if (!(await isActiveUser(userId))) {
-    res.status(403).json({ blocked: true });
+    return res.status(403).json({ blocked: true });
   }
   /*const me = await User.findByPk(userId);
   if (!me || me.status === 'banned' || me.status === 'pending') {
@@ -400,7 +400,7 @@ export async function deleteUserToEvent(req, res) {
 
   const user = await User.findByPk(userId);
   if (!user || user.status === 'pending' || user.status === 'banned') {
-    return res.status(401).json({ blocked: true });
+    return res.status(403).json({ blocked: true });
   }
 
   await user.removeEvent(event);
