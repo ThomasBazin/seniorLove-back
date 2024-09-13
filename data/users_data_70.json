@@ -7,7 +7,7 @@
     "picture": "https://images.pexels.com/photos/4057763/pexels-photo-4057763.jpeg",
     "email": "jacqueline@example.com",
     "password": "jacqueline1950!",
-    "status": "pending"
+    "status": "active"
   },
   {
     "name": "Michel",
@@ -17,7 +17,7 @@
     "picture": "https://img.freepik.com/photos-gratuite/homme-age-moyen-prend-photos-appareil-pour-journee-mondiale-photographie_23-2151672419.jpg?t=st=1725829128~exp=1725832728~hmac=62278ffdd69d8ff83371ff2f087ddd44c8176798c90ab38c86ad9bd84fdc8d19&w=360",
     "email": "michel@example.com",
     "password": "michel1948@",
-    "status": "banned"
+    "status": "active"
   },
   {
     "name": "Renée",
@@ -107,7 +107,7 @@
     "picture": "https://img.freepik.com/photos-gratuite/senior-homme-caucasien-utilisant-niveaux-gris-machine-ecrire-vintage_53876-31560.jpg?t=st=1725824865~exp=1725828465~hmac=f79850aa52bea5430ad6e771bd631c57781f385a0d16056dc76a7757430680d7&w=826",
     "email": "jacques.dubois@example.com",
     "password": "jacques1945!",
-    "status": "active"
+    "status": "banned"
   },
   {
     "name": "Henri",
@@ -147,7 +147,7 @@
     "picture": "https://img.freepik.com/photos-gratuite/vieil-homme-elegant-dans-parc-automne-ensoleille_1157-19117.jpg?t=st=1725825124~exp=1725828724~hmac=ed0a87a3e495e4102c9c48bc384b67ed6c5101a1081bdf4f0711ef8a7f0f8952&w=996",
     "email": "eric.martin@example.com",
     "password": "eric1950!",
-    "status": "active"
+    "status": "pending"
   },
   {
     "name": "Alain",
