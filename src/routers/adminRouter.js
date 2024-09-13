@@ -33,3 +33,5 @@ adminRouter.patch(
   uploadEventPhoto.single('picture'),
   cw(adminController.updateEvent)
 );
+
+adminRouter.get('*', cw(adminController.render404Error));

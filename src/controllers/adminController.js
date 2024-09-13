@@ -539,6 +539,12 @@ const adminController = {
       return res.status(401).redirect('/admin/login');
     }
   },
+  render404Error: async (req, res) => {
+    return res.status(404).render('error', {
+      error: 'Page not found',
+      statusCode: 404,
+    });
+  },
 };
 
 export default adminController;
