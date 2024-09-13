@@ -281,6 +281,10 @@ export async function updateUserProfile(req, res) {
         as: 'hobbies',
         attributes: ['id', 'name'],
       },
+      {
+        association: 'events',
+        attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
+      },
     ],
   });
 
@@ -294,6 +298,8 @@ export async function updateUserProfile(req, res) {
     picture: updatedUser.picture,
     email: updatedUser.email,
     hobbies: updatedUser.hobbies,
+    age: computeAge(updatedUser.birth_date),
+    events: updatedUser.events,
   });
 }
 
