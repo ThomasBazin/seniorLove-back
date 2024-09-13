@@ -28,6 +28,12 @@
   height: auto; /* Maintain aspect ratio */
 }
 
+.active-link {
+  font-weight: 600;
+  color: #fd0901;
+  font-style: oblique;
+}
+
 @media (min-width: 576px) {
   .custom-table {
     font-size: 1rem; /* Adjust size as needed */
