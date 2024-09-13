@@ -8,9 +8,9 @@
     "prestart": "node replace-vars.js",
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql",
-    "db:populate": "node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables_1.sql && psql -U seniorlove -d seniorlove -f data/populate_tables_2.sql",
-    "db:reset": "pnpm run db:create && node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables_1.sql && psql -U seniorlove -d seniorlove -f data/populate_tables_2.sql"
+    "db:create": "psql -U senior -d senior -f data/create_tables.sql",
+    "db:populate": "node data/populate_tables_users.js && psql -U senior -d senior -f data/populate_tables_1.sql && psql -U senior -d senior -f data/populate_tables_2.sql",
+    "db:reset": "pnpm run db:create && node data/populate_tables_users.js && psql -U senior -d senior -f data/populate_tables_1.sql && psql -U senior -d senior -f data/populate_tables_2.sql"
   },
   "keywords": [],
   "author": "Coada EMILIAN, Thomas BAZIN, Widi MARTIAL, Oliva DRUYER, Kevin LEVEQUE",
