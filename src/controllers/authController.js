@@ -88,7 +88,7 @@ export async function loginUser(req, res) {
   const { error } = loginSchema.validate(req.body);
 
   if (error) {
-    return res.status(403).json({ message: error.message });
+    return res.status(401).json({ message: error.message });
   }
 
   const foundUser = await User.findOne({
@@ -112,7 +112,7 @@ export async function loginUser(req, res) {
   const jwtContent = { userId: foundUser.id };
 
   const token = jsonwebtoken.sign(jwtContent, process.env.TOKEN_KEY, {
-    expiresIn: '1m',
+    expiresIn: '3s',
     algorithm: 'HS256',
   });
 
