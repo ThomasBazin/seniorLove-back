@@ -119,7 +119,7 @@ export async function sendMessageToUser(req, res) {
   const { message, receiver_id } = req.body;
 
   if (!(await isActiveUser(req.body.receiver_id))) {
-    return res.status(400).json({ message: 'Receiver not found' });
+    return res.status(403).json({ message: 'Receiver not found' });
   }
 
   const messageSent = await User_message.create({
