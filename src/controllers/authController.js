@@ -112,7 +112,7 @@ export async function loginUser(req, res) {
   const jwtContent = { userId: foundUser.id };
 
   const token = jsonwebtoken.sign(jwtContent, process.env.TOKEN_KEY, {
-    expiresIn: '3s',
+    expiresIn: '3h',
     algorithm: 'HS256',
   });
 
