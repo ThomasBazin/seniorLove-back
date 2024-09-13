@@ -61,7 +61,6 @@ const adminController = {
       req.session.admin = true;
       req.session.adminId = foundAdmin.id;
     }
-
     // Redirect to dashboard or another page after successful login
     return res.status(200).redirect('/admin/users/pending');
   },
