@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   eventCancelButton();
   eventSubmitButton();
   setMinTimeAndDate();
+  addActiveEffect();
 
   let statusValue = ''; // Initialize statusValue variable
 
@@ -164,26 +165,14 @@ document.addEventListener('DOMContentLoaded', function () {
       eventUpdateButton.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        // Create FormData and convert it to a plain object // GPT
         const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-          if (key in data) {
-            data[key] = [...data[key], value];
-          } else {
-            data[key] = value;
-          }
-        });
 
         const eventId = eventUpdateButton.getAttribute('data-event-id');
 
         try {
           const response = await fetch(`/admin/events/${eventId}/update`, {
             method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+            body: formData,
           });
           if (response.ok) {
             window.location.href = '/admin/events'; // Redirect to events list
@@ -223,5 +212,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }
+  }
+
+  function addActiveEffect() {
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('.nav-link');
+
+    links.forEach((link) => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active-link');
+      }
+    });
   }
 });
