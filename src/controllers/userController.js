@@ -16,6 +16,8 @@ import fs from 'fs'; // ES6 module syntax
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 import { userPhotoStorage } from '../cloudinary/index.js';
+// Configure Multer to use Cloudinary storage
+const upload = multer({ storage: userPhotoStorage });
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -421,78 +423,55 @@ export async function deleteUserToEvent(req, res) {
 }
 
 // Upload user photo function
-export async function uploadUserPhoto(req, res) {
-  const userId = parseInt(req.user.userId, 10);
+export const uploadUserPhoto = [
+  async (req, res) => {
+    const userId = parseInt(req.user.userId, 10);
 
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
-  }
-
-  try {
-    const { path: filePath, filename } = req.file;
-    console.log(filePath);
-
-    // Upload the new image to Cloudinary
-    const result = await cloudinary.uploader.upload(filePath);
-
-    // Retrieve user to get the old picture ID
-    const user = await User.findByPk(userId);
-    if (!user) {
-      throw new Error('User not found');
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
     }
-
-    if (user.picture_id) {
-      try {
-        await cloudinary.uploader.destroy(user.picture_id);
-      } catch (err) {
-        console.error(
-          'Error deleting old picture from Cloudinary:',
-          err.message
-        );
-        // Proceed to update user even if old picture delete fails
-      }
-    }
-
-    // Update user's picture URL in the database
-    user.picture = filePath;
-
-    const startIndex = filePath.indexOf('user_photos');
-    const slicedUrl = filePath.substring(startIndex);
-
-    // Find the position of the '.webp' extension
-    const extensionIndex = slicedUrl.lastIndexOf('.'); // lastIndexOf to handle file extensions correctly
-
-    // Find the position of the first '.'
-    const dotIndex = slicedUrl.indexOf('.');
-
-    // Slice to keep only the part before the first '.'
-    user.picture_id =
-      dotIndex !== -1 ? slicedUrl.substring(0, dotIndex) : slicedUrl;
-
-    await user.save();
-
-    // Remove the file from the local server
     try {
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      } else {
-        console.warn('File not found:', filePath);
-      }
-    } catch (err) {
-      console.error('Error deleting local file:', err.message);
-    }
+      // The uploaded file is available in req.file
+      const { path: filePath, filename } = req.file;
 
-    res.status(200).json({
-      message: 'Photo updated successfully',
-      pictureUrl: filePath,
-    });
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ message: 'Failed to upload photo', error: error.message });
-  }
-}
+      // Retrieve user to get the old picture ID
+      const user = await User.findByPk(userId);
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      // If there is an existing picture, remove it from Cloudinary
+      if (user.picture_id) {
+        try {
+          await cloudinary.uploader.destroy(user.picture_id);
+        } catch (err) {
+          console.error(
+            'Error deleting old picture from Cloudinary:',
+            err.message
+          );
+          // Proceed to update user even if old picture delete fails
+        }
+      }
+
+      // Update user's picture URL and picture ID
+      user.picture = req.file.path;
+      user.picture_id = req.file.filename;
+
+      await user.save();
+
+      // Return success response
+      res.status(200).json({
+        message: 'Photo updated successfully',
+        pictureUrl: req.file.path,
+      });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ message: 'Failed to upload photo', error: error.message });
+    }
+  },
+];
 
 //Récupérer tous les évenements auquels s'est inscrit un utilisateur
 export async function getAllEventsUser(req, res) {}
