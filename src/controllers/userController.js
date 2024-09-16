@@ -12,6 +12,10 @@ import { sequelize } from '../models/index.js';
 import { computeAge } from '../utils/computeAge.js';
 import jsonwebtoken from 'jsonwebtoken';
 import { Scrypt } from '../auth/Scrypt.js';
+import fs from 'fs'; // ES6 module syntax
+import { v2 as cloudinary } from 'cloudinary';
+import multer from 'multer';
+import { userPhotoStorage } from '../cloudinary/index.js';
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -208,12 +212,15 @@ export async function updateUserProfile(req, res) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
+  if (picture_id) {
+    let picture_id = foundUser.picture_id;
+  }
+
   const {
     name,
     birth_date,
     description,
     gender,
-    picture,
     new_password,
     old_password,
     hobbies,
@@ -411,6 +418,80 @@ export async function deleteUserToEvent(req, res) {
 
   await user.removeEvent(event);
   res.status(204).end();
+}
+
+// Upload user photo function
+export async function uploadUserPhoto(req, res) {
+  const userId = parseInt(req.user.userId, 10);
+
+  if (!req.file) {
+    return res.status(400).json({ message: 'No file uploaded' });
+  }
+
+  try {
+    const { path: filePath, filename } = req.file;
+    console.log(filePath);
+
+    // Upload the new image to Cloudinary
+    const result = await cloudinary.uploader.upload(filePath);
+
+    // Retrieve user to get the old picture ID
+    const user = await User.findByPk(userId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    if (user.picture_id) {
+      try {
+        await cloudinary.uploader.destroy(user.picture_id);
+      } catch (err) {
+        console.error(
+          'Error deleting old picture from Cloudinary:',
+          err.message
+        );
+        // Proceed to update user even if old picture delete fails
+      }
+    }
+
+    // Update user's picture URL in the database
+    user.picture = filePath;
+
+    const startIndex = filePath.indexOf('user_photos');
+    const slicedUrl = filePath.substring(startIndex);
+
+    // Find the position of the '.webp' extension
+    const extensionIndex = slicedUrl.lastIndexOf('.'); // lastIndexOf to handle file extensions correctly
+
+    // Find the position of the first '.'
+    const dotIndex = slicedUrl.indexOf('.');
+
+    // Slice to keep only the part before the first '.'
+    user.picture_id =
+      dotIndex !== -1 ? slicedUrl.substring(0, dotIndex) : slicedUrl;
+
+    await user.save();
+
+    // Remove the file from the local server
+    try {
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      } else {
+        console.warn('File not found:', filePath);
+      }
+    } catch (err) {
+      console.error('Error deleting local file:', err.message);
+    }
+
+    res.status(200).json({
+      message: 'Photo updated successfully',
+      pictureUrl: filePath,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: 'Failed to upload photo', error: error.message });
+  }
 }
 
 //Récupérer tous les évenements auquels s'est inscrit un utilisateur
