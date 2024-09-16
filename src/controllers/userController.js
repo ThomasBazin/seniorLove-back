@@ -171,6 +171,14 @@ export async function getConnectedUser(req, res) {
 export async function updateUserProfile(req, res) {
   const myId = parseInt(req.user.userId, 10);
 
+  const hobbySchema = Joi.object({
+    id: Joi.number().integer().min(1).required(),
+    name: Joi.string().required(),
+  });
+
+  // Define the array schema for hobbies
+  const hobbiesArraySchema = Joi.array().items(hobbySchema).optional();
+
   const updateUserSchema = Joi.object({
     name: Joi.string().max(50),
     birth_date: Joi.date()
@@ -179,6 +187,7 @@ export async function updateUserProfile(req, res) {
     description: Joi.string().optional(),
     gender: Joi.string().max(10).valid('male', 'female', 'other').optional(),
     picture: Joi.string().max(255),
+    picture_id: Joi.string().max(255),
     email: Joi.string().max(255).email({ minDomainSegments: 2 }).optional(),
     new_password: Joi.string().min(12).max(255).optional(),
     repeat_new_password: Joi.string().valid(Joi.ref('new_password')).optional(),
@@ -186,9 +195,8 @@ export async function updateUserProfile(req, res) {
       is: Joi.exist(),
       then: Joi.required(),
     }),
-    hobbies: Joi.array().items(Joi.number().integer().min(1)).optional(),
+    hobbies: hobbiesArraySchema,
   }).min(1);
-
   // Validate request body using Joi
   const { error } = updateUserSchema.validate(req.body);
   if (error) {
@@ -214,15 +222,13 @@ export async function updateUserProfile(req, res) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  if (picture_id) {
-    let picture_id = foundUser.picture_id;
-  }
-
   const {
     name,
     birth_date,
     description,
     gender,
+    picture,
+    picture_id,
     new_password,
     old_password,
     hobbies,
@@ -236,6 +242,7 @@ export async function updateUserProfile(req, res) {
     description: description || foundUser.description,
     gender: gender || foundUser.gender,
     picture: picture || foundUser.picture,
+    picture_id: picture_id || foundUser.picture_id,
     email: req.body.email || foundUser.email,
   };
 
@@ -266,21 +273,48 @@ export async function updateUserProfile(req, res) {
   // Update the user's profile information in the database
   await foundUser.update(newProfile);
 
-  // Update hobbies if provided
-  if (Array.isArray(hobbies)) {
-    const updatedHobbies = await Hobby.findAll({
-      where: { id: hobbies },
-      attributes: ['id', 'name'],
-    });
+  // Remove existing hobby associations for the event
+  await User_hobby.destroy({
+    where: {
+      user_id: foundUser.id,
+    },
+  });
 
-    //Check if any hobbies were found
-    if (!updatedHobbies.length) {
-      return res.status(404).json({ message: 'Hobbies not found' });
-    }
-
-    // Update user's hobbies
-    await foundUser.setHobbies(updatedHobbies);
+  // // Check if hobbies is an array with elements
+  if (Array.isArray(hobbies) && hobbies.length > 0) {
+    // Map hobbies to an array of Event_hobby entries
+    const hobbiesArray = hobbies.map((hobby) => ({
+      user_id: foundUser.id,
+      hobby_id: hobby.id,
+    }));
+    // Bulk create hobby associations
+    await User_hobby.bulkCreate(hobbiesArray);
+    // Check if hobbies is a single value
   }
+  // else if (hobbies) {
+  //   // Create a single hobby association
+  //   const hobby = {
+  //     user_id: foundUser.id,
+  //     hobby_id: hobbies,
+  //   };
+  //   await User_hobby.create(hobby);
+  // }
+
+  // Update hobbies if provided
+  // if (Array.isArray(hobbies)) {
+  //   const updatedHobbies = await Hobby.findAll({
+  //     where: { id: hobbies },
+  //     attributes: ['id', 'name'],
+  //   });
+
+  //   //Check if any hobbies were found
+  //   if (!updatedHobbies.length) {
+  //     return res.status(404).json({ message: 'Hobbies not found' });
+  //   }
+
+  //   // Update user's hobbies
+  //   await foundUser.setHobbies(updatedHobbies);
+  // }
 
   // Reload the user to include the updated hobbies
   const updatedUser = await User.findByPk(myId, {
@@ -463,6 +497,7 @@ export const uploadUserPhoto = [
       res.status(200).json({
         message: 'Photo updated successfully',
         pictureUrl: req.file.path,
+        pictureId: req.file.filename,
       });
     } catch (error) {
       console.error(error);
