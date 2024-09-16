@@ -42,6 +42,7 @@ export async function getAllUserContacts(req, res) {
         as: 'received_messages',
         order: [['created_at', 'DESC']],
         where: { sender_id: myId },
+        required: false,
         attributes: { exclude: ['updated_at'] },
         include: {
           association: 'sender',
@@ -53,6 +54,7 @@ export async function getAllUserContacts(req, res) {
         as: 'sent_messages',
         order: [['created_at', 'DESC']],
         where: { receiver_id: myId },
+        required: false,
         attributes: { exclude: ['updated_at'] },
         include: {
           association: 'sender',
@@ -61,6 +63,12 @@ export async function getAllUserContacts(req, res) {
       },
     ],
     attributes: ['id', 'name', 'picture'],
+    where: {
+      [Op.or]: [
+        { '$received_messages.id$': { [Op.ne]: null } }, // Users who received messages from you
+        { '$sent_messages.id$': { [Op.ne]: null } }, // Users you sent messages to
+      ],
+    },
   });
   // Send the result as is, if it's an empty array (no match)
   if (!myContacts.length) {
