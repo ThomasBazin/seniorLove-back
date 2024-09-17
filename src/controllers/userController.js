@@ -114,6 +114,7 @@ export async function getConnectedUser(req, res) {
       'gender',
       'picture',
       'email',
+      'status',
     ],
     include: [
       {
@@ -131,30 +132,9 @@ export async function getConnectedUser(req, res) {
     return res.status(401).json({ blocked: true });
   }
 
-  // Prepare an object to be sent, adding age field (computed)
-  const {
-    id,
-    name,
-    birth_date,
-    description,
-    gender,
-    picture,
-    email,
-    events,
-    hobbies,
-  } = me;
-
   const meToSend = {
-    id,
-    name,
-    birth_date,
-    age: computeAge(birth_date),
-    description,
-    gender,
-    picture,
-    email,
-    events,
-    hobbies,
+    ...me.toJSON(),
+    age: computeAge(me.birth_date),
   };
 
   // Send my data
