@@ -172,35 +172,39 @@ export async function updateUserProfile(req, res) {
   const myId = parseInt(req.user.userId, 10);
 
   const hobbySchema = Joi.object({
-    id: Joi.number().integer().min(1).required(),
-    name: Joi.string().required(),
+    id: Joi.number().integer().min(1).optional(),
+    name: Joi.string().optional(),
+    users_hobbies: Joi.any().optional(),
   });
 
-  // Define the array schema for hobbies
   const hobbiesArraySchema = Joi.array().items(hobbySchema).optional();
 
   const updateUserSchema = Joi.object({
-    name: Joi.string().max(50),
+    name: Joi.string().max(50).optional(),
     birth_date: Joi.date()
       .less(new Date(new Date().setFullYear(new Date().getFullYear() - 60)))
       .optional(),
     description: Joi.string().optional(),
     gender: Joi.string().max(10).valid('male', 'female', 'other').optional(),
-    picture: Joi.string().max(255),
-    picture_id: Joi.string().max(255),
+    picture: Joi.string().max(255).optional(),
+    picture_id: Joi.string().max(255).optional(),
     email: Joi.string().max(255).email({ minDomainSegments: 2 }).optional(),
     new_password: Joi.string().min(12).max(255).optional(),
     repeat_new_password: Joi.string().valid(Joi.ref('new_password')).optional(),
-    old_password: Joi.string().when('new_password', {
-      is: Joi.exist(),
-      then: Joi.required(),
-    }),
-    hobbies: hobbiesArraySchema,
+    old_password: Joi.string()
+      .when('new_password', {
+        is: Joi.exist(),
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      })
+      .optional(),
+    hobbies: hobbiesArraySchema.optional(),
   }).min(1);
-  // Validate request body using Joi
+
   const { error } = updateUserSchema.validate(req.body);
   if (error) {
     const errorMessages = error.details.map((detail) => detail.message);
+    console.log('Validation error:', errorMessages);
     return res.status(400).json({ messages: errorMessages });
   }
 
@@ -215,10 +219,12 @@ export async function updateUserProfile(req, res) {
   });
 
   if (!foundUser) {
+    console.log('User not found');
     return res.status(404).json({ message: 'User not found' });
   }
 
   if (foundUser.status === 'pending' || foundUser.status === 'banned') {
+    console.log('User is unauthorized due to status:', foundUser.status);
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
@@ -233,9 +239,9 @@ export async function updateUserProfile(req, res) {
     old_password,
     hobbies,
     repeat_new_password,
+    email,
   } = req.body;
 
-  // Create an object to update the user's profile
   const newProfile = {
     name: name || foundUser.name,
     birth_date: birth_date || foundUser.birth_date,
@@ -243,17 +249,16 @@ export async function updateUserProfile(req, res) {
     gender: gender || foundUser.gender,
     picture: picture || foundUser.picture,
     picture_id: picture_id || foundUser.picture_id,
-    email: req.body.email || foundUser.email,
+    email: email || foundUser.email,
   };
 
-  // Update if a new password is provided
   if (new_password) {
     if (!old_password) {
       return res
         .status(400)
         .json({ message: 'Old password is required to change the password.' });
     }
-    //Verify if the old password is correct
+
     const isOldPasswordValid = await Scrypt.compare(
       old_password,
       foundUser.password
@@ -270,53 +275,23 @@ export async function updateUserProfile(req, res) {
     newProfile.password = hashedNewPassword;
   }
 
-  // Update the user's profile information in the database
   await foundUser.update(newProfile);
 
-  // Remove existing hobby associations for the event
   await User_hobby.destroy({
     where: {
       user_id: foundUser.id,
     },
   });
 
-  // // Check if hobbies is an array with elements
   if (Array.isArray(hobbies) && hobbies.length > 0) {
-    // Map hobbies to an array of Event_hobby entries
     const hobbiesArray = hobbies.map((hobby) => ({
       user_id: foundUser.id,
       hobby_id: hobby.id,
     }));
-    // Bulk create hobby associations
+
     await User_hobby.bulkCreate(hobbiesArray);
-    // Check if hobbies is a single value
   }
-  // else if (hobbies) {
-  //   // Create a single hobby association
-  //   const hobby = {
-  //     user_id: foundUser.id,
-  //     hobby_id: hobbies,
-  //   };
-  //   await User_hobby.create(hobby);
-  // }
 
-  // Update hobbies if provided
-  // if (Array.isArray(hobbies)) {
-  //   const updatedHobbies = await Hobby.findAll({
-  //     where: { id: hobbies },
-  //     attributes: ['id', 'name'],
-  //   });
-
-  //   //Check if any hobbies were found
-  //   if (!updatedHobbies.length) {
-  //     return res.status(404).json({ message: 'Hobbies not found' });
-  //   }
-
-  //   // Update user's hobbies
-  //   await foundUser.setHobbies(updatedHobbies);
-  // }
-
-  // Reload the user to include the updated hobbies
   const updatedUser = await User.findByPk(myId, {
     include: [
       {
@@ -331,7 +306,6 @@ export async function updateUserProfile(req, res) {
     ],
   });
 
-  // Return the updated user profile as a response
   return res.status(200).json({
     id: updatedUser.id,
     name: updatedUser.name,
