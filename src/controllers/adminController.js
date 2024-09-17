@@ -36,9 +36,10 @@ const adminController = {
     const { error } = loginSchema.validate(req.body);
 
     if (error) {
-      return res
-        .status(400)
-        .render('error', { error: error.message, statusCode: 400 });
+      return res.status(400).render('login', {
+        error: "Format de l'email incorrect",
+        statusCode: 400,
+      });
     }
 
     // Find the admin user in the database
@@ -47,16 +48,20 @@ const adminController = {
     });
 
     if (!foundAdmin) {
-      return res
-        .status(404)
-        .render('error', { error: 'Admin not found', statusCode: 404 });
+      return res.status(401).render('login', {
+        error: 'Email et/ou Mot de passe invalide',
+        statusCode: 404,
+      });
     }
 
     // Compare the passwords
     const isGood = await Scrypt.compare(password, foundAdmin.password);
 
     if (!isGood) {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).render('login', {
+        error: 'Email et/ou Mot de passe invalide',
+        statusCode: 404,
+      });
     } else {
       req.session.admin = true;
       req.session.adminId = foundAdmin.id;
@@ -482,14 +487,14 @@ const adminController = {
       // Check if a new file was uploaded
       if (req.file) {
         // Extract the old public ID for the image from picture_id
-        const oldPublicId = picture_id;
+        const oldPictureId = picture_id;
 
         // Update picture path and ID with the new file details
         picture = req.file.path;
         picture_id = req.file.filename;
 
         // Delete the old image from Cloudinary
-        await cloudinary.uploader.destroy(oldPublicId);
+        await cloudinary.uploader.destroy(oldPictureId);
       }
 
       // Update the event record with the new details

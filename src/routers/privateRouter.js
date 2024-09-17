@@ -4,6 +4,10 @@ import * as messageController from '../controllers/messageController.js';
 import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
 import { checkLoggedIn } from '../middlewares/checkLoggedIn.js';
 
+import multer from 'multer';
+import { userPhotoStorage } from '../cloudinary/index.js';
+const uploadUserPhoto = multer({ storage: userPhotoStorage });
+
 export const privateRouter = Router();
 
 privateRouter.get('/users/me', cw(userController.getConnectedUser));
@@ -12,6 +16,12 @@ privateRouter.patch(
   '/users/me',
   checkLoggedIn,
   cw(userController.updateUserProfile)
+);
+
+privateRouter.post(
+  '/users/:userId/uploadPhoto',
+  uploadUserPhoto.single('new-image'),
+  userController.uploadUserPhoto
 );
 
 privateRouter.delete('/users/me', cw(userController.deleteUser));
