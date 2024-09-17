@@ -12,6 +12,12 @@ import { sequelize } from '../models/index.js';
 import { computeAge } from '../utils/computeAge.js';
 import jsonwebtoken from 'jsonwebtoken';
 import { Scrypt } from '../auth/Scrypt.js';
+import fs from 'fs'; // ES6 module syntax
+import { v2 as cloudinary } from 'cloudinary';
+import multer from 'multer';
+import { userPhotoStorage } from '../cloudinary/index.js';
+// Configure Multer to use Cloudinary storage
+const upload = multer({ storage: userPhotoStorage });
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -165,28 +171,40 @@ export async function getConnectedUser(req, res) {
 export async function updateUserProfile(req, res) {
   const myId = parseInt(req.user.userId, 10);
 
+  const hobbySchema = Joi.object({
+    id: Joi.number().integer().min(1).optional(),
+    name: Joi.string().optional(),
+    users_hobbies: Joi.any().optional(),
+  });
+
+  const hobbiesArraySchema = Joi.array().items(hobbySchema).optional();
+
   const updateUserSchema = Joi.object({
-    name: Joi.string().max(50),
+    name: Joi.string().max(50).optional(),
     birth_date: Joi.date()
       .less(new Date(new Date().setFullYear(new Date().getFullYear() - 60)))
       .optional(),
     description: Joi.string().optional(),
     gender: Joi.string().max(10).valid('male', 'female', 'other').optional(),
-    picture: Joi.string().max(255),
+    picture: Joi.string().max(255).optional(),
+    picture_id: Joi.string().max(255).optional(),
     email: Joi.string().max(255).email({ minDomainSegments: 2 }).optional(),
     new_password: Joi.string().min(12).max(255).optional(),
     repeat_new_password: Joi.string().valid(Joi.ref('new_password')).optional(),
-    old_password: Joi.string().when('new_password', {
-      is: Joi.exist(),
-      then: Joi.required(),
-    }),
-    hobbies: Joi.array().items(Joi.number().integer().min(1)).optional(),
+    old_password: Joi.string()
+      .when('new_password', {
+        is: Joi.exist(),
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      })
+      .optional(),
+    hobbies: hobbiesArraySchema.optional(),
   }).min(1);
 
-  // Validate request body using Joi
   const { error } = updateUserSchema.validate(req.body);
   if (error) {
     const errorMessages = error.details.map((detail) => detail.message);
+    console.log('Validation error:', errorMessages);
     return res.status(400).json({ messages: errorMessages });
   }
 
@@ -201,10 +219,12 @@ export async function updateUserProfile(req, res) {
   });
 
   if (!foundUser) {
+    console.log('User not found');
     return res.status(404).json({ message: 'User not found' });
   }
 
   if (foundUser.status === 'pending' || foundUser.status === 'banned') {
+    console.log('User is unauthorized due to status:', foundUser.status);
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
@@ -214,30 +234,31 @@ export async function updateUserProfile(req, res) {
     description,
     gender,
     picture,
+    picture_id,
     new_password,
     old_password,
     hobbies,
     repeat_new_password,
+    email,
   } = req.body;
 
-  // Create an object to update the user's profile
   const newProfile = {
     name: name || foundUser.name,
     birth_date: birth_date || foundUser.birth_date,
     description: description || foundUser.description,
     gender: gender || foundUser.gender,
     picture: picture || foundUser.picture,
-    email: req.body.email || foundUser.email,
+    picture_id: picture_id || foundUser.picture_id,
+    email: email || foundUser.email,
   };
 
-  // Update if a new password is provided
   if (new_password) {
     if (!old_password) {
       return res
         .status(400)
         .json({ message: 'Old password is required to change the password.' });
     }
-    //Verify if the old password is correct
+
     const isOldPasswordValid = await Scrypt.compare(
       old_password,
       foundUser.password
@@ -254,26 +275,23 @@ export async function updateUserProfile(req, res) {
     newProfile.password = hashedNewPassword;
   }
 
-  // Update the user's profile information in the database
   await foundUser.update(newProfile);
 
-  // Update hobbies if provided
-  if (Array.isArray(hobbies)) {
-    const updatedHobbies = await Hobby.findAll({
-      where: { id: hobbies },
-      attributes: ['id', 'name'],
-    });
+  await User_hobby.destroy({
+    where: {
+      user_id: foundUser.id,
+    },
+  });
 
-    //Check if any hobbies were found
-    if (!updatedHobbies.length) {
-      return res.status(404).json({ message: 'Hobbies not found' });
-    }
+  if (Array.isArray(hobbies) && hobbies.length > 0) {
+    const hobbiesArray = hobbies.map((hobby) => ({
+      user_id: foundUser.id,
+      hobby_id: hobby.id,
+    }));
 
-    // Update user's hobbies
-    await foundUser.setHobbies(updatedHobbies);
+    await User_hobby.bulkCreate(hobbiesArray);
   }
 
-  // Reload the user to include the updated hobbies
   const updatedUser = await User.findByPk(myId, {
     include: [
       {
@@ -288,7 +306,6 @@ export async function updateUserProfile(req, res) {
     ],
   });
 
-  // Return the updated user profile as a response
   return res.status(200).json({
     id: updatedUser.id,
     name: updatedUser.name,
@@ -412,6 +429,58 @@ export async function deleteUserToEvent(req, res) {
   await user.removeEvent(event);
   res.status(204).end();
 }
+
+// Upload user photo function
+export const uploadUserPhoto = [
+  async (req, res) => {
+    const userId = parseInt(req.user.userId, 10);
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    try {
+      // The uploaded file is available in req.file
+      const { path: filePath, filename } = req.file;
+
+      // Retrieve user to get the old picture ID
+      const user = await User.findByPk(userId);
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      // If there is an existing picture, remove it from Cloudinary
+      if (user.picture_id) {
+        try {
+          await cloudinary.uploader.destroy(user.picture_id);
+        } catch (err) {
+          console.error(
+            'Error deleting old picture from Cloudinary:',
+            err.message
+          );
+          // Proceed to update user even if old picture delete fails
+        }
+      }
+
+      // Update user's picture URL and picture ID
+      user.picture = req.file.path;
+      user.picture_id = req.file.filename;
+
+      await user.save();
+
+      // Return success response
+      res.status(200).json({
+        message: 'Photo updated successfully',
+        pictureUrl: req.file.path,
+        pictureId: req.file.filename,
+      });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ message: 'Failed to upload photo', error: error.message });
+    }
+  },
+];
 
 //Récupérer tous les évenements auquels s'est inscrit un utilisateur
 export async function getAllEventsUser(req, res) {}

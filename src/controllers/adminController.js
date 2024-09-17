@@ -487,14 +487,14 @@ const adminController = {
       // Check if a new file was uploaded
       if (req.file) {
         // Extract the old public ID for the image from picture_id
-        const oldPublicId = picture_id;
+        const oldPictureId = picture_id;
 
         // Update picture path and ID with the new file details
         picture = req.file.path;
         picture_id = req.file.filename;
 
         // Delete the old image from Cloudinary
-        await cloudinary.uploader.destroy(oldPublicId);
+        await cloudinary.uploader.destroy(oldPictureId);
       }
 
       // Update the event record with the new details

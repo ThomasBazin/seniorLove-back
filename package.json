@@ -8,15 +8,16 @@
     "prestart": "node replace-vars.js",
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "db:create": "psql -U senior -d senior -f data/create_tables.sql",
-    "db:populate": "node data/populate_tables_users.js && psql -U senior -d senior -f data/populate_tables_1.sql && psql -U senior -d senior -f data/populate_tables_2.sql",
-    "db:reset": "pnpm run db:create && node data/populate_tables_users.js && psql -U senior -d senior -f data/populate_tables_1.sql && psql -U senior -d senior -f data/populate_tables_2.sql"
+    "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql",
+    "db:populate": "node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables_1.sql && psql -U seniorlove -d seniorlove -f data/populate_tables_2.sql",
+    "db:reset": "pnpm run db:create && node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables_1.sql && psql -U seniorlove -d seniorlove -f data/populate_tables_2.sql"
   },
   "keywords": [],
-  "author": "Coada EMILIAN, Thomas BAZIN, Widi MARTIAL, Oliva DRUYER, Kevin LEVEQUE",
+  "author": "Emilian COADA, Thomas BAZIN, Widi MARTIAL, Oliva DRUYER, Kevin LEVEQUE",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "busboy": "^1.6.0",
     "cloudinary": "^2.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -33,9 +34,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
-    "eslint": "^9.4.0",
+    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.9.0",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3"
