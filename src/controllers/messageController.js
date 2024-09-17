@@ -40,8 +40,9 @@ export async function getAllUserContacts(req, res) {
       {
         model: User_message,
         as: 'received_messages',
-        order: [['created_at', 'DESC']],
+        // order: [['created_at', 'DESC']],
         where: { sender_id: myId },
+        required: false,
         attributes: { exclude: ['updated_at'] },
         include: {
           association: 'sender',
@@ -51,8 +52,9 @@ export async function getAllUserContacts(req, res) {
       {
         model: User_message,
         as: 'sent_messages',
-        order: [['created_at', 'DESC']],
+        // order: [['created_at', 'DESC']],
         where: { receiver_id: myId },
+        required: false,
         attributes: { exclude: ['updated_at'] },
         include: {
           association: 'sender',
@@ -61,6 +63,16 @@ export async function getAllUserContacts(req, res) {
       },
     ],
     attributes: ['id', 'name', 'picture'],
+    where: {
+      [Op.or]: [
+        { '$received_messages.id$': { [Op.ne]: null } }, // Users who received messages from you
+        { '$sent_messages.id$': { [Op.ne]: null } }, // Users you sent messages to
+      ],
+    },
+    order: [
+      [{ model: User_message, as: 'received_messages' }, 'created_at', 'DESC'],
+      [{ model: User_message, as: 'sent_messages' }, 'created_at', 'DESC'],
+    ],
   });
   // Send the result as is, if it's an empty array (no match)
   if (!myContacts.length) {
