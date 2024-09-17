@@ -1,7 +1,7 @@
 import { Admin, User, Hobby, Event } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
-import { computeAge } from '../utils/computeAge.js';
+import computeAge from '../utils/computeAge.js';
 import { Event_hobby } from '../models/associative_tables/Event_hobby.js';
 import { v2 as cloudinary } from 'cloudinary';
 

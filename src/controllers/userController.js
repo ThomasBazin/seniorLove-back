@@ -9,7 +9,7 @@ import Joi from 'joi';
 import { isActiveUser } from '../utils/checkUserStatus.js';
 import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
-import { computeAge } from '../utils/computeAge.js';
+import computeAge from '../utils/computeAge.js';
 import jsonwebtoken from 'jsonwebtoken';
 import { Scrypt } from '../auth/Scrypt.js';
 
