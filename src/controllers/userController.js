@@ -9,7 +9,7 @@ import Joi from 'joi';
 import { isActiveUser } from '../utils/checkUserStatus.js';
 import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
-import { computeAge } from '../utils/computeAge.js';
+import computeAge from '../utils/computeAge.js';
 import jsonwebtoken from 'jsonwebtoken';
 import { Scrypt } from '../auth/Scrypt.js';
 import fs from 'fs'; // ES6 module syntax
@@ -120,6 +120,7 @@ export async function getConnectedUser(req, res) {
       'gender',
       'picture',
       'email',
+      'status',
     ],
     include: [
       {
@@ -137,30 +138,9 @@ export async function getConnectedUser(req, res) {
     return res.status(401).json({ blocked: true });
   }
 
-  // Prepare an object to be sent, adding age field (computed)
-  const {
-    id,
-    name,
-    birth_date,
-    description,
-    gender,
-    picture,
-    email,
-    events,
-    hobbies,
-  } = me;
-
   const meToSend = {
-    id,
-    name,
-    birth_date,
-    age: computeAge(birth_date),
-    description,
-    gender,
-    picture,
-    email,
-    events,
-    hobbies,
+    ...me.toJSON(),
+    age: computeAge(me.birth_date),
   };
 
   // Send my data

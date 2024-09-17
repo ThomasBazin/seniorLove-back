@@ -3,7 +3,7 @@ import { User, Hobby } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
-import { computeAge } from '../utils/computeAge.js';
+import computeAge from '../utils/computeAge.js';
 
 // /Ajouter un utilisateur
 export async function addUser(req, res) {
@@ -112,7 +112,7 @@ export async function loginUser(req, res) {
   const jwtContent = { userId: foundUser.id };
 
   const token = jsonwebtoken.sign(jwtContent, process.env.TOKEN_KEY, {
-    expiresIn: '1d',
+    expiresIn: '3h',
     algorithm: 'HS256',
   });
 
