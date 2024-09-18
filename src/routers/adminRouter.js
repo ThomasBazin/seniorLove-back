@@ -8,7 +8,7 @@ import adminController from '../controllers/adminController.js';
 
 export const adminRouter = Router();
 
-adminRouter.get('/login', cw(adminController.index));
+adminRouter.get('/', cw(adminController.index));
 adminRouter.post('/login', cw(adminController.login));
 adminRouter.get('/logout', cw(adminController.logout));
 

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('button clicked');
         async function updateUserStatus(userId, statusValue) {
           try {
-            await fetch(`/admin/users/${userId}/status`, {
+            await fetch(`/users/${userId}/status`, {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         async function deleteUser(userId) {
           try {
-            const response = await fetch(`/admin/users/${userId}/delete`, {
+            const response = await fetch(`/users/${userId}/delete`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             if (response.ok) {
               localStorage.setItem('successMessage', 'Utilisateur supprimé');
-              window.location.href = '/admin/users'; // Redirect to users list
+              window.location.href = '/users'; // Redirect to users list
             } else {
               const data = await response.json();
               throw new Error(data.message || 'Failed to delete user');
@@ -140,14 +140,14 @@ document.addEventListener('DOMContentLoaded', function () {
           const eventId = this.getAttribute('data-event-id');
           async function deleteEvent(eventId) {
             try {
-              const response = await fetch(`/admin/events/${eventId}/delete`, {
+              const response = await fetch(`/events/${eventId}/delete`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
                 },
               });
               if (response.ok) {
-                window.location.href = '/admin/events'; // Redirect to events list
+                window.location.href = '/events'; // Redirect to events list
               } else {
                 const data = await response.json();
                 throw new Error(data.message || 'Failed to delete event');
@@ -186,12 +186,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const eventId = eventUpdateButton.getAttribute('data-event-id');
 
         try {
-          const response = await fetch(`/admin/events/${eventId}/update`, {
+          const response = await fetch(`/events/${eventId}/update`, {
             method: 'PATCH',
             body: formData,
           });
           if (response.ok) {
-            window.location.href = '/admin/events'; // Redirect to events list
+            window.location.href = '/events'; // Redirect to events list
           } else {
             const responseData = await response.json();
             throw new Error(responseData.message || 'Failed to update event');
