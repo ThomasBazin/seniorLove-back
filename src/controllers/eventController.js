@@ -24,4 +24,3 @@ export async function getOneEvent(req, res) {
   }
   res.status(200).json(oneEvent);
 }
-

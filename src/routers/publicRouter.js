@@ -29,6 +29,3 @@ publicRouter.post('/login', cw(authController.loginUser));
 publicRouter.get('/logout', cw(authController.logoutUser));
 
 publicRouter.get('/hobbies', cw(hobbyController.getHobbies));
-
-//Test sanitize
-//publicRouter.post('/sanitize', cw(authController.postSanitize));

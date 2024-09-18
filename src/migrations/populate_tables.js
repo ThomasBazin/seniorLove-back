@@ -1,14 +1,4 @@
-import {
-  Admin,
-  Event,
-  Hobby,
-  User,
-  User_message,
-  Event_hobby,
-  User_event,
-  User_hobby,
-  sequelize,
-} from '../models/index.js';
+import { User, sequelize } from '../models/index.js';
 
 console.log('Adding demo users...');
 await User.bulkCreate([

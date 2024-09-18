@@ -116,7 +116,6 @@ export async function loginUser(req, res) {
     algorithm: 'HS256',
   });
 
-  //!TODO : Renvoyer les infos user pour l'interface.
   res.status(200).json({
     id: foundUser.id,
     name: foundUser.name,
@@ -124,9 +123,3 @@ export async function loginUser(req, res) {
     token,
   });
 }
-
-//Test sanitize
-/*export async function postSanitize(req, res) {
-  console.log(req.body);
-  res.status(200).json(req.body);
-}*/

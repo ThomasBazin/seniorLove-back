@@ -1,18 +1,10 @@
-import {
-  User,
-  Hobby,
-  Event,
-  User_message,
-  User_hobby,
-} from '../models/index.js';
+import { User, Hobby, Event, User_hobby } from '../models/index.js';
 import Joi from 'joi';
 import { isActiveUser } from '../utils/checkUserStatus.js';
 import { Op } from 'sequelize';
 import { sequelize } from '../models/index.js';
 import computeAge from '../utils/computeAge.js';
-import jsonwebtoken from 'jsonwebtoken';
 import { Scrypt } from '../auth/Scrypt.js';
-import fs from 'fs'; // ES6 module syntax
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 import { userPhotoStorage } from '../cloudinary/index.js';
@@ -461,6 +453,3 @@ export const uploadUserPhoto = [
     }
   },
 ];
-
-//Récupérer tous les évenements auquels s'est inscrit un utilisateur
-export async function getAllEventsUser(req, res) {}
