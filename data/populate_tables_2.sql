@@ -100,7 +100,8 @@ INSERT INTO "users_events" ("user_id", "event_id", "created_at") VALUES
 (59, 3, NOW()), (59, 6, NOW()), (59, 9, NOW()),
 (60, 4, NOW()), (60, 11, NOW()),
 (61, 1, NOW()), (61, 8, NOW()),
-(62, 2, NOW()), (62, 5, NOW()), (62, 12, NOW());
+(62, 2, NOW()), (62, 5, NOW()), (62, 12, NOW()),
+(70, 3, NOW()), (70, 7, NOW());
 
 -- Insert sample data into users_hobbies
 
@@ -166,7 +167,8 @@ INSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at") VALUES
 (59, 2, NOW()), (59, 10, NOW()), (59, 11, NOW()),
 (60, 1, NOW()), (60, 6, NOW()),
 (61, 3, NOW()), (61, 7, NOW()), (61, 9, NOW()),
-(62, 4, NOW()), (62, 12, NOW()), (62, 10, NOW());
+(62, 4, NOW()), (62, 12, NOW()), (62, 10, NOW()),
+(70, 3, NOW()), (70, 8, NOW()), (70, 11, NOW());
 
 
 -- Insert sample data into events_hobbies
