@@ -290,6 +290,16 @@
     "status": "active"
   },
   {
+    "name": "Brigitte-Poulette",
+    "birth_date": "1951-05-04",
+    "description": "Je suis une passionnée de poésie et de littérature, un vrai ‘poule’ de talent ! Je participe à des cercles de lecture et organise des soirées poésie où je partage mes 'œufs' avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains pour qu'ils ne se ‘poussent’ pas trop vite !",
+    "gender": "female",
+    "picture": "https://res.cloudinary.com/dsb2ihfdx/image/upload/v1726652589/hen-451984_1280-min_qtshk5.webp",
+    "email": "brigitte.poulette@example.com",
+    "status": "active",
+    "password": "brigitte1951!poule"
+  },
+  {
     "name": "Elisabeth",
     "birth_date": "1943-09-25",
     "description": "Je suis Elisabeth, une amoureuse de la lecture. J'ai toujours un livre à la main et j'aime me plonger dans des mondes différents grâce à la littérature. Les livres sont ma fenêtre sur le monde.",
@@ -688,15 +698,5 @@
     "email": "maurice@example.com",
     "status": "active",
     "password": "maurice1950!"
-  },
-  {
-    "name": "Brigitte-Poulette",
-    "birth_date": "1951-05-04",
-    "description": "Je suis une passionnée de poésie et de littérature, un vrai ‘poule’ de talent ! Je participe à des cercles de lecture et organise des soirées poésie où je partage mes 'œufs' avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains pour qu'ils ne se ‘poussent’ pas trop vite !",
-    "gender": "female",
-    "picture": "https://res.cloudinary.com/dsb2ihfdx/image/upload/v1726652589/hen-451984_1280-min_qtshk5.webp",
-    "email": "brigitte.poulette@example.com",
-    "status": "active",
-    "password": "brigitte1951!poule"
   }
 ]
