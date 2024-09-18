@@ -2,14 +2,13 @@ import { User, Hobby, Event, User_hobby } from '../models/index.js';
 import Joi from 'joi';
 import { isActiveUser } from '../utils/checkUserStatus.js';
 import { Op } from 'sequelize';
-import { sequelize } from '../models/index.js';
 import computeAge from '../utils/computeAge.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 import { userPhotoStorage } from '../cloudinary/index.js';
 // Configure Multer to use Cloudinary storage
-const upload = multer({ storage: userPhotoStorage });
+multer({ storage: userPhotoStorage });
 
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
@@ -427,8 +426,8 @@ export const uploadUserPhoto = [
       }
 
       // Update user's picture URL and picture ID
-      user.picture = req.file.path;
-      user.picture_id = req.file.filename;
+      user.picture = filePath;
+      user.picture_id = filename;
 
       await user.save();
 
