@@ -9,7 +9,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     // "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql",
-    "db:create": "psql -h localhost -p 4000 -U seniorlove -d seniorlove -f data/create_tables.sql",
+    "db:create": "psql -h dpg-crld3pt6l47c7380dv9g-a -p 5432 -U seniorlove -d seniorlove_b5lu -f data/create_tables.sql",
     "db:populate": "node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables_1.sql && psql -U seniorlove -d seniorlove -f data/populate_tables_2.sql",
     "db:reset": "pnpm run db:create && node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables_1.sql && psql -U seniorlove -d seniorlove -f data/populate_tables_2.sql",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=unit.test"
