@@ -28,5 +28,9 @@ To run this project locally, follow these steps:
    - Fill it with your credentials, you can find .env variables inside `.env.example`
 
 5. **Set up the PostgreSQL database**:
-    - Run `pnpm prestart` to create the creation table script inside `package.json`
-    - Run `pnpm db:create` to create tables
+
+   - Run `pnpm prestart` to create the creation table script inside `package.json`
+   - Run `pnpm db:reset` to create tables and populate with test data
+
+6. **Launch unit tests**:
+   - Run `pnpm test`

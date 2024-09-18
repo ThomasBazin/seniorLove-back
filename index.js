@@ -6,6 +6,7 @@ import { publicRouter } from './src/routers/publicRouter.js';
 import { privateRouter } from './src/routers/privateRouter.js';
 import { bodySanitizerMiddleware } from './src/middlewares/bodySanitizer.js';
 import { checkLoggedIn } from './src/middlewares/checkLoggedIn.js';
+import { checkToken } from './src/middlewares/checkToken.js';
 import cors from 'cors';
 import { adminRouter } from './src/routers/adminRouter.js';
 import session from 'express-session';
@@ -15,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors(process.env.ALLOWED_DOMAINS || '*'));
+app.use(cors(process.env.ALLOWED_DOMAINS));
 
 app.use(express.urlencoded({ extended: true })); // Parser les bodies de type "application/www-form-urlencoded"
 app.use(express.json()); // Parser les bodies de type "application/json"
@@ -35,6 +36,9 @@ app.use(
 app.use(bodySanitizerMiddleware);
 
 app.disable('x-powered-by');
+
+app.use(checkToken);
+
 app.use('/api/public', publicRouter);
 app.use('/api/private', checkLoggedIn, privateRouter);
 

@@ -3,7 +3,7 @@ import { User, Hobby } from '../models/index.js';
 import { Scrypt } from '../auth/Scrypt.js';
 import Joi from 'joi';
 import jsonwebtoken from 'jsonwebtoken';
-import { computeAge } from '../utils/computeAge.js';
+import computeAge from '../utils/computeAge.js';
 
 // /Ajouter un utilisateur
 export async function addUser(req, res) {
@@ -88,7 +88,7 @@ export async function loginUser(req, res) {
   const { error } = loginSchema.validate(req.body);
 
   if (error) {
-    return res.status(403).json({ message: error.message });
+    return res.status(401).json({ message: error.message });
   }
 
   const foundUser = await User.findOne({
@@ -116,7 +116,6 @@ export async function loginUser(req, res) {
     algorithm: 'HS256',
   });
 
-  //!TODO : Renvoyer les infos user pour l'interface.
   res.status(200).json({
     id: foundUser.id,
     name: foundUser.name,
@@ -124,9 +123,3 @@ export async function loginUser(req, res) {
     token,
   });
 }
-
-//Test sanitize
-/*export async function postSanitize(req, res) {
-  console.log(req.body);
-  res.status(200).json(req.body);
-}*/

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   userSubmitButton();
   userCancelButton();
   userDeleteButton();
+  displaySuccessMessage();
   eventDeleteButton();
   eventCancelButton();
   eventSubmitButton();
@@ -75,6 +76,20 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
+  function displaySuccessMessage() {
+    const message = localStorage.getItem('successMessage');
+    if (message) {
+      const messageContainer = document.getElementById('message-container');
+      if (messageContainer) {
+        // Display the message
+        messageContainer.style.display = 'block';
+        messageContainer.querySelector('p').textContent = message;
+
+        // Remove the message from localStorage after displaying it
+        localStorage.removeItem('successMessage');
+      }
+    }
+  }
 
   // User page delete button behavior
   function userDeleteButton() {
@@ -92,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
               },
             });
             if (response.ok) {
+              localStorage.setItem('successMessage', 'Utilisateur supprimé');
               window.location.href = '/admin/users'; // Redirect to users list
             } else {
               const data = await response.json();
