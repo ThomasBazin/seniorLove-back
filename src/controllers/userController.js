@@ -324,7 +324,6 @@ export async function getAllSameInterestUsers(req, res) {
   // find all users that share at least one of my hobbies, in random order, except me
   const mySuggestions = await User.findAll({
     attributes: ['id', 'name', 'gender', 'birth_date', 'picture'],
-    order: sequelize.random(),
     include: {
       association: 'hobbies',
       attributes: [],
@@ -363,12 +362,6 @@ export async function addUserToEvent(req, res) {
   if (!(await isActiveUser(userId))) {
     return res.status(403).json({ blocked: true });
   }
-  /*const me = await User.findByPk(userId);
-  if (!me || me.status === 'banned' || me.status === 'pending') {
-    res.status(403).json({ blocked: true });
-    // il faut ensuite que le front déclenche la suppression du token a la
-    //reception de cette valeur 'block : true'
-  }*/
 
   const event = await Event.findByPk(eventId);
   if (!event) {
