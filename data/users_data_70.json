@@ -37,7 +37,7 @@
     "picture": "https://images.pexels.com/photos/3018993/pexels-photo-3018993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "email": "henri@example.com",
     "password": "henri1952!",
-    "status": "pending"
+    "status": "active"
   },
   {
     "name": "Simone",
@@ -177,7 +177,7 @@
     "picture": "https://img.freepik.com/photos-gratuite/homme-senior-sage-posant-interieur-vue-face_23-2149883531.jpg?t=st=1725825703~exp=1725829303~hmac=1c0e9297efe2799691f3af8de76863b0d00892c6f585c922bf7ddd0b3554ed69&w=996",
     "email": "louis.chevalier@example.com",
     "password": "louis1939!",
-    "status": "active"
+    "status": "pending"
   },
   {
     "name": "Claude",
@@ -690,13 +690,13 @@
     "password": "maurice1950!"
   },
   {
-    "name": "Brigitte",
+    "name": "Brigitte-Poulette",
     "birth_date": "1951-05-04",
-    "description": "Je suis une passionnée de poésie et de littérature. Je participe à des cercles de lecture et organise des soirées poésie où je partage mes poèmes avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains.",
+    "description": "Je suis une passionnée de poésie et de littérature, un vrai ‘poule’ de talent ! Je participe à des cercles de lecture et organise des soirées poésie où je partage mes 'œufs' avec mes amis. Je suis également impliquée dans des projets de soutien aux jeunes écrivains pour qu'ils ne se ‘poussent’ pas trop vite !",
     "gender": "female",
-    "picture": "https://img.freepik.com/photos-gratuite/femme-senior-belle-detendue_329181-7949.jpg?t=st=1725828302~exp=1725831902~hmac=c6b1f82df9eeb50daed5f123bac615426d6509130adee7d6847437779d3435ca&w=996",
-    "email": "brigitte@example.com",
+    "picture": "https://res.cloudinary.com/dsb2ihfdx/image/upload/v1726652589/hen-451984_1280-min_qtshk5.webp",
+    "email": "brigitte.poulette@example.com",
     "status": "active",
-    "password": "brigitte1951!"
+    "password": "brigitte1951!poule"
   }
 ]
