@@ -50,7 +50,7 @@ app.set('views', './src/views');
 // Statically served files
 app.use(express.static(path.join(__dirname, 'src/assets')));
 
-app.use('/admin', adminRouter);
+app.use('/', adminRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {

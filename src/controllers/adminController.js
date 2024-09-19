@@ -67,7 +67,7 @@ const adminController = {
       req.session.adminId = foundAdmin.id;
     }
     // Redirect to dashboard or another page after successful login
-    return res.status(200).redirect('/admin/users/pending');
+    return res.status(200).redirect('/users/pending');
   },
 
   // Logout process
@@ -79,7 +79,7 @@ const adminController = {
           .render('error', { error: 'Failed to logout', statusCode: 500 });
       }
       res.clearCookie('connect.sid');
-      res.redirect('/admin/login');
+      res.redirect('/');
     });
   },
 
@@ -107,7 +107,7 @@ const adminController = {
       // Render the users page with the users data
       return res.status(200).render('users', { users: usersWithAge });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -131,7 +131,7 @@ const adminController = {
       // Render the users page with the users data
       return res.status(200).render('users', { users: pendingUsersWithAge });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -171,7 +171,7 @@ const adminController = {
       // Render the user page with the user data
       return res.status(200).render('user', { user: newUser });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -196,7 +196,7 @@ const adminController = {
       // Render the users page with the users data
       return res.status(200).render('users', { users: banishedUsersWithAge });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -239,7 +239,7 @@ const adminController = {
         return res.status(204);
       }
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -272,7 +272,7 @@ const adminController = {
 
       res.status(204).json({ message: 'User deleted successfully' });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -288,7 +288,7 @@ const adminController = {
       // Render the events page with the events data
       return res.status(200).render('events', { events });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -301,7 +301,7 @@ const adminController = {
       });
       return res.status(200).render('createEvent', { hobbies });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -358,10 +358,10 @@ const adminController = {
       }
 
       // Redirect to the events page after the event creation
-      return res.status(204).redirect('/admin/events');
+      return res.status(204).redirect('/events');
     } else {
       // If not an admin, redirect to login page
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -389,7 +389,7 @@ const adminController = {
       await event.destroy();
       res.status(204).json({ message: 'Event deleted successfully' });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -452,7 +452,7 @@ const adminController = {
         .status(200)
         .render('createEvent', { event, hobbiesUncheck, hobbiesChecked });
     } else {
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
 
@@ -540,7 +540,7 @@ const adminController = {
         .json({ message: 'Event modified successfully', event: eventToUpdate });
     } else {
       // If not an admin, redirect to login page
-      return res.status(401).redirect('/admin/login');
+      return res.status(401).redirect('/');
     }
   },
   render404Error: async (req, res) => {
