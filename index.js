@@ -54,5 +54,6 @@ app.use('/', adminRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {
-  console.log(`❤️  SeniorLove server listening at http://localhost:${port} ❤️`);
+  console.log(`❤️  SeniorLove server started ❤️`);
+  console.log('Environment ==> ', process.env.NODE_ENV);
 });
