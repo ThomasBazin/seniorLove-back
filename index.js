@@ -16,7 +16,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors(process.env.ALLOWED_DOMAINS));
+
+const corsOptions = {
+  origin: process.env.ALLOWED_DOMAINS,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+// app.use(cors(process.env.ALLOWED_DOMAINS));
 
 app.use(express.urlencoded({ extended: true })); // Parser les bodies de type "application/www-form-urlencoded"
 app.use(express.json()); // Parser les bodies de type "application/json"
