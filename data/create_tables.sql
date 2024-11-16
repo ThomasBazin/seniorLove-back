@@ -13,11 +13,8 @@ CREATE TABLE users (
     "gender" VARCHAR(10) NOT NULL,
     "picture" TEXT,
     "picture_id" VARCHAR(255),
-    "email" VARCHAR(255) UNIQUE NOT NULL,
+    "email" VARCHAR(100) UNIQUE NOT NULL,
     "password" VARCHAR(255) NOT NULL,
-    "old_password" VARCHAR(255),
-    "new_password" VARCHAR(255),
-    "repeat_new_password" VARCHAR(255),
     "status" VARCHAR(10) DEFAULT 'pending',
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ

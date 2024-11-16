@@ -40,7 +40,7 @@ export async function getAllUserContacts(req, res) {
       {
         model: User_message,
         as: 'received_messages',
-        // order: [['created_at', 'DESC']],
+        order: [['created_at', 'DESC']],
         where: { sender_id: myId },
         required: false,
         attributes: { exclude: ['updated_at'] },
@@ -52,7 +52,7 @@ export async function getAllUserContacts(req, res) {
       {
         model: User_message,
         as: 'sent_messages',
-        // order: [['created_at', 'DESC']],
+        order: [['created_at', 'DESC']],
         where: { receiver_id: myId },
         required: false,
         attributes: { exclude: ['updated_at'] },
@@ -87,10 +87,7 @@ export async function getAllUserContacts(req, res) {
       id: converser.id,
       name: converser.name,
       picture: converser.picture,
-      messages: [
-        ...converser.received_messages,
-        ...converser.sent_messages,
-      ].sort((a, b) => a.created_at - b.created_at),
+      messages: [...converser.received_messages, ...converser.sent_messages],
     };
     formattedContacts.push(converserObject);
   });

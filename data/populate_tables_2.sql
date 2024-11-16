@@ -1,9 +1,7 @@
--- SQLBook: Code
-
 SET client_encoding = 'UTF8';
 BEGIN;
 
--- Insert sample data into users_messages
+-- Seeds users_messages
 
 INSERT INTO "users_messages" ("message", "sender_id", "receiver_id", "created_at") VALUES
 ('Bonjour Michel, quel est votre passe-temps préféré ?', 1, 2, '2024-08-01 09:00:00+00'),
@@ -57,7 +55,7 @@ INSERT INTO "users_messages" ("message", "sender_id", "receiver_id", "created_at
 ('Je pense que rester actif est essentiel. Vous aimez découvrir de nouvelles activités ?', 4, 5, '2024-08-25 10:00:00+00'),
 ('Oui, j’aime essayer de nouvelles choses. Vous avez des objectifs pour l’année prochaine ?', 5, 4, '2024-08-25 10:05:00+00');
 
--- Insert sample data into users_events
+-- Seeds users_events
 
 INSERT INTO "users_events" ("user_id", "event_id", "created_at") VALUES
 (1, 1, NOW()),
@@ -103,7 +101,7 @@ INSERT INTO "users_events" ("user_id", "event_id", "created_at") VALUES
 (62, 2, NOW()), (62, 5, NOW()), (62, 12, NOW()),
 (70, 3, NOW()), (70, 7, NOW());
 
--- Insert sample data into users_hobbies
+-- Seeds users_hobbies
 
 INSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at") VALUES
 (1, 1, NOW()), (1, 7, NOW()), (1, 4, NOW()),
@@ -179,7 +177,7 @@ INSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at") VALUES
 (70, 3, NOW()), (70, 8, NOW()), (70, 11, NOW());
 
 
--- Insert sample data into events_hobbies
+-- Seeds events_hobbies
 
 INSERT INTO "events_hobbies" ("event_id", "hobby_id", "created_at") VALUES
 (1, 4, NOW()), (1, 12, NOW()),

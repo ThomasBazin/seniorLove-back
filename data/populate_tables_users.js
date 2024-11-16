@@ -5,14 +5,16 @@ import users from './users_data_70.json' with { type: 'json' }; //if assert does
 await pgClient.connect();
 
 for (const user of users) {
-  const name = user.name;
-  const birth = user.birth_date;
-  const description = user.description;
-  const gender = user.gender;
-  const picture = user.picture;
-  const email = user.email;
+  const {
+    name,
+    birth_date: birth,
+    description,
+    gender,
+    picture,
+    email,
+    status,
+  } = user;
   const password = Scrypt.hash(user.password);
-  const status = user.status;
 
   const query = `INSERT INTO users (name, birth_date, description, gender, picture, email, password, status)
         VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;

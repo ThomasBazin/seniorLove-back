@@ -1,17 +1,9 @@
--- SQLBook: Code
--- Active: 1719840209096@@localhost@5432@seniorlove
-
 SET client_encoding = 'UTF8';
 BEGIN;
 
 -- Insertion of users data is made with node script populate_tables_users.js which has to be executed BEFORE this present SQL script !!
 
--- Insert sample data into administrators
-
--- INSERT INTO "administrators" ("id", "name", "email", "password", "created_at", "updated_at") VALUES
--- (1, 'admin', 'admin@seniorlove.com', 'adminpass123', NOW(), NOW());
-
--- Insert sample data into events
+-- Seeds events
 
 INSERT INTO "events" ("name", "location", "description", "picture", "date", "time", "admin_id", "created_at") VALUES
 ('Cours de cuisine', 'Paris', $$Rejoignez-nous pour une expérience culinaire inoubliable au cœur de Paris ! Notre événement de cours de cuisine vous invite à découvrir les secrets de la gastronomie française dans un cadre élégant et convivial. Sous la direction de chefs talentueux et passionnés, vous apprendrez à préparer des plats emblématiques tels que le coq au vin, les macarons ou encore les éclairs au chocolat. Que vous soyez débutant ou amateur averti, ce cours vous permettra d'affiner vos compétences tout en partageant un moment chaleureux avec d'autres passionnés de cuisine. Profitez également de notre sélection de vins pour accompagner vos créations et d'une ambiance parisienne authentique. Réservez dès maintenant et plongez dans l'art culinaire à Paris !$$, 'https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', '2024-12-01', '10:00:00', 1, NOW()),
@@ -29,7 +21,7 @@ INSERT INTO "events" ("name", "location", "description", "picture", "date", "tim
 ('Prise en main du smartphone', 'Paris', $$Découvrez la magie de la technologie avec notre événement spécial pour les personnes âgées : Tech & Convivialité : Atelier Découverte des Nouveaux Outils Numériques ! Ce rendez-vous convivial est conçu pour familiariser les seniors avec les dernières innovations technologiques dans un cadre détendu et encourageant.L''événement commence par une introduction chaleureuse sur les bases des appareils numériques modernes, comme les smartphones et les tablettes. Ensuite, nos experts vous guideront à travers des ateliers pratiques où vous apprendrez à utiliser des applications courantes telles que les réseaux sociaux, les messageries instantanées, et les services de vidéo-conférence pour rester connecté avec vos proches.Après une pause-café, explorez les outils de sécurité en ligne pour protéger vos données et découvrez les applications de santé qui peuvent améliorer votre quotidien. Les sessions sont interactives et adaptées à votre rythme, permettant un apprentissage personnalisé et une assistance individuelle. En fin de journée, partagez vos nouvelles compétences autour d’un goûter et posez toutes vos questions à nos experts. Réservez dès maintenant pour un après-midi enrichissant où la technologie devient accessible et amusante, tout en favorisant l’échange et la convivialité !$$, 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', '2024-12-08', '10:30:00', 1, NOW());
 
 
--- Insert sample data into hobbies
+-- Seeds hobbies
 
 INSERT INTO "hobbies" ("name", "created_at") VALUES
 ('Voyages et découvertes', NOW()),

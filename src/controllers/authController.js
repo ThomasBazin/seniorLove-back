@@ -55,8 +55,8 @@ export async function addUser(req, res) {
     name: body.name,
     birth_date: body.birth_date,
     description: body.description,
-    picture, // Only include if picture exists
-    picture_id, // Only include if picture_id exists
+    picture,
+    picture_id,
     gender: body.gender,
     email: body.email,
     password: Scrypt.hash(repeat_password),
