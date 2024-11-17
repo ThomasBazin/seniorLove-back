@@ -1,12 +1,13 @@
+<% if (!skipHeader) {%>
 <%- include ('partials/navBar') %>
-  <div class="container mt-5">
-    <div class="alert alert-danger text-center" role="alert">
-      <h3>
-        <%=statusCode %>
-      </h3>
-      <p class="lead">
-        <%= error %>
-      </p>
-    </div>
+<%} else {%>
+<%- include ('partials/head') %>
+<%}%>
+<div class="container mt-5">
+  <div class="alert alert-danger text-center" role="alert">
+    <h3><%=statusCode %></h3>
+    <p class="lead"><%= error %></p>
   </div>
-  <%- include('partials/footer') %>
+<a href="/">Retour</a>
+</div>
+<%- include('partials/footer') %>
