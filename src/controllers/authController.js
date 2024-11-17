@@ -77,10 +77,7 @@ export async function addUser(req, res) {
 //Connecter un utilisateur
 export async function loginUser(req, res) {
   const loginSchema = Joi.object({
-    email: Joi.string()
-      .max(255)
-      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'fr'] } })
-      .required(),
+    email: Joi.string().max(255).email({ minDomainSegments: 2 }).required(),
     password: Joi.required(),
   });
   const { email, password } = req.body;
@@ -88,7 +85,7 @@ export async function loginUser(req, res) {
   const { error } = loginSchema.validate(req.body);
 
   if (error) {
-    return res.status(401).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 
   const foundUser = await User.findOne({
@@ -100,12 +97,12 @@ export async function loginUser(req, res) {
     foundUser.status === 'banned' ||
     foundUser.status === 'pending'
   ) {
-    return res.status(401).json({ blocked: true });
+    return res.status(401).json({ message: 'user unauthorized' });
   }
 
-  const isGood = Scrypt.compare(password, foundUser.password);
+  const checkIfPasswordMatches = Scrypt.compare(password, foundUser.password);
 
-  if (!isGood) {
+  if (!checkIfPasswordMatches) {
     return res.status(401).json({ message: 'user unauthorized' });
   }
 

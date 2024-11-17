@@ -12,11 +12,10 @@ export function checkLoggedIn(req, res, next) {
   try {
     const jwtContent = jsonwebtoken.verify(token, process.env.TOKEN_KEY);
     req.user = jwtContent;
+    next();
   } catch (err) {
     //return 401
     console.error(err);
     return res.status(401).json({ message: 'Unauthorized' });
   }
-
-  next();
 }
