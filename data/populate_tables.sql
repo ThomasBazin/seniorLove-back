@@ -232,6 +232,3 @@ INSERT INTO "events_hobbies" ("event_id", "hobby_id", "created_at") VALUES
 (13, 8, NOW());
 
 COMMIT;
-
-
-

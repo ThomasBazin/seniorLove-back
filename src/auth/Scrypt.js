@@ -21,7 +21,7 @@ export class Scrypt {
     // split() retourne un tableau que l'on destructure pour obtenir le hash et le sel
     const [hashedPassword, salt] = hash.split('.');
 
-    // On créé un buffer : une sorte de tableau de caractères que peut analyer l'algo scrypt
+    // On créé un buffer : une sorte de tableau de caractères que peut analyser l'algo scrypt
     const hashedPasswordBuf = Buffer.from(hashedPassword, 'hex');
     // On hash le mot de passe reçu du req.body avec le sel du mot de passe que l'on a en BDD
 
