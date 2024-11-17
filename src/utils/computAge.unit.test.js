@@ -1,8 +1,13 @@
 import computeAge from './computeAge';
 
-import { describe, test, expect } from '@jest/globals';
+import { describe, test, expect, beforeEach, jest } from '@jest/globals';
 
 describe('Test computeAge', () => {
+  beforeEach(() => {
+    const date = new Date('2024-11-17');
+    jest.useFakeTimers().setSystemTime(date);
+  });
+
   test('No argument passed', () => {
     expect(computeAge).toThrow('You must provide a string !');
   });
