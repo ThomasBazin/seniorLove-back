@@ -225,15 +225,14 @@ const adminController = {
 
     // Find the user by id
     const user = await User.findByPk(id);
-
-    if (user.picture_id) {
-      await cloudinary.uploader.destroy(user.picture_id);
-    }
-
     if (!user) {
       return res
         .status(404)
         .render('error', { error: 'User not found', statusCode: 404 });
+    }
+
+    if (user.picture_id) {
+      await cloudinary.uploader.destroy(user.picture_id);
     }
 
     // Delete the user

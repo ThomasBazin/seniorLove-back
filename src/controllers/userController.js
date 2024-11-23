@@ -10,6 +10,72 @@ import { userPhotoStorage } from '../cloudinary/index.js';
 // Configure Multer to use Cloudinary storage
 multer({ storage: userPhotoStorage });
 
+// Créer un utilisateur
+export async function createUser(req, res) {
+  // Joi schema configuration (no picture in schema)
+  const registerSchema = Joi.object({
+    name: Joi.string().max(50).required(),
+    birth_date: Joi.date().required(),
+    description: Joi.string(),
+    gender: Joi.string().max(10).valid('male', 'female', 'other').required(),
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
+    password: Joi.string()
+      .min(12)
+      .max(36)
+      .pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,36}$/)
+      .messages({
+        'string.base': 'password must be a string',
+        'string.min': 'password must be at least 12 characters',
+        'string.max': 'password must be less than 36 characters',
+        'string.empty': 'password should not be empty',
+        'any.required': 'password is required',
+        'string.pattern.base':
+          'password should contain at least one uppercase letter, one lowercase letter, one digit and one special character',
+      })
+      .required(),
+    repeat_password: Joi.valid(Joi.ref('password')).required(),
+    hobbies: Joi.array().items(Joi.number().integer().min(1)).required(),
+  });
+
+  const { error } = registerSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.message });
+  }
+
+  // Age control using custom function
+  if (computeAge(req.body.birth_date) < 60) {
+    return res.status(400).json({ message: 'must be over 60 to register' });
+  }
+
+  const { repeat_password, email } = req.body;
+
+  // Check if email already exists
+  const potentialExistingUser = await User.findOne({ where: { email: email } });
+  if (potentialExistingUser) {
+    return res.status(400).json({ message: 'e-mail already registered' });
+  }
+
+  // Handle file upload (optional picture)
+  let picture = null;
+  let picture_id = null;
+  if (req.file) {
+    picture = req.file.path;
+    picture_id = req.file.filename;
+  }
+
+  const userInfos = req.body;
+
+  const newUser = await User.create({
+    ...userInfos,
+    picture,
+    picture_id,
+    password: Scrypt.hash(repeat_password),
+  });
+
+  await newUser.addHobbies(req.body.hobbies);
+
+  res.status(201).end();
+}
 //Récupérer tous les utilisateurs
 export async function getAllUsers(req, res) {
   const excludedUserId = req.user.userId;
@@ -140,43 +206,47 @@ export async function getConnectedUser(req, res) {
 
 //Mettre à jour un utilisateur
 export async function updateUserProfile(req, res) {
+  // Get my Id
   const myId = parseInt(req.user.userId, 10);
 
-  const hobbySchema = Joi.object({
-    id: Joi.number().integer().min(1).optional(),
-    name: Joi.string().optional(),
-    users_hobbies: Joi.any().optional(),
-  });
-
-  const hobbiesArraySchema = Joi.array().items(hobbySchema).optional();
-
+  // Joi schema for input validation
   const updateUserSchema = Joi.object({
-    name: Joi.string().max(50).optional(),
-    birth_date: Joi.date()
-      .less(new Date(new Date().setFullYear(new Date().getFullYear() - 60)))
-      .optional(),
-    description: Joi.string().optional(),
-    gender: Joi.string().max(10).valid('male', 'female', 'other').optional(),
-    picture: Joi.string().max(255).optional(),
-    picture_id: Joi.string().max(255).optional(),
-    email: Joi.string().max(255).email({ minDomainSegments: 2 }).optional(),
-    new_password: Joi.string().min(12).max(255).optional(),
-    repeat_new_password: Joi.string().valid(Joi.ref('new_password')).optional(),
-    old_password: Joi.string()
+    name: Joi.string().max(50),
+    description: Joi.string(),
+    picture: Joi.string().max(255),
+    picture_id: Joi.string().max(255),
+    email: Joi.string().max(255).email({ minDomainSegments: 2 }),
+    new_password: Joi.string()
+      .min(12)
+      .max(36)
+      .pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,36}$/)
+      .messages({
+        'string.base': 'password must be a string',
+        'string.min': 'password must be at least 12 characters',
+        'string.max': 'password must be less than 36 characters',
+        'string.empty': 'password should not be empty',
+        'string.pattern.base':
+          'password should contain at least one uppercase letter, one lowercase letter, one digit and one special character',
+      }),
+    repeat_new_password: Joi.string()
+      .valid(Joi.ref('new_password'))
       .when('new_password', {
         is: Joi.exist(),
         then: Joi.required(),
         otherwise: Joi.optional(),
-      })
-      .optional(),
-    hobbies: hobbiesArraySchema.optional(),
+      }),
+    old_password: Joi.string().when('new_password', {
+      is: Joi.exist(),
+      then: Joi.required(),
+      otherwise: Joi.optional(),
+    }),
+    hobbies: Joi.array().items(Joi.number().integer().min(1)).min(1),
   }).min(1);
 
   const { error } = updateUserSchema.validate(req.body);
   if (error) {
-    const errorMessages = error.details.map((detail) => detail.message);
-    console.log('Validation error:', errorMessages);
-    return res.status(400).json({ messages: errorMessages });
+    console.error(error);
+    return res.status(400).json({ message: error.message });
   }
 
   const foundUser = await User.findByPk(myId, {
@@ -189,81 +259,56 @@ export async function updateUserProfile(req, res) {
     ],
   });
 
-  if (!foundUser) {
-    console.log('User not found');
-    return res.status(404).json({ message: 'User not found' });
-  }
-
-  if (foundUser.status === 'pending' || foundUser.status === 'banned') {
-    console.log('User is unauthorized due to status:', foundUser.status);
+  if (
+    !foundUser ||
+    foundUser.status === 'pending' ||
+    foundUser.status === 'banned'
+  ) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  const {
-    name,
-    birth_date,
-    description,
-    gender,
-    picture,
-    picture_id,
-    new_password,
-    old_password,
-    hobbies,
-    repeat_new_password,
-    email,
-  } = req.body;
-
-  const newProfile = {
-    name: name || foundUser.name,
-    birth_date: birth_date || foundUser.birth_date,
-    description: description || foundUser.description,
-    gender: gender || foundUser.gender,
-    picture: picture || foundUser.picture,
-    picture_id: picture_id || foundUser.picture_id,
-    email: email || foundUser.email,
-  };
+  const { new_password, old_password } = req.body;
+  let hashedNewPassword = null;
 
   if (new_password) {
-    if (!old_password) {
-      return res
-        .status(400)
-        .json({ message: 'Old password is required to change the password.' });
-    }
-
     const isOldPasswordValid = await Scrypt.compare(
       old_password,
       foundUser.password
     );
+
     if (!isOldPasswordValid) {
-      return res.status(400).json({ message: 'Incorrect old password' });
+      return res.status(401).json({ message: 'Incorrect old password' });
     }
 
-    if (new_password !== repeat_new_password) {
-      return res.status(400).json({ message: 'New passwords do not match' });
-    }
-
-    const hashedNewPassword = await Scrypt.hash(new_password);
-    newProfile.password = hashedNewPassword;
+    hashedNewPassword = await Scrypt.hash(new_password);
   }
 
-  await foundUser.update(newProfile);
+  const editedProfile = {
+    name: req.body.name || foundUser.name,
+    description: req.body.description || foundUser.description,
+    picture: req.body.picture || foundUser.picture,
+    picture_id: req.body.picture_id || foundUser.picture_id,
+    email: req.body.email || foundUser.email,
+    password: hashedNewPassword || foundUser.password,
+  };
 
-  await User_hobby.destroy({
-    where: {
-      user_id: foundUser.id,
-    },
-  });
+  await foundUser.update(editedProfile);
 
-  if (Array.isArray(hobbies) && hobbies.length > 0) {
-    const hobbiesArray = hobbies.map((hobby) => ({
-      user_id: foundUser.id,
-      hobby_id: hobby.id,
-    }));
-
-    await User_hobby.bulkCreate(hobbiesArray);
+  if (req.body.hobbies) {
+    await foundUser.setHobbies(req.body.hobbies);
   }
 
   const updatedUser = await User.findByPk(myId, {
+    attributes: [
+      'id',
+      'name',
+      'birth_date',
+      'description',
+      'gender',
+      'picture',
+      'email',
+      'status',
+    ],
     include: [
       {
         model: Hobby,
@@ -278,16 +323,8 @@ export async function updateUserProfile(req, res) {
   });
 
   return res.status(200).json({
-    id: updatedUser.id,
-    name: updatedUser.name,
-    birth_date: updatedUser.birth_date,
-    description: updatedUser.description,
-    gender: updatedUser.gender,
-    picture: updatedUser.picture,
-    email: updatedUser.email,
-    hobbies: updatedUser.hobbies,
+    ...updatedUser.toJSON(),
     age: computeAge(updatedUser.birth_date),
-    events: updatedUser.events,
   });
 }
 
@@ -295,9 +332,30 @@ export async function updateUserProfile(req, res) {
 export async function deleteUser(req, res) {
   const userIdToDelete = parseInt(req.user.userId, 10);
 
-  await User.destroy({
-    where: { id: userIdToDelete },
+  const deleteUserSchema = Joi.object({
+    password: Joi.string().required(),
   });
+
+  const { error } = deleteUserSchema.validate(req.body);
+  if (error) {
+    console.error(error);
+    return res.status(400).json({ message: error.message });
+  }
+
+  const userToDelete = await User.findByPk(userIdToDelete);
+
+  const { password } = req.body;
+  const isPasswordValid = await Scrypt.compare(password, userToDelete.password);
+
+  if (!isPasswordValid) {
+    return res.status(401).json({ message: 'Incorrect password' });
+  }
+
+  if (userToDelete.picture_id) {
+    await cloudinary.uploader.destroy(userToDelete.picture_id);
+  }
+
+  await userToDelete.destroy();
 
   res.status(204).end();
 }

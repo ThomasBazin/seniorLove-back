@@ -8,6 +8,7 @@ import * as hobbyController from '../controllers/hobbyController.js';
 import { controllerWrapper as cw } from '../middlewares/controllerWrapper.js';
 import * as eventController from '../controllers/eventController.js';
 import * as authController from '../controllers/authController.js';
+import * as userController from '../controllers/userController.js';
 export const publicRouter = Router();
 
 publicRouter.get('/home', (req, res) => {
@@ -21,7 +22,7 @@ publicRouter.get('/events/:eventId', cw(eventController.getOneEvent));
 publicRouter.post(
   '/register',
   uploadUserPhoto.single('picture'),
-  cw(authController.addUser)
+  cw(userController.createUser)
 );
 
 publicRouter.post('/login', cw(authController.loginUser));
