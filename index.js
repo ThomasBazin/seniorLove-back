@@ -25,8 +25,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // app.use(cors(process.env.ALLOWED_DOMAINS));
 
-app.use(express.urlencoded({ extended: true })); // Parser les bodies de type "application/www-form-urlencoded"
+app.disable('x-powered-by');
+
 app.use(express.json()); // Parser les bodies de type "application/json"
+app.use(express.urlencoded({ extended: true })); // Parser les bodies de type "application/www-form-urlencoded"
+
+// Setup view engine
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
+// Statically served files
+app.use(express.static(path.join(__dirname, 'src/assets')));
 
 app.use(
   session({
@@ -40,22 +48,11 @@ app.use(
   })
 );
 
-app.use(bodySanitizerMiddleware);
-
-app.disable('x-powered-by');
-
 app.use(checkToken);
 
+app.use(bodySanitizerMiddleware);
 app.use('/api/public', publicRouter);
 app.use('/api/private', checkLoggedIn, privateRouter);
-
-// Body parser
-app.use(express.urlencoded({ extended: true }));
-// Setup view engine
-app.set('view engine', 'ejs');
-app.set('views', './src/views');
-// Statically served files
-app.use(express.static(path.join(__dirname, 'src/assets')));
 
 app.use('/', adminRouter);
 
