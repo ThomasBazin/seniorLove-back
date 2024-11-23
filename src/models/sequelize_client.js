@@ -5,7 +5,7 @@ export let sequelize;
 
 if (process.env.NODE_ENV === 'development') {
   sequelize = new Sequelize(process.env.PG_URL, {
-    logging: true,
+    logging: false,
     define: {
       createdAt: 'created_at',
       updatedAt: 'updated_at',

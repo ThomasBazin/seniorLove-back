@@ -9,12 +9,14 @@ import { User_message } from './standalone_models/User_message.js';
 User.belongsToMany(Hobby, {
   through: 'users_hobbies',
   foreignKey: 'user_id',
+  otherKey: 'hobby_id',
   as: 'hobbies',
 });
 
 Hobby.belongsToMany(User, {
   through: 'users_hobbies',
   foreignKey: 'hobby_id',
+  otherKey: 'user_id',
   as: 'users',
 });
 
@@ -23,12 +25,14 @@ Hobby.belongsToMany(User, {
 User.belongsToMany(Event, {
   through: 'users_events',
   foreignKey: 'user_id',
+  otherKey: 'event_id',
   as: 'events',
 });
 
 Event.belongsToMany(User, {
   through: 'users_events',
   foreignKey: 'event_id',
+  otherKey: 'user_id',
   as: 'users',
 });
 
@@ -37,12 +41,14 @@ Event.belongsToMany(User, {
 Event.belongsToMany(Hobby, {
   through: 'events_hobbies',
   foreignKey: 'event_id',
+  otherKey: 'hobby_id',
   as: 'hobbies',
 });
 
 Hobby.belongsToMany(Event, {
   through: 'events_hobbies',
   foreignKey: 'hobby_id',
+  otherKey: 'event_id',
   as: 'events',
 });
 
