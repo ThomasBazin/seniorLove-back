@@ -206,6 +206,7 @@ export async function getConnectedUser(req, res) {
 
 //Mettre à jour un utilisateur
 export async function updateUserProfile(req, res) {
+  console.log('UPDATE REQUEST', req.body);
   // Get my Id
   const myId = parseInt(req.user.userId, 10);
 
@@ -213,8 +214,8 @@ export async function updateUserProfile(req, res) {
   const updateUserSchema = Joi.object({
     name: Joi.string().max(50),
     description: Joi.string(),
-    picture: Joi.string().max(255),
-    picture_id: Joi.string().max(255),
+    picture: Joi.string(),
+    picture_id: Joi.string(),
     email: Joi.string().max(255).email({ minDomainSegments: 2 }),
     new_password: Joi.string()
       .min(12)
@@ -453,53 +454,46 @@ export async function deleteUserToEvent(req, res) {
 }
 
 // Upload user photo function
-export const uploadUserPhoto = [
-  async (req, res) => {
-    const userId = parseInt(req.user.userId, 10);
+export async function uploadUserPhoto(req, res) {
+  console.log('UPLOAD REQUEST');
+  const userId = parseInt(req.user.userId, 10);
 
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
+  if (!req.file) {
+    return res.status(400).json({ message: 'No file uploaded' });
+  }
+  try {
+    // The uploaded file is available in req.file
+    const { path, filename } = req.file;
+    console.log(req.file);
+
+    // Retrieve user to get the old picture ID
+    const user = await User.findByPk(userId);
+    if (!user) {
+      throw new Error('User not found');
     }
-    try {
-      // The uploaded file is available in req.file
-      const { path: filePath, filename } = req.file;
 
-      // Retrieve user to get the old picture ID
-      const user = await User.findByPk(userId);
-      if (!user) {
-        throw new Error('User not found');
+    // If there is an existing picture, remove it from Cloudinary
+    if (user.picture_id) {
+      try {
+        await cloudinary.uploader.destroy(user.picture_id);
+      } catch (err) {
+        console.error(
+          'Error deleting old picture from Cloudinary:',
+          err.message
+        );
+        // Proceed to update user even if old picture delete fails
       }
-
-      // If there is an existing picture, remove it from Cloudinary
-      if (user.picture_id) {
-        try {
-          await cloudinary.uploader.destroy(user.picture_id);
-        } catch (err) {
-          console.error(
-            'Error deleting old picture from Cloudinary:',
-            err.message
-          );
-          // Proceed to update user even if old picture delete fails
-        }
-      }
-
-      // Update user's picture URL and picture ID
-      user.picture = filePath;
-      user.picture_id = filename;
-
-      await user.save();
-
-      // Return success response
-      res.status(200).json({
-        message: 'Photo updated successfully',
-        pictureUrl: req.file.path,
-        pictureId: req.file.filename,
-      });
-    } catch (error) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ message: 'Failed to upload photo', error: error.message });
     }
-  },
-];
+
+    // Return success response
+    res.status(200).json({
+      picture: path,
+      picture_id: filename,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: 'Failed to upload photo', error: error.message });
+  }
+}
