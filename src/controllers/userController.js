@@ -55,13 +55,12 @@ export async function createUser(req, res) {
     return res.status(400).json({ message: 'e-mail already registered' });
   }
 
-  // Handle file upload (optional picture)
-  let picture = null;
-  let picture_id = null;
-  if (req.file) {
-    picture = req.file.path;
-    picture_id = req.file.filename;
+  // Handle file upload (picture)
+  if (!req.file.path || !req.file.filename) {
+    return res.status(400).json({ message: 'picture must be included' });
   }
+
+  const { path: picture, filename: picture_id } = req.file;
 
   const userInfos = req.body;
 
