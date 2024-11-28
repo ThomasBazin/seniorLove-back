@@ -52,7 +52,7 @@ export async function createUser(req, res) {
   // Check if email already exists
   const potentialExistingUser = await User.findOne({ where: { email: email } });
   if (potentialExistingUser) {
-    return res.status(400).json({ message: 'e-mail already registered' });
+    return res.status(409).json({ message: 'e-mail already registered' });
   }
 
   // Handle file upload (picture)
