@@ -87,7 +87,10 @@ export async function getAllUserContacts(req, res) {
       id: converser.id,
       name: converser.name,
       picture: converser.picture,
-      messages: [...converser.received_messages, ...converser.sent_messages],
+      messages: [
+        ...converser.received_messages,
+        ...converser.sent_messages,
+      ].sort((a, b) => a.created_at - b.created_at),
     };
     formattedContacts.push(converserObject);
   });
