@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 
 export let sequelize;
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   sequelize = new Sequelize(process.env.PG_URL, {
     logging: false,
     define: {

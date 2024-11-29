@@ -61,3 +61,5 @@ app.listen(port, () => {
   console.log(`❤️  SeniorLove server started ❤️`);
   console.log('Environment ==> ', process.env.NODE_ENV);
 });
+
+export default app;

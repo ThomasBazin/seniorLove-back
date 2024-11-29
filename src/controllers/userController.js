@@ -56,11 +56,12 @@ export async function createUser(req, res) {
   }
 
   // Handle file upload (picture)
-  if (!req.file.path || !req.file.filename) {
-    return res.status(400).json({ message: 'picture must be included' });
+  let picture;
+  let picture_id;
+  if (req.file) {
+    picture = req.file.path;
+    picture_id = req.file.filename;
   }
-
-  const { path: picture, filename: picture_id } = req.file;
 
   const userInfos = req.body;
 
