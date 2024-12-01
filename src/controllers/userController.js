@@ -117,11 +117,24 @@ export async function getOneUser(req, res) {
 
   // Get the user in DB
   const foundUser = await User.findByPk(userId, {
+    attributes: [
+      'id',
+      'name',
+      'birth_date',
+      'description',
+      'gender',
+      'picture',
+    ],
     include: [
-      { association: 'hobbies', attributes: ['id', 'name'] },
+      {
+        association: 'hobbies',
+        attributes: ['id', 'name'],
+        through: { attributes: [] },
+      },
       {
         association: 'events',
-        attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
+        attributes: ['id', 'name', 'location', 'picture', 'date'],
+        through: { attributes: [] },
       },
     ],
   });
@@ -135,29 +148,11 @@ export async function getOneUser(req, res) {
     return res.status(404).json({ message: 'user not found' });
   }
 
-  // Extract only necessary infos from user to be sent
-  const {
-    id,
-    name,
-    birth_date,
-    description,
-    gender,
-    picture,
-    hobbies,
-    events,
-  } = foundUser;
-
   // Prepare new object with usefull infos and send it
   const userProfileToSend = {
-    id,
-    name,
-    birth_date,
-    age: computeAge(birth_date),
-    description,
-    gender,
-    picture,
-    hobbies,
-    events,
+    ...foundUser.toJSON(),
+    birth_date: undefined,
+    age: computeAge(foundUser.birth_date),
   };
   res.status(200).json(userProfileToSend);
 }
@@ -179,14 +174,17 @@ export async function getConnectedUser(req, res) {
       'email',
       'status',
     ],
+
     include: [
       {
         association: 'events',
         attributes: ['id', 'name', 'location', 'picture', 'date', 'time'],
+        through: { attributes: [] },
       },
       {
         association: 'hobbies',
         attributes: { exclude: ['created_at', 'updated_at'] },
+        through: { attributes: [] },
       },
     ],
   });
