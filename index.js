@@ -18,12 +18,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const corsOptions = {
-  origin: process.env.ALLOWED_DOMAINS,
+  origin:
+    process.env.NODE_ENV === 'production' ? process.env.ALLOWED_DOMAINS : '*',
   optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
-// app.use(cors(process.env.ALLOWED_DOMAINS));
 
 app.disable('x-powered-by');
 
