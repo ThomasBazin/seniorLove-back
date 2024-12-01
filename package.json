@@ -10,8 +10,8 @@
     "start": "node index.js",
     "test:integration": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=integration.test",
     "test:unit": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=unit.test",
-    "db:create": "psql -U seniorlove -d seniorlove -f data/create_tables.sql",
-    "db:populate": "node data/populate_tables_users.js && psql -U seniorlove -d seniorlove -f data/populate_tables.sql",
+    "db:create": "node data/scripts_js/1_db_create_tables.js",
+    "db:populate": "node data/scripts_js/2_db_populate_users.js && node data/scripts_js/3_db_populate_tables.js",
     "db:reset": "pnpm run db:create && pnpm run db:populate"
   },
   "keywords": [],
