@@ -64,9 +64,11 @@ const adminController = {
   logout: async (req, res) => {
     req.session.destroy((err) => {
       if (err) {
-        return res
-          .status(500)
-          .render('error', { error: 'Failed to logout', statusCode: 500 });
+        return res.status(500).render('error', {
+          error: 'Failed to logout',
+          statusCode: 500,
+          skipHeader: true,
+        });
       }
       res.clearCookie('connect.sid');
       res.redirect('/');
@@ -121,10 +123,12 @@ const adminController = {
   renderUser: async (req, res) => {
     const { id } = req.params;
 
-    if (!id) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing user id', statusCode: 400 });
+    if (!id || isNaN(parseInt(id, 10))) {
+      return res.status(400).render('error', {
+        error: 'Missing user id',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
 
     // Find the user by id
@@ -137,9 +141,11 @@ const adminController = {
       ],
     });
     if (!user) {
-      return res
-        .status(404)
-        .render('error', { error: 'User not found', statusCode: 404 });
+      return res.status(404).render('error', {
+        error: 'User not found',
+        statusCode: 404,
+        skipHeader: false,
+      });
     }
 
     //
@@ -179,9 +185,11 @@ const adminController = {
     const { id } = req.params;
 
     if (!id) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing user id', statusCode: 400 });
+      return res.status(400).render('error', {
+        error: 'Missing user id',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
 
     const { status } = req.body;
@@ -198,9 +206,11 @@ const adminController = {
       });
 
       if (!user) {
-        return res
-          .status(404)
-          .render('error', { error: 'User not found', statusCode: 404 });
+        return res.status(404).render('error', {
+          error: 'User not found',
+          statusCode: 404,
+          skipHeader: false,
+        });
       }
 
       // Update the status of the user
@@ -218,17 +228,21 @@ const adminController = {
     const { id } = req.params;
 
     if (!id) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing user id', statusCode: 400 });
+      return res.status(400).render('error', {
+        error: 'Missing user id',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
 
     // Find the user by id
     const user = await User.findByPk(id);
     if (!user) {
-      return res
-        .status(404)
-        .render('error', { error: 'User not found', statusCode: 404 });
+      return res.status(404).render('error', {
+        error: 'User not found',
+        statusCode: 404,
+        skipHeader: false,
+      });
     }
 
     if (user.picture_id) {
@@ -276,9 +290,11 @@ const adminController = {
 
     // Validate required fields
     if (!name || !date || !location || !time || !description || !adminId) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing event data', statusCode: 400 });
+      return res.status(400).render('error', {
+        error: 'Missing event data',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
 
     // Create a new event in the database
@@ -320,9 +336,11 @@ const adminController = {
   deleteEvent: async (req, res) => {
     const { id } = req.params;
     if (!id) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing event id', statusCode: 400 });
+      return res.status(400).render('error', {
+        error: 'Missing event id',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
     const event = await Event.findByPk(id);
     if (event.picture_id) {
@@ -331,9 +349,11 @@ const adminController = {
     }
 
     if (!event) {
-      return res
-        .status(404)
-        .render('error', { error: 'Event not found', statusCode: 404 });
+      return res.status(404).render('error', {
+        error: 'Event not found',
+        statusCode: 404,
+        skipHeader: false,
+      });
     }
 
     await event.destroy();
@@ -344,9 +364,11 @@ const adminController = {
   renderUpdateEvent: async (req, res) => {
     const { id } = req.params;
     if (!id) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing event id', statusCode: 400 });
+      return res.status(400).render('error', {
+        error: 'Missing event id',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
     const event = await Event.findByPk(id, {
       include: [
@@ -360,9 +382,11 @@ const adminController = {
     });
 
     if (!event) {
-      return res
-        .status(404)
-        .render('error', { error: 'Event not found', statusCode: 404 });
+      return res.status(404).render('error', {
+        error: 'Event not found',
+        statusCode: 404,
+        skipHeader: false,
+      });
     }
 
     const allHobbies = await Hobby.findAll({
@@ -406,9 +430,11 @@ const adminController = {
 
     // Validate that all required fields are provided
     if (!name || !date || !location || !time || !description) {
-      return res
-        .status(400)
-        .render('error', { error: 'Missing event data', statusCode: 400 });
+      return res.status(400).render('error', {
+        error: 'Missing event data',
+        statusCode: 400,
+        skipHeader: false,
+      });
     }
 
     // Find the event to update by primary key (ID), including associated hobbies
@@ -484,6 +510,7 @@ const adminController = {
     return res.status(404).render('error', {
       error: 'Page not found',
       statusCode: 404,
+      skipHeader: false,
     });
   },
 };
