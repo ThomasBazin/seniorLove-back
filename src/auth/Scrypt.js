@@ -26,9 +26,10 @@ export class Scrypt {
     // On hash le mot de passe reçu du req.body avec le sel du mot de passe que l'on a en BDD
 
     // The settings recommended by OWASP do work out to a rather high maxmem:
-    // Use scrypt with a minimum CPU/memory cost parameter of (2^17)
-    // a minimum block size of 8 (1024 bytes), and a parallelization parameter of 1"
+    // Use scrypt with a minimum CPU/memory cost parameter of (2^17 = 131072)
+    // a minimum block size r of 8 (1024 bytes), and a parallelization p parameter of 1"
     // That works out to 134220800, around 134MB.
+    // maxmem = 128*p*r + 128*(2+N)*r
     const clearPasswordBuffer = scryptSync(plainTextpassword, salt, 64, {
       N: 131072,
       maxmem: 134220800,
